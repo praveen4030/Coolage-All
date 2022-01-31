@@ -1,0 +1,120 @@
+name: coolage
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 28.0.0+28
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cached_network_image: ^3.0.0
+  dartz: ^0.9.2
+  flushbar: ^1.10.4
+  flutter_bloc: ^7.0.0
+  flutter_svg: ^0.22.0
+  fluttertoast: ^8.0.6
+  freezed_annotation: ^0.14.2
+  get_it: ^7.1.3
+  injectable: ^1.0.5
+  json_annotation: ^4.0.1
+  file_picker: ^4.3.3
+  rxdart: ^0.27.0
+  share: ^2.0.1
+  #firebase
+  google_sign_in: ^5.2.1
+  firebase_core: ^1.1.1
+  firebase_auth: ^1.1.4
+  cloud_firestore: ^2.1.0
+  firebase_storage: ^8.0.6
+  firebase_database: ^6.1.2
+  firebase_messaging: ^10.0.7
+  firebase_messaging_web:
+  country_code_picker: ^2.0.2
+  cupertino_icons: ^1.0.3
+  timeago: ^3.0.2
+  pin_code_fields: ^7.1.0
+  hive: ^2.0.4
+  hive_flutter: ^1.0.0
+  firebase_dynamic_links: ^4.0.3
+  intl:
+  package_info: ^0.4.0+16
+  flutter_local_notifications: ^8.2.0
+  firebase_crashlytics: ^2.1.1
+  firebase_in_app_messaging: ^0.5.0+9
+  geoflutterfire: ^3.0.1
+  shared_preferences: ^2.0.8
+  persistent_bottom_nav_bar: ^4.0.2
+  linkedin_login: ^2.0.1
+  dio: ^4.0.4
+  # oauth2_client: ^2.2.1
+  simple_auth_flutter: ^2.0.9
+  qr_flutter: ^4.0.0
+  uni_links: ^0.5.1
+  dropdown_button2: ^1.0.7
+  cashfree_pg: ^2.0.4+24
+  #packages
+  feed:
+    path: ../coolage_packages/packages/feed
+  core:
+    path: ../coolage_packages/packages/core
+  blogs:
+    path: ../coolage_packages/packages/blogs
+  cards:
+    path: ../coolage_packages/packages/cards
+  user:
+    path: ../coolage_packages/packages/user
+  college:
+    path: ../coolage_packages/packages/college
+  mini_services:
+    path: ../coolage_packages/packages/mini_services
+  canteen:
+    path: ../coolage_packages/packages/canteen
+  placement:
+    path: ../coolage_packages/packages/placement
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.0.3
+  freezed: ^0.14.2
+  injectable_generator: ^1.4.0
+  json_serializable: ^4.1.2
+  lint: ^1.5.3
+  flutter_launcher_icons: ^0.9.0
+  hive_generator: ^1.1.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/icons/profile/
+    - assets/icons/social_media/
+    - assets/icons/placement/
+    - assets/icons/stores/
+    - assets/images/
+    - assets/illustrations/
+    - assets/animations/
+  fonts:
+    - family: Rubik
+      fonts:
+        - asset: assets/fonts/Rubik-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Rubik-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Rubik-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Rubik-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Rubik-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Rubik-Black.ttf
+          weight: 900
+
+    - family: Segoe UI
+      fonts:
+        - asset: assets/fonts/SegoeUI.ttf
+          weight: 400

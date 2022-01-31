@@ -1,0 +1,120 @@
+name: coolage_merchant
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  auto_route: ^2.2.0
+  cached_network_image: ^3.0.0
+  dartz: ^0.9.2
+  flushbar: ^1.10.4
+  flutter_bloc: ^7.0.0
+  flutter_svg: ^0.22.0
+  fluttertoast: ^8.0.6
+  freezed_annotation: ^0.14.2
+  get_it: ^7.1.3
+  image_picker: ^0.7.5
+  injectable: ^1.0.5
+  json_annotation: ^4.0.1
+  # path_provider: ^2.0.1
+  # provider: ^5.0.0
+  rxdart: ^0.27.0
+  share: ^2.0.1
+  url_launcher: ^6.0.3
+  webview_flutter: ^2.0.4
+  # file_picker :
+  firebase_core: ^1.1.1
+  firebase_auth: ^1.1.4
+  cloud_firestore: ^2.1.0
+  google_fonts: ^2.1.0
+  # cloud_firestore_web: ^2.0.1
+  # firebase_core_web: ^1.0.3
+  # firebase_auth_web: ^1.1.2
+  firebase_messaging: ^10.0.7
+  firebase_storage: ^8.0.6
+  image_cropper: ^1.4.0
+  # firebase_messaging: ^9.1.4
+  photo_view: ^0.11.1
+  cupertino_icons: ^1.0.3
+  timeago: ^3.0.2
+  # permission_handler: ^7.1.0
+  font_awesome_flutter: ^9.0.0
+  pin_code_fields: ^7.1.0
+  # flutter_downloader: ^1.6.1
+  flutter_share: ^2.0.0
+  # ext_storage: ^1.0.3
+  dio: ^4.0.0
+  file_picker:
+  hive: ^2.0.4
+  hive_flutter: ^1.0.0
+  geolocation: ^1.1.2
+  intl:
+  scroll_to_index:
+  # flutter_sound: ^8.3.12
+  # flutter_sound_web:
+  audio_service: ^0.18.0
+  connectivity_plus: ^1.1.0
+  flutter_local_notifications: ^8.2.0
+  just_audio: ^0.9.12
+  just_audio_web:
+  flutter_background_service: ^0.1.5
+  # just_audio_background: ^0.0.1-beta.1
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  auto_route_generator: ^2.1.0
+  build_runner: ^2.0.3
+  freezed: ^0.14.2
+  injectable_generator: ^1.4.0
+  json_serializable: ^4.1.2
+  lint: ^1.5.3
+  flutter_launcher_icons: ^0.9.0
+  hive_generator: ^1.1.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/images/
+    - assets/illustrations/
+    - assets/sounds/
+
+  fonts:
+    - family: Rubik
+      fonts:
+        - asset: assets/fonts/Rubik-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Rubik-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Rubik-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Rubik-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Rubik-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Rubik-Black.ttf
+          weight: 900
+
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/OpenSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 800
+        - asset: assets/fonts/OpenSans-SemiBold.ttf
+          weight: 600
+
+    - family: Segoe UI
+      fonts:
+        - asset: assets/fonts/SegoeUI.ttf
+          weight: 400
