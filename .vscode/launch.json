@@ -1,0 +1,55 @@
+{
+        "version": "0.2.0",
+        "configurations": [
+        
+        
+
+                {
+                        "name": "coolage",
+                        "cwd": "coolage",
+                        "request": "launch",
+                        "type": "dart",
+                        "args": [
+                                "--web-renderer",
+                                "html",
+                                "--no-sound-null-safety",
+                        ]
+                },
+                {
+                        "name": "coolage (profile mode)",
+                        "cwd": "coolage",
+                        "request": "launch",
+                        "type": "dart",
+                        "flutterMode": "profile"
+                },
+                {
+                        "name": "coolage_admin",
+                        "cwd": "coolage_admin",
+                        "request": "launch",
+                        "type": "dart",
+                        "args": [
+                                "--no-sound-null-safety"
+                        ]
+                },
+                {
+                        "name": "coolage_admin (profile mode)",
+                        "cwd": "coolage_admin",
+                        "request": "launch",
+                        "type": "dart",
+                        "flutterMode": "profile"
+                },
+                {
+                        "name": "coolage_merchant",
+                        "cwd": "coolage_merchant",
+                        "request": "launch",
+                        "type": "dart"
+                },
+                {
+                        "name": "coolage_merchant (profile mode)",
+                        "cwd": "coolage_merchant",
+                        "request": "launch",
+                        "type": "dart",
+                        "flutterMode": "profile"
+                }
+        ]
+}
