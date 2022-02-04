@@ -9,11 +9,9 @@ import 'package:coolage/presentation/core/pages/maintenance_page.dart';
 import 'package:coolage/presentation/core/pages/update_available_page.dart';
 import 'package:core/application/coolage_details/coolage_details_bloc.dart';
 import 'package:core/core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/application/auth/authentication_bloc.dart';
@@ -27,12 +25,8 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
-
-  Future<void> callEvents() async {
+  void callEvents() {
+    debugPrint('this is called events');
     context
         .read<AuthenticationBloc>()
         .add(const AuthenticationEvent.authCheckRequested());
@@ -43,69 +37,79 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext mainContext) {
-    return StreamBuilder(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (context, AsyncSnapshot<User?> snapshot) {
-        if (!snapshot.hasData) {
-          return Container();
-        } else {
-          callEvents();
-        }
-        return BlocListener<AuthenticationBloc, AuthenticationState>(
-          listener: (context, state) async {
-            state.userDetailOptResult.fold(
-              () {
+    return FutureBuilder(
+      future: Future.delayed(const Duration(seconds: 2)),
+      builder: (context, data) {
+        callEvents();
+        return splashPageLogic();
+      },
+    );
+  }
+
+  // return StreamBuilder(
+  //     stream: FirebaseAuth.instance.authStateChanges(),
+  //     builder: (context, AsyncSnapshot<User?> snapshot) {
+  //       if (snapshot.data != null) {
+  //         AuthNavigation.redirectUserBasedOnDetails(context);
+  //       }
+  Widget splashPageLogic() {
+    return BlocListener<AuthenticationBloc, AuthenticationState>(
+      listener: (context, state) async {
+        state.userDetailOptResult.fold(
+          () {
+            if (!Getters.isUserLoggedIn()) {
+              debugPrint('none');
+              Navigator.of(context).popUntil((route) => route.isFirst);
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const AuthenticationPage()));
+            }
+          },
+          (either) {
+            either.fold(
+              (failure) {
+                debugPrint('failure');
                 if (!Getters.isUserLoggedIn()) {
                   Navigator.of(context).popUntil((route) => route.isFirst);
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => const AuthenticationPage()));
                 }
               },
-              (either) {
-                either.fold(
-                  (failure) {
-                    if (!Getters.isUserLoggedIn()) {
-                      Navigator.of(context).popUntil((route) => route.isFirst);
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const AuthenticationPage()));
-                    }
-                  },
-                  (isDetailsAvailable) async {
-                    if (isDetailsAvailable) {
-                      if (AuthNavigation
-                          .checkIfUsersNeededInformationIsAvailable(
-                              state.coolUser!)) {
-                        final int index = await getBottomIndexToSharedPref();
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => BasePage(index: index)));
-                        // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        //     builder: (context) => AuthenticationPage()));
-                      } else {
-                        //TODO change this one
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const UserNamePage()));
-                      }
-                    } else {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const UserNamePage()));
-                    }
-                  },
-                );
+              (isDetailsAvailable) async {
+                if (isDetailsAvailable) {
+                  debugPrint('details');
+                  if (AuthNavigation.checkIfUsersNeededInformationIsAvailable(
+                      state.coolUser!)) {
+                    final int index = await getBottomIndexToSharedPref();
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => BasePage(index: index)));
+                    // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    //     builder: (context) => AuthenticationPage()));
+                  } else {
+                    //TODO change this one
+                    debugPrint('user details');
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const UserNamePage()));
+                  }
+                } else {
+                  debugPrint('user name');
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const UserNamePage()));
+                }
               },
             );
           },
-          child: Scaffold(
-            body: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Image.asset(
-                'assets/images/background_splash.png',
-                fit: BoxFit.fill,
-              ),
-            ),
-          ),
         );
       },
+      child: Scaffold(
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Image.asset(
+            'assets/images/background_splash.png',
+            fit: BoxFit.fill,
+          ),
+        ),
+      ),
     );
   }
 

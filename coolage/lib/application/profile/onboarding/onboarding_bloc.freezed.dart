@@ -61,9 +61,9 @@ class _$OnboardingEventTearOff {
   _UpdateStudentDetails updateStudentDetails(
       {required String degree,
       required String department,
-      required String year,
+      String? year,
       required String batchStart,
-      required String batchFinish}) {
+      String? batchFinish}) {
     return _UpdateStudentDetails(
       degree: degree,
       department: department,
@@ -89,8 +89,8 @@ mixin _$OnboardingEvent {
     required TResult Function(String collegeEmailId) updateCollegeEmailId,
     required TResult Function(String designation, String department)
         updateFacultyDetails,
-    required TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)
+    required TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)
         updateStudentDetails,
   }) =>
       throw _privateConstructorUsedError;
@@ -104,8 +104,8 @@ mixin _$OnboardingEvent {
     TResult Function(String collegeEmailId)? updateCollegeEmailId,
     TResult Function(String designation, String department)?
         updateFacultyDetails,
-    TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)?
+    TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)?
         updateStudentDetails,
     required TResult orElse(),
   }) =>
@@ -202,8 +202,8 @@ class _$_SaveProfileDetails implements _SaveProfileDetails {
     required TResult Function(String collegeEmailId) updateCollegeEmailId,
     required TResult Function(String designation, String department)
         updateFacultyDetails,
-    required TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)
+    required TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)
         updateStudentDetails,
   }) {
     return saveProfileDetails();
@@ -220,8 +220,8 @@ class _$_SaveProfileDetails implements _SaveProfileDetails {
     TResult Function(String collegeEmailId)? updateCollegeEmailId,
     TResult Function(String designation, String department)?
         updateFacultyDetails,
-    TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)?
+    TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)?
         updateStudentDetails,
     required TResult orElse(),
   }) {
@@ -343,8 +343,8 @@ class _$_UpdateProfileFile implements _UpdateProfileFile {
     required TResult Function(String collegeEmailId) updateCollegeEmailId,
     required TResult Function(String designation, String department)
         updateFacultyDetails,
-    required TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)
+    required TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)
         updateStudentDetails,
   }) {
     return updateProfileFile(file);
@@ -361,8 +361,8 @@ class _$_UpdateProfileFile implements _UpdateProfileFile {
     TResult Function(String collegeEmailId)? updateCollegeEmailId,
     TResult Function(String designation, String department)?
         updateFacultyDetails,
-    TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)?
+    TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)?
         updateStudentDetails,
     required TResult orElse(),
   }) {
@@ -489,8 +489,8 @@ class _$_UpdateName implements _UpdateName {
     required TResult Function(String collegeEmailId) updateCollegeEmailId,
     required TResult Function(String designation, String department)
         updateFacultyDetails,
-    required TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)
+    required TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)
         updateStudentDetails,
   }) {
     return updateName(name);
@@ -507,8 +507,8 @@ class _$_UpdateName implements _UpdateName {
     TResult Function(String collegeEmailId)? updateCollegeEmailId,
     TResult Function(String designation, String department)?
         updateFacultyDetails,
-    TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)?
+    TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)?
         updateStudentDetails,
     required TResult orElse(),
   }) {
@@ -635,8 +635,8 @@ class _$_UpdateCollege implements _UpdateCollege {
     required TResult Function(String collegeEmailId) updateCollegeEmailId,
     required TResult Function(String designation, String department)
         updateFacultyDetails,
-    required TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)
+    required TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)
         updateStudentDetails,
   }) {
     return updateCollege(college);
@@ -653,8 +653,8 @@ class _$_UpdateCollege implements _UpdateCollege {
     TResult Function(String collegeEmailId)? updateCollegeEmailId,
     TResult Function(String designation, String department)?
         updateFacultyDetails,
-    TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)?
+    TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)?
         updateStudentDetails,
     required TResult orElse(),
   }) {
@@ -782,8 +782,8 @@ class _$_UpdateUserType implements _UpdateUserType {
     required TResult Function(String collegeEmailId) updateCollegeEmailId,
     required TResult Function(String designation, String department)
         updateFacultyDetails,
-    required TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)
+    required TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)
         updateStudentDetails,
   }) {
     return updateUserType(userType);
@@ -800,8 +800,8 @@ class _$_UpdateUserType implements _UpdateUserType {
     TResult Function(String collegeEmailId)? updateCollegeEmailId,
     TResult Function(String designation, String department)?
         updateFacultyDetails,
-    TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)?
+    TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)?
         updateStudentDetails,
     required TResult orElse(),
   }) {
@@ -931,8 +931,8 @@ class _$_UpdateCollegeEmailId implements _UpdateCollegeEmailId {
     required TResult Function(String collegeEmailId) updateCollegeEmailId,
     required TResult Function(String designation, String department)
         updateFacultyDetails,
-    required TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)
+    required TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)
         updateStudentDetails,
   }) {
     return updateCollegeEmailId(collegeEmailId);
@@ -949,8 +949,8 @@ class _$_UpdateCollegeEmailId implements _UpdateCollegeEmailId {
     TResult Function(String collegeEmailId)? updateCollegeEmailId,
     TResult Function(String designation, String department)?
         updateFacultyDetails,
-    TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)?
+    TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)?
         updateStudentDetails,
     required TResult orElse(),
   }) {
@@ -1093,8 +1093,8 @@ class _$_UpdateFacultyDetails implements _UpdateFacultyDetails {
     required TResult Function(String collegeEmailId) updateCollegeEmailId,
     required TResult Function(String designation, String department)
         updateFacultyDetails,
-    required TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)
+    required TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)
         updateStudentDetails,
   }) {
     return updateFacultyDetails(designation, department);
@@ -1111,8 +1111,8 @@ class _$_UpdateFacultyDetails implements _UpdateFacultyDetails {
     TResult Function(String collegeEmailId)? updateCollegeEmailId,
     TResult Function(String designation, String department)?
         updateFacultyDetails,
-    TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)?
+    TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)?
         updateStudentDetails,
     required TResult orElse(),
   }) {
@@ -1177,9 +1177,9 @@ abstract class _$UpdateStudentDetailsCopyWith<$Res> {
   $Res call(
       {String degree,
       String department,
-      String year,
+      String? year,
       String batchStart,
-      String batchFinish});
+      String? batchFinish});
 }
 
 /// @nodoc
@@ -1213,7 +1213,7 @@ class __$UpdateStudentDetailsCopyWithImpl<$Res>
       year: year == freezed
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       batchStart: batchStart == freezed
           ? _value.batchStart
           : batchStart // ignore: cast_nullable_to_non_nullable
@@ -1221,7 +1221,7 @@ class __$UpdateStudentDetailsCopyWithImpl<$Res>
       batchFinish: batchFinish == freezed
           ? _value.batchFinish
           : batchFinish // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -1232,20 +1232,20 @@ class _$_UpdateStudentDetails implements _UpdateStudentDetails {
   const _$_UpdateStudentDetails(
       {required this.degree,
       required this.department,
-      required this.year,
+      this.year,
       required this.batchStart,
-      required this.batchFinish});
+      this.batchFinish});
 
   @override
   final String degree;
   @override
   final String department;
   @override
-  final String year;
+  final String? year;
   @override
   final String batchStart;
   @override
-  final String batchFinish;
+  final String? batchFinish;
 
   @override
   String toString() {
@@ -1297,8 +1297,8 @@ class _$_UpdateStudentDetails implements _UpdateStudentDetails {
     required TResult Function(String collegeEmailId) updateCollegeEmailId,
     required TResult Function(String designation, String department)
         updateFacultyDetails,
-    required TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)
+    required TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)
         updateStudentDetails,
   }) {
     return updateStudentDetails(
@@ -1316,8 +1316,8 @@ class _$_UpdateStudentDetails implements _UpdateStudentDetails {
     TResult Function(String collegeEmailId)? updateCollegeEmailId,
     TResult Function(String designation, String department)?
         updateFacultyDetails,
-    TResult Function(String degree, String department, String year,
-            String batchStart, String batchFinish)?
+    TResult Function(String degree, String department, String? year,
+            String batchStart, String? batchFinish)?
         updateStudentDetails,
     required TResult orElse(),
   }) {
@@ -1367,15 +1367,15 @@ abstract class _UpdateStudentDetails implements OnboardingEvent {
   const factory _UpdateStudentDetails(
       {required String degree,
       required String department,
-      required String year,
+      String? year,
       required String batchStart,
-      required String batchFinish}) = _$_UpdateStudentDetails;
+      String? batchFinish}) = _$_UpdateStudentDetails;
 
   String get degree => throw _privateConstructorUsedError;
   String get department => throw _privateConstructorUsedError;
-  String get year => throw _privateConstructorUsedError;
+  String? get year => throw _privateConstructorUsedError;
   String get batchStart => throw _privateConstructorUsedError;
-  String get batchFinish => throw _privateConstructorUsedError;
+  String? get batchFinish => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$UpdateStudentDetailsCopyWith<_UpdateStudentDetails> get copyWith =>
       throw _privateConstructorUsedError;

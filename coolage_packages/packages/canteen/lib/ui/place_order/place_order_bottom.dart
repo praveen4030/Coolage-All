@@ -51,6 +51,11 @@ class PlaceOrderBottomWidget extends StatelessWidget {
         return SizedBox(
           height: 75,
           child: PaymentGatewayButton(
+            triggerLoadingFn: (bool val) {
+              context
+                  .read<CanteenDetailsBloc>()
+                  .add(CanteenDetailsEvent.placeOrderLoading(isLoading: val));
+            },
             receiverName: cartModel!.canteenBasicDetailsModel!.name,
             amount: totalPayable,
             description: getPaymentDesc(context),

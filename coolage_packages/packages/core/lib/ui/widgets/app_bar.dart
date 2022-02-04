@@ -6,6 +6,7 @@ class CoolageAppBar extends StatelessWidget {
   final bool isCenter;
   final Color titleColor;
   final Color? backgroundColor;
+  final String? subtitle;
   const CoolageAppBar({
     Key? key,
     @required this.actions,
@@ -13,6 +14,7 @@ class CoolageAppBar extends StatelessWidget {
     this.isCenter = false,
     this.titleColor = Kolors.greyBlack,
     this.backgroundColor = Kolors.greyWhite,
+    this.subtitle,
   }) : super(key: key);
 
   @override
@@ -23,29 +25,54 @@ class CoolageAppBar extends StatelessWidget {
       flexibleSpace: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            IconWithWhiteBackground(
-              iconName: 'back',
-              iconColor: Kolors.greyBlue,
-              onTap: () {
-                Navigator.of(context).pop();
-              },
+            Container(
+              height: 40,
+              width: 40,
+              child: IconWithWhiteBackground(
+                iconName: 'back',
+                iconColor: Kolors.greyBlue,
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+              ),
             ),
             const SizedBox(
               width: 20,
             ),
             Expanded(
-              child: Container(
-                alignment: isCenter ? Alignment.center : Alignment.centerLeft,
-                child: Text(
-                  text!,
-                  style: TextStyle(
-                    fontFamily: Fonts.HEADING_FONT,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 22,
-                    color: titleColor,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: isCenter
+                    ? CrossAxisAlignment.center
+                    : CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    child: Text(
+                      text!,
+                      style: TextStyle(
+                        fontFamily: Fonts.HEADING_FONT,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 22,
+                        color: titleColor,
+                      ),
+                    ),
                   ),
-                ),
+                  if (subtitle != null)
+                    Container(
+                      padding: EdgeInsets.only(top: 12),
+                      child: Text(
+                        subtitle!,
+                        style: const TextStyle(
+                          fontFamily: Fonts.HEADING_FONT,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 18,
+                          color: Kolors.greyBlue,
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ),
             if (actions?.isEmpty ?? true)

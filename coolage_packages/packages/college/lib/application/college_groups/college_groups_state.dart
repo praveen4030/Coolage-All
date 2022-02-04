@@ -40,4 +40,23 @@ class CollegeGroupsState with _$CollegeGroupsState {
         isSavingGroup: false,
         isDeletingGroup: false,
       );
+  factory CollegeGroupsState.initialGroupLoading() => CollegeGroupsState(
+        groupModel: null,
+        isGroupLoading: true,
+        actionFirebaseResultOpt: none(),
+        departmentFacultiesList: [],
+        groupMembersList: [],
+        hasMoreDepartmentFaculties: true,
+        hasMoreGroupMembers: true,
+        isMoreGroupMembersLoading: false,
+        isMoreDepartmentFacultiesLoading: false,
+        isGroupMembersLoading: false,
+        isDepartmentFacultiesLoading: false,
+        hasMoreDepartmentStudentsMap: {},
+        isMoreDepartmentStudentsLoadingMap: {},
+        departmentStudentsMap: {},
+        isDepartmentStudentsLoadingMap: {},
+        isSavingGroup: false,
+        isDeletingGroup: false,
+      );
 }

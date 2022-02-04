@@ -69,6 +69,17 @@ mixin Functions {
     return '$day $monthStr $year';
   }
 
+  static String getSubdetailString(CoolUser coolUser) {
+    String s = "";
+    if (coolUser.degree?.isNotEmpty ?? false) {
+      s += coolUser.degree!;
+    }
+    if (coolUser.year?.isNotEmpty ?? false) {
+      s += '${Functions.getWithSuffix(int.parse(coolUser.year!))} year';
+    }
+    return s;
+  }
+
   static Timestamp convertTimeOfDayToTimestamp(TimeOfDay? timeOfDay) {
     return Timestamp.fromDate(
         DateTime(2021, 01, 01, timeOfDay?.hour ?? 0, timeOfDay?.minute ?? 0));

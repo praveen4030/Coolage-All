@@ -79,6 +79,12 @@ class _$CanteenDetailsEventTearOff {
     );
   }
 
+  _PlaceOrderLoading placeOrderLoading({required bool? isLoading}) {
+    return _PlaceOrderLoading(
+      isLoading: isLoading,
+    );
+  }
+
   _ShowBackToTop showBackToTop({required bool? isShowingbackToTop}) {
     return _ShowBackToTop(
       isShowingbackToTop: isShowingbackToTop,
@@ -120,6 +126,7 @@ mixin _$CanteenDetailsEvent {
             bool? isTakeAway,
             String? comments)
         placeOrder,
+    required TResult Function(bool? isLoading) placeOrderLoading,
     required TResult Function(bool? isShowingbackToTop) showBackToTop,
     required TResult Function(int deliveryAddressIndex)
         updateDeliveryAdressIndex,
@@ -146,6 +153,7 @@ mixin _$CanteenDetailsEvent {
             bool? isTakeAway,
             String? comments)?
         placeOrder,
+    TResult Function(bool? isLoading)? placeOrderLoading,
     TResult Function(bool? isShowingbackToTop)? showBackToTop,
     TResult Function(int deliveryAddressIndex)? updateDeliveryAdressIndex,
     required TResult orElse(),
@@ -160,6 +168,7 @@ mixin _$CanteenDetailsEvent {
     required TResult Function(_AddToCart value) addToCart,
     required TResult Function(_ChangeVegNonveg value) changeVegNonveg,
     required TResult Function(_PlaceOrder value) placeOrder,
+    required TResult Function(_PlaceOrderLoading value) placeOrderLoading,
     required TResult Function(_ShowBackToTop value) showBackToTop,
     required TResult Function(_UpdateDeliveryAdressIndex value)
         updateDeliveryAdressIndex,
@@ -174,6 +183,7 @@ mixin _$CanteenDetailsEvent {
     TResult Function(_AddToCart value)? addToCart,
     TResult Function(_ChangeVegNonveg value)? changeVegNonveg,
     TResult Function(_PlaceOrder value)? placeOrder,
+    TResult Function(_PlaceOrderLoading value)? placeOrderLoading,
     TResult Function(_ShowBackToTop value)? showBackToTop,
     TResult Function(_UpdateDeliveryAdressIndex value)?
         updateDeliveryAdressIndex,
@@ -285,6 +295,7 @@ class _$_GetCollegeCanteens implements _GetCollegeCanteens {
             bool? isTakeAway,
             String? comments)
         placeOrder,
+    required TResult Function(bool? isLoading) placeOrderLoading,
     required TResult Function(bool? isShowingbackToTop) showBackToTop,
     required TResult Function(int deliveryAddressIndex)
         updateDeliveryAdressIndex,
@@ -314,6 +325,7 @@ class _$_GetCollegeCanteens implements _GetCollegeCanteens {
             bool? isTakeAway,
             String? comments)?
         placeOrder,
+    TResult Function(bool? isLoading)? placeOrderLoading,
     TResult Function(bool? isShowingbackToTop)? showBackToTop,
     TResult Function(int deliveryAddressIndex)? updateDeliveryAdressIndex,
     required TResult orElse(),
@@ -334,6 +346,7 @@ class _$_GetCollegeCanteens implements _GetCollegeCanteens {
     required TResult Function(_AddToCart value) addToCart,
     required TResult Function(_ChangeVegNonveg value) changeVegNonveg,
     required TResult Function(_PlaceOrder value) placeOrder,
+    required TResult Function(_PlaceOrderLoading value) placeOrderLoading,
     required TResult Function(_ShowBackToTop value) showBackToTop,
     required TResult Function(_UpdateDeliveryAdressIndex value)
         updateDeliveryAdressIndex,
@@ -351,6 +364,7 @@ class _$_GetCollegeCanteens implements _GetCollegeCanteens {
     TResult Function(_AddToCart value)? addToCart,
     TResult Function(_ChangeVegNonveg value)? changeVegNonveg,
     TResult Function(_PlaceOrder value)? placeOrder,
+    TResult Function(_PlaceOrderLoading value)? placeOrderLoading,
     TResult Function(_ShowBackToTop value)? showBackToTop,
     TResult Function(_UpdateDeliveryAdressIndex value)?
         updateDeliveryAdressIndex,
@@ -459,6 +473,7 @@ class _$_GetCanteensNearby implements _GetCanteensNearby {
             bool? isTakeAway,
             String? comments)
         placeOrder,
+    required TResult Function(bool? isLoading) placeOrderLoading,
     required TResult Function(bool? isShowingbackToTop) showBackToTop,
     required TResult Function(int deliveryAddressIndex)
         updateDeliveryAdressIndex,
@@ -488,6 +503,7 @@ class _$_GetCanteensNearby implements _GetCanteensNearby {
             bool? isTakeAway,
             String? comments)?
         placeOrder,
+    TResult Function(bool? isLoading)? placeOrderLoading,
     TResult Function(bool? isShowingbackToTop)? showBackToTop,
     TResult Function(int deliveryAddressIndex)? updateDeliveryAdressIndex,
     required TResult orElse(),
@@ -508,6 +524,7 @@ class _$_GetCanteensNearby implements _GetCanteensNearby {
     required TResult Function(_AddToCart value) addToCart,
     required TResult Function(_ChangeVegNonveg value) changeVegNonveg,
     required TResult Function(_PlaceOrder value) placeOrder,
+    required TResult Function(_PlaceOrderLoading value) placeOrderLoading,
     required TResult Function(_ShowBackToTop value) showBackToTop,
     required TResult Function(_UpdateDeliveryAdressIndex value)
         updateDeliveryAdressIndex,
@@ -525,6 +542,7 @@ class _$_GetCanteensNearby implements _GetCanteensNearby {
     TResult Function(_AddToCart value)? addToCart,
     TResult Function(_ChangeVegNonveg value)? changeVegNonveg,
     TResult Function(_PlaceOrder value)? placeOrder,
+    TResult Function(_PlaceOrderLoading value)? placeOrderLoading,
     TResult Function(_ShowBackToTop value)? showBackToTop,
     TResult Function(_UpdateDeliveryAdressIndex value)?
         updateDeliveryAdressIndex,
@@ -635,6 +653,7 @@ class _$_GetCanteenDetails implements _GetCanteenDetails {
             bool? isTakeAway,
             String? comments)
         placeOrder,
+    required TResult Function(bool? isLoading) placeOrderLoading,
     required TResult Function(bool? isShowingbackToTop) showBackToTop,
     required TResult Function(int deliveryAddressIndex)
         updateDeliveryAdressIndex,
@@ -664,6 +683,7 @@ class _$_GetCanteenDetails implements _GetCanteenDetails {
             bool? isTakeAway,
             String? comments)?
         placeOrder,
+    TResult Function(bool? isLoading)? placeOrderLoading,
     TResult Function(bool? isShowingbackToTop)? showBackToTop,
     TResult Function(int deliveryAddressIndex)? updateDeliveryAdressIndex,
     required TResult orElse(),
@@ -684,6 +704,7 @@ class _$_GetCanteenDetails implements _GetCanteenDetails {
     required TResult Function(_AddToCart value) addToCart,
     required TResult Function(_ChangeVegNonveg value) changeVegNonveg,
     required TResult Function(_PlaceOrder value) placeOrder,
+    required TResult Function(_PlaceOrderLoading value) placeOrderLoading,
     required TResult Function(_ShowBackToTop value) showBackToTop,
     required TResult Function(_UpdateDeliveryAdressIndex value)
         updateDeliveryAdressIndex,
@@ -701,6 +722,7 @@ class _$_GetCanteenDetails implements _GetCanteenDetails {
     TResult Function(_AddToCart value)? addToCart,
     TResult Function(_ChangeVegNonveg value)? changeVegNonveg,
     TResult Function(_PlaceOrder value)? placeOrder,
+    TResult Function(_PlaceOrderLoading value)? placeOrderLoading,
     TResult Function(_ShowBackToTop value)? showBackToTop,
     TResult Function(_UpdateDeliveryAdressIndex value)?
         updateDeliveryAdressIndex,
@@ -785,6 +807,7 @@ class _$_GetCanteenCartItems implements _GetCanteenCartItems {
             bool? isTakeAway,
             String? comments)
         placeOrder,
+    required TResult Function(bool? isLoading) placeOrderLoading,
     required TResult Function(bool? isShowingbackToTop) showBackToTop,
     required TResult Function(int deliveryAddressIndex)
         updateDeliveryAdressIndex,
@@ -814,6 +837,7 @@ class _$_GetCanteenCartItems implements _GetCanteenCartItems {
             bool? isTakeAway,
             String? comments)?
         placeOrder,
+    TResult Function(bool? isLoading)? placeOrderLoading,
     TResult Function(bool? isShowingbackToTop)? showBackToTop,
     TResult Function(int deliveryAddressIndex)? updateDeliveryAdressIndex,
     required TResult orElse(),
@@ -834,6 +858,7 @@ class _$_GetCanteenCartItems implements _GetCanteenCartItems {
     required TResult Function(_AddToCart value) addToCart,
     required TResult Function(_ChangeVegNonveg value) changeVegNonveg,
     required TResult Function(_PlaceOrder value) placeOrder,
+    required TResult Function(_PlaceOrderLoading value) placeOrderLoading,
     required TResult Function(_ShowBackToTop value) showBackToTop,
     required TResult Function(_UpdateDeliveryAdressIndex value)
         updateDeliveryAdressIndex,
@@ -851,6 +876,7 @@ class _$_GetCanteenCartItems implements _GetCanteenCartItems {
     TResult Function(_AddToCart value)? addToCart,
     TResult Function(_ChangeVegNonveg value)? changeVegNonveg,
     TResult Function(_PlaceOrder value)? placeOrder,
+    TResult Function(_PlaceOrderLoading value)? placeOrderLoading,
     TResult Function(_ShowBackToTop value)? showBackToTop,
     TResult Function(_UpdateDeliveryAdressIndex value)?
         updateDeliveryAdressIndex,
@@ -982,6 +1008,7 @@ class _$_AddToCart implements _AddToCart {
             bool? isTakeAway,
             String? comments)
         placeOrder,
+    required TResult Function(bool? isLoading) placeOrderLoading,
     required TResult Function(bool? isShowingbackToTop) showBackToTop,
     required TResult Function(int deliveryAddressIndex)
         updateDeliveryAdressIndex,
@@ -1011,6 +1038,7 @@ class _$_AddToCart implements _AddToCart {
             bool? isTakeAway,
             String? comments)?
         placeOrder,
+    TResult Function(bool? isLoading)? placeOrderLoading,
     TResult Function(bool? isShowingbackToTop)? showBackToTop,
     TResult Function(int deliveryAddressIndex)? updateDeliveryAdressIndex,
     required TResult orElse(),
@@ -1031,6 +1059,7 @@ class _$_AddToCart implements _AddToCart {
     required TResult Function(_AddToCart value) addToCart,
     required TResult Function(_ChangeVegNonveg value) changeVegNonveg,
     required TResult Function(_PlaceOrder value) placeOrder,
+    required TResult Function(_PlaceOrderLoading value) placeOrderLoading,
     required TResult Function(_ShowBackToTop value) showBackToTop,
     required TResult Function(_UpdateDeliveryAdressIndex value)
         updateDeliveryAdressIndex,
@@ -1048,6 +1077,7 @@ class _$_AddToCart implements _AddToCart {
     TResult Function(_AddToCart value)? addToCart,
     TResult Function(_ChangeVegNonveg value)? changeVegNonveg,
     TResult Function(_PlaceOrder value)? placeOrder,
+    TResult Function(_PlaceOrderLoading value)? placeOrderLoading,
     TResult Function(_ShowBackToTop value)? showBackToTop,
     TResult Function(_UpdateDeliveryAdressIndex value)?
         updateDeliveryAdressIndex,
@@ -1173,6 +1203,7 @@ class _$_ChangeVegNonveg implements _ChangeVegNonveg {
             bool? isTakeAway,
             String? comments)
         placeOrder,
+    required TResult Function(bool? isLoading) placeOrderLoading,
     required TResult Function(bool? isShowingbackToTop) showBackToTop,
     required TResult Function(int deliveryAddressIndex)
         updateDeliveryAdressIndex,
@@ -1202,6 +1233,7 @@ class _$_ChangeVegNonveg implements _ChangeVegNonveg {
             bool? isTakeAway,
             String? comments)?
         placeOrder,
+    TResult Function(bool? isLoading)? placeOrderLoading,
     TResult Function(bool? isShowingbackToTop)? showBackToTop,
     TResult Function(int deliveryAddressIndex)? updateDeliveryAdressIndex,
     required TResult orElse(),
@@ -1222,6 +1254,7 @@ class _$_ChangeVegNonveg implements _ChangeVegNonveg {
     required TResult Function(_AddToCart value) addToCart,
     required TResult Function(_ChangeVegNonveg value) changeVegNonveg,
     required TResult Function(_PlaceOrder value) placeOrder,
+    required TResult Function(_PlaceOrderLoading value) placeOrderLoading,
     required TResult Function(_ShowBackToTop value) showBackToTop,
     required TResult Function(_UpdateDeliveryAdressIndex value)
         updateDeliveryAdressIndex,
@@ -1239,6 +1272,7 @@ class _$_ChangeVegNonveg implements _ChangeVegNonveg {
     TResult Function(_AddToCart value)? addToCart,
     TResult Function(_ChangeVegNonveg value)? changeVegNonveg,
     TResult Function(_PlaceOrder value)? placeOrder,
+    TResult Function(_PlaceOrderLoading value)? placeOrderLoading,
     TResult Function(_ShowBackToTop value)? showBackToTop,
     TResult Function(_UpdateDeliveryAdressIndex value)?
         updateDeliveryAdressIndex,
@@ -1442,6 +1476,7 @@ class _$_PlaceOrder implements _PlaceOrder {
             bool? isTakeAway,
             String? comments)
         placeOrder,
+    required TResult Function(bool? isLoading) placeOrderLoading,
     required TResult Function(bool? isShowingbackToTop) showBackToTop,
     required TResult Function(int deliveryAddressIndex)
         updateDeliveryAdressIndex,
@@ -1472,6 +1507,7 @@ class _$_PlaceOrder implements _PlaceOrder {
             bool? isTakeAway,
             String? comments)?
         placeOrder,
+    TResult Function(bool? isLoading)? placeOrderLoading,
     TResult Function(bool? isShowingbackToTop)? showBackToTop,
     TResult Function(int deliveryAddressIndex)? updateDeliveryAdressIndex,
     required TResult orElse(),
@@ -1493,6 +1529,7 @@ class _$_PlaceOrder implements _PlaceOrder {
     required TResult Function(_AddToCart value) addToCart,
     required TResult Function(_ChangeVegNonveg value) changeVegNonveg,
     required TResult Function(_PlaceOrder value) placeOrder,
+    required TResult Function(_PlaceOrderLoading value) placeOrderLoading,
     required TResult Function(_ShowBackToTop value) showBackToTop,
     required TResult Function(_UpdateDeliveryAdressIndex value)
         updateDeliveryAdressIndex,
@@ -1510,6 +1547,7 @@ class _$_PlaceOrder implements _PlaceOrder {
     TResult Function(_AddToCart value)? addToCart,
     TResult Function(_ChangeVegNonveg value)? changeVegNonveg,
     TResult Function(_PlaceOrder value)? placeOrder,
+    TResult Function(_PlaceOrderLoading value)? placeOrderLoading,
     TResult Function(_ShowBackToTop value)? showBackToTop,
     TResult Function(_UpdateDeliveryAdressIndex value)?
         updateDeliveryAdressIndex,
@@ -1544,6 +1582,184 @@ abstract class _PlaceOrder implements CanteenDetailsEvent {
   String? get comments => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$PlaceOrderCopyWith<_PlaceOrder> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$PlaceOrderLoadingCopyWith<$Res> {
+  factory _$PlaceOrderLoadingCopyWith(
+          _PlaceOrderLoading value, $Res Function(_PlaceOrderLoading) then) =
+      __$PlaceOrderLoadingCopyWithImpl<$Res>;
+  $Res call({bool? isLoading});
+}
+
+/// @nodoc
+class __$PlaceOrderLoadingCopyWithImpl<$Res>
+    extends _$CanteenDetailsEventCopyWithImpl<$Res>
+    implements _$PlaceOrderLoadingCopyWith<$Res> {
+  __$PlaceOrderLoadingCopyWithImpl(
+      _PlaceOrderLoading _value, $Res Function(_PlaceOrderLoading) _then)
+      : super(_value, (v) => _then(v as _PlaceOrderLoading));
+
+  @override
+  _PlaceOrderLoading get _value => super._value as _PlaceOrderLoading;
+
+  @override
+  $Res call({
+    Object? isLoading = freezed,
+  }) {
+    return _then(_PlaceOrderLoading(
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_PlaceOrderLoading implements _PlaceOrderLoading {
+  const _$_PlaceOrderLoading({required this.isLoading});
+
+  @override
+  final bool? isLoading;
+
+  @override
+  String toString() {
+    return 'CanteenDetailsEvent.placeOrderLoading(isLoading: $isLoading)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _PlaceOrderLoading &&
+            (identical(other.isLoading, isLoading) ||
+                const DeepCollectionEquality()
+                    .equals(other.isLoading, isLoading)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(isLoading);
+
+  @JsonKey(ignore: true)
+  @override
+  _$PlaceOrderLoadingCopyWith<_PlaceOrderLoading> get copyWith =>
+      __$PlaceOrderLoadingCopyWithImpl<_PlaceOrderLoading>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? userCollege) getCollegeCanteens,
+    required TResult Function(String? userCollege) getCanteensNearby,
+    required TResult Function(
+            CanteenBasicDetailsModel? canteenBasicDetailsModel)
+        getCanteenDetails,
+    required TResult Function() getCanteenCartItems,
+    required TResult Function(bool? isIncreased, ItemModel? menuItemModel,
+            CanteenBasicDetailsModel? canteenBasicDetailsModel)
+        addToCart,
+    required TResult Function(bool? isVeg, bool? isNonveg) changeVegNonveg,
+    required TResult Function(
+            CartModel? cartModel,
+            bool? isDelivery,
+            DeliverableZonesModel? deliverableZonesModel,
+            String? deliveryAddress,
+            CoolUser? coolUser,
+            String? paymentId,
+            bool? isTakeAway,
+            String? comments)
+        placeOrder,
+    required TResult Function(bool? isLoading) placeOrderLoading,
+    required TResult Function(bool? isShowingbackToTop) showBackToTop,
+    required TResult Function(int deliveryAddressIndex)
+        updateDeliveryAdressIndex,
+  }) {
+    return placeOrderLoading(isLoading);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? userCollege)? getCollegeCanteens,
+    TResult Function(String? userCollege)? getCanteensNearby,
+    TResult Function(CanteenBasicDetailsModel? canteenBasicDetailsModel)?
+        getCanteenDetails,
+    TResult Function()? getCanteenCartItems,
+    TResult Function(bool? isIncreased, ItemModel? menuItemModel,
+            CanteenBasicDetailsModel? canteenBasicDetailsModel)?
+        addToCart,
+    TResult Function(bool? isVeg, bool? isNonveg)? changeVegNonveg,
+    TResult Function(
+            CartModel? cartModel,
+            bool? isDelivery,
+            DeliverableZonesModel? deliverableZonesModel,
+            String? deliveryAddress,
+            CoolUser? coolUser,
+            String? paymentId,
+            bool? isTakeAway,
+            String? comments)?
+        placeOrder,
+    TResult Function(bool? isLoading)? placeOrderLoading,
+    TResult Function(bool? isShowingbackToTop)? showBackToTop,
+    TResult Function(int deliveryAddressIndex)? updateDeliveryAdressIndex,
+    required TResult orElse(),
+  }) {
+    if (placeOrderLoading != null) {
+      return placeOrderLoading(isLoading);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetCollegeCanteens value) getCollegeCanteens,
+    required TResult Function(_GetCanteensNearby value) getCanteensNearby,
+    required TResult Function(_GetCanteenDetails value) getCanteenDetails,
+    required TResult Function(_GetCanteenCartItems value) getCanteenCartItems,
+    required TResult Function(_AddToCart value) addToCart,
+    required TResult Function(_ChangeVegNonveg value) changeVegNonveg,
+    required TResult Function(_PlaceOrder value) placeOrder,
+    required TResult Function(_PlaceOrderLoading value) placeOrderLoading,
+    required TResult Function(_ShowBackToTop value) showBackToTop,
+    required TResult Function(_UpdateDeliveryAdressIndex value)
+        updateDeliveryAdressIndex,
+  }) {
+    return placeOrderLoading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetCollegeCanteens value)? getCollegeCanteens,
+    TResult Function(_GetCanteensNearby value)? getCanteensNearby,
+    TResult Function(_GetCanteenDetails value)? getCanteenDetails,
+    TResult Function(_GetCanteenCartItems value)? getCanteenCartItems,
+    TResult Function(_AddToCart value)? addToCart,
+    TResult Function(_ChangeVegNonveg value)? changeVegNonveg,
+    TResult Function(_PlaceOrder value)? placeOrder,
+    TResult Function(_PlaceOrderLoading value)? placeOrderLoading,
+    TResult Function(_ShowBackToTop value)? showBackToTop,
+    TResult Function(_UpdateDeliveryAdressIndex value)?
+        updateDeliveryAdressIndex,
+    required TResult orElse(),
+  }) {
+    if (placeOrderLoading != null) {
+      return placeOrderLoading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PlaceOrderLoading implements CanteenDetailsEvent {
+  const factory _PlaceOrderLoading({required bool? isLoading}) =
+      _$_PlaceOrderLoading;
+
+  bool? get isLoading => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$PlaceOrderLoadingCopyWith<_PlaceOrderLoading> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1634,6 +1850,7 @@ class _$_ShowBackToTop implements _ShowBackToTop {
             bool? isTakeAway,
             String? comments)
         placeOrder,
+    required TResult Function(bool? isLoading) placeOrderLoading,
     required TResult Function(bool? isShowingbackToTop) showBackToTop,
     required TResult Function(int deliveryAddressIndex)
         updateDeliveryAdressIndex,
@@ -1663,6 +1880,7 @@ class _$_ShowBackToTop implements _ShowBackToTop {
             bool? isTakeAway,
             String? comments)?
         placeOrder,
+    TResult Function(bool? isLoading)? placeOrderLoading,
     TResult Function(bool? isShowingbackToTop)? showBackToTop,
     TResult Function(int deliveryAddressIndex)? updateDeliveryAdressIndex,
     required TResult orElse(),
@@ -1683,6 +1901,7 @@ class _$_ShowBackToTop implements _ShowBackToTop {
     required TResult Function(_AddToCart value) addToCart,
     required TResult Function(_ChangeVegNonveg value) changeVegNonveg,
     required TResult Function(_PlaceOrder value) placeOrder,
+    required TResult Function(_PlaceOrderLoading value) placeOrderLoading,
     required TResult Function(_ShowBackToTop value) showBackToTop,
     required TResult Function(_UpdateDeliveryAdressIndex value)
         updateDeliveryAdressIndex,
@@ -1700,6 +1919,7 @@ class _$_ShowBackToTop implements _ShowBackToTop {
     TResult Function(_AddToCart value)? addToCart,
     TResult Function(_ChangeVegNonveg value)? changeVegNonveg,
     TResult Function(_PlaceOrder value)? placeOrder,
+    TResult Function(_PlaceOrderLoading value)? placeOrderLoading,
     TResult Function(_ShowBackToTop value)? showBackToTop,
     TResult Function(_UpdateDeliveryAdressIndex value)?
         updateDeliveryAdressIndex,
@@ -1812,6 +2032,7 @@ class _$_UpdateDeliveryAdressIndex implements _UpdateDeliveryAdressIndex {
             bool? isTakeAway,
             String? comments)
         placeOrder,
+    required TResult Function(bool? isLoading) placeOrderLoading,
     required TResult Function(bool? isShowingbackToTop) showBackToTop,
     required TResult Function(int deliveryAddressIndex)
         updateDeliveryAdressIndex,
@@ -1841,6 +2062,7 @@ class _$_UpdateDeliveryAdressIndex implements _UpdateDeliveryAdressIndex {
             bool? isTakeAway,
             String? comments)?
         placeOrder,
+    TResult Function(bool? isLoading)? placeOrderLoading,
     TResult Function(bool? isShowingbackToTop)? showBackToTop,
     TResult Function(int deliveryAddressIndex)? updateDeliveryAdressIndex,
     required TResult orElse(),
@@ -1861,6 +2083,7 @@ class _$_UpdateDeliveryAdressIndex implements _UpdateDeliveryAdressIndex {
     required TResult Function(_AddToCart value) addToCart,
     required TResult Function(_ChangeVegNonveg value) changeVegNonveg,
     required TResult Function(_PlaceOrder value) placeOrder,
+    required TResult Function(_PlaceOrderLoading value) placeOrderLoading,
     required TResult Function(_ShowBackToTop value) showBackToTop,
     required TResult Function(_UpdateDeliveryAdressIndex value)
         updateDeliveryAdressIndex,
@@ -1878,6 +2101,7 @@ class _$_UpdateDeliveryAdressIndex implements _UpdateDeliveryAdressIndex {
     TResult Function(_AddToCart value)? addToCart,
     TResult Function(_ChangeVegNonveg value)? changeVegNonveg,
     TResult Function(_PlaceOrder value)? placeOrder,
+    TResult Function(_PlaceOrderLoading value)? placeOrderLoading,
     TResult Function(_ShowBackToTop value)? showBackToTop,
     TResult Function(_UpdateDeliveryAdressIndex value)?
         updateDeliveryAdressIndex,

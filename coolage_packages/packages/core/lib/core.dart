@@ -48,6 +48,7 @@ import 'package:dio/dio.dart';
 part 'domain/functions/functions.dart';
 part 'domain/functions/auth_functions.dart';
 part 'domain/functions/firebase_functions.dart';
+part 'domain/functions/date_time_functions.dart';
 
 part 'domain/functions/image_picker_helper.dart';
 part 'domain/helpers/constants.dart';
@@ -75,6 +76,7 @@ part 'ui/widgets/dialogs/confirm_alert_dialog.dart';
 part 'ui/widgets/border_button.dart';
 part 'ui/widgets/button.dart';
 part 'ui/widgets/drawer_tile.dart';
+part 'ui/widgets/tags_widget.dart';
 
 part 'ui/widgets/circle_icon.dart';
 part 'ui/widgets/cross_dialog.dart';

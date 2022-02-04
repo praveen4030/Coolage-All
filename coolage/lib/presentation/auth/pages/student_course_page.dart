@@ -29,11 +29,12 @@ class _StudentCourseDetailsPageState extends State<StudentCourseDetailsPage> {
   bool isEnabled = false;
 
   void checkIfEnabled() {
-    if (degree != null &&
-        department != null &&
-        year != null &&
-        batchStart != null &&
-        batchFinish != null) {
+    if ((degree?.isNotEmpty ?? false) &&
+        (department?.isNotEmpty ?? false) &&
+        (batchStart?.isNotEmpty ?? false) &&
+        (degree == Constants.PHD_GROUP ||
+            ((year?.isNotEmpty ?? false) &&
+                (batchFinish?.isNotEmpty ?? false)))) {
       setState(() {
         isEnabled = true;
       });
@@ -79,6 +80,7 @@ class _StudentCourseDetailsPageState extends State<StudentCourseDetailsPage> {
                       const SizedBox(
                         height: 56,
                       ),
+                      //degree
                       DropDownList(
                         list: Functions.getUserCollegeDegrees(context),
                         onChanged: (value) {
@@ -99,6 +101,7 @@ class _StudentCourseDetailsPageState extends State<StudentCourseDetailsPage> {
                       const SizedBox(
                         height: 40,
                       ),
+                      //department
                       DropDownList(
                         list: collegeModel.departments,
                         onChanged: (String value) {
@@ -119,30 +122,32 @@ class _StudentCourseDetailsPageState extends State<StudentCourseDetailsPage> {
                       const SizedBox(
                         height: 40,
                       ),
-                      DropDownList(
-                        list: Functions.getYearsList(context, degree),
-                        onChanged: (String? value) {
-                          if (value?.isNotEmpty ?? false) {
-                            final yearVal = value!.substring(0, 1);
-                            setState(() {
-                              year = yearVal;
-                            });
-                            checkIfEnabled();
-                          }
-                        },
-                        value: year != null
-                            ? "${Functions.getWithSuffix(int.parse(year!))} year"
-                            : null,
-                        hintWidget: CustomText(
-                          text: "Year",
-                          color: Kolors.greyBlue.withOpacity(0.5),
-                          fontSize: 18,
-                          fontWeight: FontWeight.w300,
+                      if (degree != Constants.PHD_GROUP)
+                        DropDownList(
+                          list: Functions.getYearsList(context, degree),
+                          onChanged: (String? value) {
+                            if (value?.isNotEmpty ?? false) {
+                              final yearVal = value!.substring(0, 1);
+                              setState(() {
+                                year = yearVal;
+                              });
+                              checkIfEnabled();
+                            }
+                          },
+                          value: year != null
+                              ? "${Functions.getWithSuffix(int.parse(year!))} year"
+                              : null,
+                          hintWidget: CustomText(
+                            text: "Year",
+                            color: Kolors.greyBlue.withOpacity(0.5),
+                            fontSize: 18,
+                            fontWeight: FontWeight.w300,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
+                      if (degree != Constants.PHD_GROUP)
+                        const SizedBox(
+                          height: 40,
+                        ),
                       batchWidgtet(),
                     ],
                   ),
@@ -171,19 +176,25 @@ class _StudentCourseDetailsPageState extends State<StudentCourseDetailsPage> {
               isLoading: state.isLoading,
               isEnabled: isEnabled,
               onTap: () async {
+                //if phd selected then year and batch finished not needed
                 if ((degree?.isNotEmpty ?? false) &&
                     (department?.isNotEmpty ?? false) &&
-                    (year?.isNotEmpty ?? false) &&
                     (batchStart?.isNotEmpty ?? false) &&
-                    (batchFinish?.isNotEmpty ?? false)) {
+                    (degree == Constants.PHD_GROUP ||
+                        ((year?.isNotEmpty ?? false) &&
+                            (batchFinish?.isNotEmpty ?? false)))) {
+                  if (degree == Constants.PHD_GROUP) {
+                    year = null;
+                    batchFinish = null;
+                  }
                   context
                       .read<OnboardingBloc>()
                       .add(OnboardingEvent.updateStudentDetails(
                         department: department!,
                         degree: degree!,
-                        year: year!,
+                        year: year,
                         batchStart: batchStart!,
-                        batchFinish: batchFinish!,
+                        batchFinish: batchFinish,
                       ));
                   await Future.delayed(const Duration(milliseconds: 500));
                   context
@@ -228,26 +239,28 @@ class _StudentCourseDetailsPageState extends State<StudentCourseDetailsPage> {
               list: Functions.getBatchStartList(),
               value: batchStart,
             ),
-            const CustomText(
-              text: "  -  ",
-              fontWeight: FontWeight.w700,
-              fontSize: 28,
-              color: Kolors.greyBlue,
-            ),
-            dropDownButton(
-              hint: "finish",
-              onChange: (String val) {
-                setState(() {
-                  batchFinish = val;
-                });
+            if (degree != Constants.PHD_GROUP)
+              const CustomText(
+                text: "  -  ",
+                fontWeight: FontWeight.w700,
+                fontSize: 28,
+                color: Kolors.greyBlue,
+              ),
+            if (degree != Constants.PHD_GROUP)
+              dropDownButton(
+                hint: "finish",
+                onChange: (String val) {
+                  setState(() {
+                    batchFinish = val;
+                  });
 
-                checkIfEnabled();
-              },
-              list: batchStart != null
-                  ? Functions.getBatchFinishList(batchStart!)
-                  : [],
-              value: batchFinish,
-            ),
+                  checkIfEnabled();
+                },
+                list: batchStart != null
+                    ? Functions.getBatchFinishList(batchStart!)
+                    : [],
+                value: batchFinish,
+              ),
           ],
         ),
       ],

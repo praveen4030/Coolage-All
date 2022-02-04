@@ -1,15 +1,11 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:placement/domain/company/candidate_applied_model.dart';
-import 'package:user/ui/profile/user_profile.dart';
-import 'package:user/user.dart';
 
 class BranchResultUserTile extends StatelessWidget {
-  final CoolUser coolUser;
   final CandidateAppliedModel candidateAppliedModel;
   const BranchResultUserTile({
     Key? key,
-    required this.coolUser,
     required this.candidateAppliedModel,
   }) : super(key: key);
 
@@ -17,11 +13,11 @@ class BranchResultUserTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => UserProfilePage(coolUser: coolUser),
-          ),
-        );
+        // Navigator.of(context).push(
+        //   MaterialPageRoute(
+        //     builder: (context) => UserProfilePage(coolUser: coolUser),
+        //   ),
+        // );
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -29,6 +25,7 @@ class BranchResultUserTile extends StatelessWidget {
         child: Column(
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
                   width: 20,
@@ -45,32 +42,41 @@ class BranchResultUserTile extends StatelessWidget {
                     ],
                   ),
                   child: UserProfileCircular(
-                    image: coolUser.imageUrl,
+                    image: candidateAppliedModel.imageUrl,
                     size: 60,
                   ),
                 ),
                 const SizedBox(
                   width: 20,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomText(
-                      text: coolUser.name,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    const SizedBox(
-                      height: 4,
-                    ),
-                    CustomText(
-                      text: candidateAppliedModel.jobPosition,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Kolors.greyBlue,
-                    ),
-                  ],
-                )
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomText(
+                        text: candidateAppliedModel.name,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      CustomText(
+                        text: candidateAppliedModel.jobPosition,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Kolors.greyBlue,
+                      ),
+                    ],
+                  ),
+                ),
+                CustomText(
+                  text: DateTimeFunctions.getShortDate(
+                      candidateAppliedModel.appliedAt),
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
+                  color: Kolors.greyBlue,
+                ),
               ],
             ),
             const SizedBox(

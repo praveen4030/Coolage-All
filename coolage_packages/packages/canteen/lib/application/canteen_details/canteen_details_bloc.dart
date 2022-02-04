@@ -206,6 +206,11 @@ class CanteenDetailsBloc
           );
         });
       },
+      placeOrderLoading: (e) async* {
+        yield state.copyWith(
+          isPlacingOrder: e.isLoading,
+        );
+      },
       placeOrder: (e) async* {
         yield state.copyWith(
           isPlacingOrder: true,

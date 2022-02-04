@@ -25,11 +25,7 @@ class CollegeGroupsBloc extends Bloc<CollegeGroupsEvent, CollegeGroupsState> {
   ) async* {
     yield* event.map(
       getGroupDetails: (e) async* {
-        yield state.copyWith(
-          isGroupLoading: true,
-          actionFirebaseResultOpt: none(),
-          groupModel: null,
-        );
+        yield CollegeGroupsState.initialGroupLoading();
         final opt = await iCollegeGroupRepo.getGroupDetails(
           e.groupName,
           e.college,

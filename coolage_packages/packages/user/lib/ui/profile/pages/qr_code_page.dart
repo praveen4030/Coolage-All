@@ -123,8 +123,7 @@ class QrCodePage extends StatelessWidget {
       return Column(
         children: [
           CustomText(
-            text:
-                '${coolUser.degree} - ${Functions.getWithSuffix(int.parse(coolUser.year!))} year',
+            text: Functions.getSubdetailString(coolUser),
             fontSize: 16,
             color: Kolors.greyBlue,
             fontWeight: FontWeight.w400,

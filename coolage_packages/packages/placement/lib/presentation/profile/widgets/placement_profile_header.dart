@@ -142,8 +142,7 @@ class PlacementProfileHeaderWidget extends StatelessWidget {
       return Column(
         children: [
           CustomText(
-            text:
-                '${coolUser.degree} - ${Functions.getWithSuffix(int.parse(coolUser.year!))} year',
+            text: Functions.getSubdetailString(coolUser),
             fontSize: 14,
             color: Kolors.white.withOpacity(0.5),
             fontWeight: FontWeight.w400,

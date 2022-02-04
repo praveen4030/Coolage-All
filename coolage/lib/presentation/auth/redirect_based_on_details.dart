@@ -20,25 +20,28 @@ mixin AuthNavigation {
         await FetchUserDetails.getUserFromUid(Getters.getCurrentUserUid());
     if (FirebaseAuth.instance.currentUser == null) {
       Fluttertoast.showToast(msg: "Something went wrong!");
-      Navigator.of(context).popUntil((route) => route.isFirst);
-      Navigator.of(context).pushReplacement(
+      Navigator.of(CoreGetters.getContext).popUntil((route) => route.isFirst);
+      Navigator.of(CoreGetters.getContext).pushReplacement(
           MaterialPageRoute(builder: (context) => const AuthenticationPage()));
       return;
     }
+
     if (user == null || (!checkIfUsersNeededInformationIsAvailable(user))) {
-      Navigator.of(context).popUntil((route) => route.isFirst);
-      Navigator.of(context).pushReplacement(
+      Navigator.of(CoreGetters.getContext).popUntil((route) => route.isFirst);
+      Navigator.of(CoreGetters.getContext).pushReplacement(
           MaterialPageRoute(builder: (context) => const UserNamePage()));
       return;
     }
+
     await FirebaseFunctions.updateDeviceToken();
 
-    context
+    CoreGetters.getContext
         .read<AuthenticationBloc>()
         .add(AuthenticationEvent.userModified(user: user));
     await Future.delayed(const Duration(milliseconds: 300));
-    Navigator.of(context).popUntil((route) => route.isFirst);
-    Navigator.of(context).pushReplacement(
+
+    Navigator.of(CoreGetters.getContext).popUntil((route) => route.isFirst);
+    Navigator.of(CoreGetters.getContext).pushReplacement(
         MaterialPageRoute(builder: (context) => const BasePage()));
     return;
   }
@@ -55,9 +58,9 @@ mixin AuthNavigation {
         final hasBatchEnd = coolUser.batchFinish?.isNotEmpty ?? false;
         if (hasDegree &&
             hasBranch &&
-            hasYear &&
             hasBatchStartFrom &&
-            hasBatchEnd) {
+            (coolUser.degree == Constants.PHD_GROUP ||
+                (hasYear && hasBatchEnd))) {
           return true;
         }
       } else if (coolUser.userType! == Constants.USER_TYPE_FACULTY) {

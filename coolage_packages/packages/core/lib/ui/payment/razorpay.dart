@@ -10,6 +10,7 @@ class PaymentGatewayButton extends StatefulWidget {
   final bool? isEnabled;
   final String? notEnabledError;
   final Widget? child;
+  final Function triggerLoadingFn;
   const PaymentGatewayButton({
     Key? key,
     @required this.receiverName,
@@ -20,6 +21,7 @@ class PaymentGatewayButton extends StatefulWidget {
     @required this.isLoading,
     @required this.isEnabled,
     @required this.notEnabledError,
+    required this.triggerLoadingFn,
     @required this.child,
   }) : super(key: key);
 
@@ -28,11 +30,9 @@ class PaymentGatewayButton extends StatefulWidget {
 }
 
 class _PaymentGatewayButtonState extends State<PaymentGatewayButton> {
-  static const platform = const MethodChannel("razorpay_flutter");
-
   late Razorpay _razorpay;
 
-  void checkForPhoneNo(BuildContext context) {
+  Future<void> checkForPhoneNo(BuildContext context) async {
     final authenticatedphone =
         FirebaseAuth.instance.currentUser!.phoneNumber?.isNotEmpty ?? false;
     final userPhone = context
@@ -53,9 +53,9 @@ class _PaymentGatewayButtonState extends State<PaymentGatewayButton> {
             .read<AuthenticationBloc>()
             .add(AuthenticationEvent.updateUserDetails(coolUser: user));
       }
-      paymentWithCashfree();
+      await paymentWithCashfree();
     } else {
-      ifPhoneNoNotAvailable();
+      await ifPhoneNoNotAvailable();
     }
   }
 
@@ -81,17 +81,14 @@ class _PaymentGatewayButtonState extends State<PaymentGatewayButton> {
       width: MediaQuery.of(context).size.width,
       color: Kolors.greyWhite,
       child: GestureDetector(
-        onTap: () {
-          //only for testing
-          // if (widget.isEnabled!) {
-          //   widget.onSuccess!('sjfol');
-          // }
-          // return;
+        onTap: () async {
           if (widget.isEnabled! &&
               widget.amount! > 10 &&
               (widget.receiverName?.isNotEmpty ?? false)) {
             // openCheckout();
-            checkForPhoneNo(context);
+            widget.triggerLoadingFn(true);
+            await checkForPhoneNo(context);
+            widget.triggerLoadingFn(false);
           } else if (widget.amount! <= 10) {
             Fluttertoast.showToast(
                 msg:
@@ -101,6 +98,7 @@ class _PaymentGatewayButtonState extends State<PaymentGatewayButton> {
           } else {
             Fluttertoast.showToast(msg: widget.notEnabledError!);
           }
+          widget.triggerLoadingFn(false);
         },
         child: Center(
           child: widget.child,
@@ -112,30 +110,22 @@ class _PaymentGatewayButtonState extends State<PaymentGatewayButton> {
   Future<void> paymentWithCashfree() async {
     try {
       final user = context.read<AuthenticationBloc>().state.coolUser!;
-      var code = Random().nextInt(90000000) + 10000000;
-      String orderId = code.toString();
+      final userAuth = await FirebaseAuth.instance.currentUser!.getIdToken();
       Map<String, dynamic> map = {
-        'orderId': orderId,
+        'type': "PROD",
         'orderAmount': (widget.amount!).toInt(),
-        "orderCurrency": "INR",
       };
       final jsonEncoded = json.encode(map);
-      final response = await Dio().post(
-        SecureConstants.TOKEN_GENERATE_URL,
-        data: jsonEncoded,
-        options: Options(
-          headers: {
-            'x-client-id': SecureConstants.CASHFREE_API,
-            'x-client-secret': SecureConstants.CASHFREE_API_SECRET,
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers":
-                "Access-Control-Allow-Origin, Accept",
-          },
-        ),
-      );
+      final response =
+          await Dio().post(SecureConstants.coolageBackendApiBaseUrl,
+              data: jsonEncoded,
+              options: Options(headers: {
+                "Authorization": "Bearer $userAuth",
+              }));
       if (response.statusCode == 200) {
         final responseMap = response.data as Map<String, dynamic>;
-        String token = responseMap['cftoken'] as String;
+        String token = responseMap['data']['cftoken'] as String;
+        String orderId = responseMap['data']['orderId'].toString();
         final params = {
           'color1': "#842EFF",
           "color2": "#FFFFFF",
@@ -145,13 +135,16 @@ class _PaymentGatewayButtonState extends State<PaymentGatewayButton> {
           'orderId': orderId,
           "orderAmount": (widget.amount!).toInt(),
           "customerName": widget.receiverName ?? '',
-          "customerPhone": user.phoneNo ?? '',
-          "customerEmail": user.emailId ?? '',
+          "customerPhone": user.phoneNo?.isNotEmpty ?? false
+              ? user.phoneNo
+              : '+919876543211',
+          "customerEmail": user.emailId?.isNotEmpty ?? false
+              ? user.emailId
+              : 'hello@coolage.co.in',
           "hideOrderId": false,
           "orderCurrency": "INR",
           "orderNote": widget.description ?? '',
-          "notifyUrl":
-              "http://b5ca-2405-201-5c12-2835-44ba-ae9f-f122-a51a.ngrok.io/api/paymentSuccessWebhook"
+          "notifyUrl": ""
         };
 
         final map = await CashfreePGSDK.doPayment(params);

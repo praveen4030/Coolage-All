@@ -25,8 +25,8 @@ class OnboardingEvent with _$OnboardingEvent {
   const factory OnboardingEvent.updateStudentDetails({
     required String degree,
     required String department,
-    required String year,
+    String? year,
     required String batchStart,
-    required String batchFinish,
+    String? batchFinish,
   }) = _UpdateStudentDetails;
 }

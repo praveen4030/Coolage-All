@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:placement/domain/company/candidate_applied_model.dart';
 import 'package:placement/presentation/results/widgets/branch_result_user_tile.dart';
 import 'package:placement/presentation/results/widgets/text_number_tile.dart';
-import 'package:user/user.dart';
 
-class BranchResultDetailsPage extends StatelessWidget {
-  final String branch;
-  const BranchResultDetailsPage({
+class CompanyResultDetailsPage extends StatelessWidget {
+  final String company;
+
+  const CompanyResultDetailsPage({
     Key? key,
-    required this.branch,
+    required this.company,
   }) : super(key: key);
 
   @override
@@ -22,14 +22,14 @@ class BranchResultDetailsPage extends StatelessWidget {
             isCenter: false,
             backgroundColor: Kolors.greyWhite,
             actions: const [],
-            text: 'Branch Results',
-            subtitle: branch,
+            text: 'Company Results',
+            subtitle: company,
           ),
         ),
         body: Container(
           child: ListView(
             children: [
-              companyUsers("Flipkart", [
+              companyUsers("Product Designer", [
                 CandidateAppliedModel.empty(),
                 CandidateAppliedModel.empty(),
                 CandidateAppliedModel.empty(),
@@ -37,7 +37,7 @@ class BranchResultDetailsPage extends StatelessWidget {
                 CandidateAppliedModel.empty(),
                 CandidateAppliedModel.empty(),
               ]),
-              companyUsers("Bank of America", [
+              companyUsers("Product Manager", [
                 CandidateAppliedModel.empty(),
                 CandidateAppliedModel.empty(),
                 CandidateAppliedModel.empty(),

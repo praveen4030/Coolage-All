@@ -8,6 +8,7 @@ class CandidateAppliedModel {
   String jobType;
   String name;
   String branch;
+  String imageUrl;
   CandidateAppliedModel({
     required this.uid,
     required this.status,
@@ -16,5 +17,19 @@ class CandidateAppliedModel {
     required this.jobType,
     required this.name,
     required this.branch,
+    required this.imageUrl,
   });
+
+  factory CandidateAppliedModel.empty() {
+    return CandidateAppliedModel(
+      uid: '',
+      status: 'Applied',
+      appliedAt: Timestamp.now(),
+      jobPosition: "SDE 1",
+      jobType: "Intern",
+      name: "Praveen Agrawal",
+      branch: "ICE",
+      imageUrl: "",
+    );
+  }
 }

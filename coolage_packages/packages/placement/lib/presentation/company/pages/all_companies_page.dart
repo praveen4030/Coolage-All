@@ -31,8 +31,8 @@ class AllCompaniesPage extends StatelessWidget {
       openForBranches: [],
       openTill: DateTime(2022),
       packageModel: PackageModel.empty(),
-      recruitmentRoles: [],
-      rolesOpen: [],
+      recruitmentRoles: ["Internship", "Full Time"],
+      rolesOpen: ["Content Writing", "SDE 1"],
     ),
     CompanyModel(
       name: "Petpooja",
