@@ -54,17 +54,29 @@ class _CardsListState extends State<CardsList>
                   itemBuilder: (context, index) {
                     Cards card = cardsList[index];
                     return CardTile(
-                      isEdit: widget.isEditingCards,
-                      card: card,
-                      cardsList: cardsList,
-                      height: widget.height,
-                      width: widget.width,
-                      marginLeft: widget.marginLeft,
-                      marginRight: widget.marginRight,
-                      titleIfEditAccessForAdmin:
-                          widget.titleIfEditAccessForAdmin,
-                      onTap: widget.onCardTap,
-                    );
+                        isEdit: widget.isEditingCards,
+                        card: card,
+                        cardsList: cardsList,
+                        height: widget.height,
+                        width: widget.width,
+                        marginLeft: widget.marginLeft,
+                        marginRight: widget.marginRight,
+                        titleIfEditAccessForAdmin:
+                            widget.titleIfEditAccessForAdmin,
+                        onTap: widget.onCardTap,
+                        onChange: (bool isForward) {
+                          if (isForward) {
+                            controller.nextPage(
+                              duration: const Duration(milliseconds: 400),
+                              curve: Curves.easeInOut,
+                            );
+                          } else {
+                            controller.previousPage(
+                              duration: const Duration(milliseconds: 400),
+                              curve: Curves.easeInOut,
+                            );
+                          }
+                        });
                   },
                 ),
               ),

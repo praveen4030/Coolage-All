@@ -88,7 +88,7 @@ class CoolUser {
       'gender': gender,
       'lastSeen': lastSeen,
       'isOnline': isOnline,
-      'profileLink': profileLink,
+      'profileLink': profileLink ?? '',
       'deliveryAddressesMap': deliveryAddressesMap?.map((key, value) =>
               MapEntry(key,
                   value.map((key, value) => MapEntry(key, value.toMap())))) ??

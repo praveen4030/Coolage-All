@@ -75,7 +75,7 @@ mixin Functions {
       s += coolUser.degree!;
     }
     if (coolUser.year?.isNotEmpty ?? false) {
-      s += '${Functions.getWithSuffix(int.parse(coolUser.year!))} year';
+      s += ' ${Functions.getWithSuffix(int.parse(coolUser.year!))} year';
     }
     return s;
   }

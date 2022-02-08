@@ -142,10 +142,15 @@ class CanteenCartItemTile extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () async {
-              if (canteenCart!.canteenBasicDetailsModel!.isClosed()) {
-                Fluttertoast.showToast(msg: "Canteen is closed currently!");
+              if (kIsWeb) {
+                Fluttertoast.showToast(
+                    msg: "Download the app now to place your order!");
               } else {
-                placeOrder(context);
+                if (canteenCart!.canteenBasicDetailsModel!.isClosed()) {
+                  Fluttertoast.showToast(msg: "Canteen is closed currently!");
+                } else {
+                  placeOrder(context);
+                }
               }
             },
             child: Container(

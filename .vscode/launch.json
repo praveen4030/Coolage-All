@@ -1,9 +1,6 @@
 {
         "version": "0.2.0",
         "configurations": [
-        
-        
-
                 {
                         "name": "coolage",
                         "cwd": "coolage",
@@ -12,6 +9,9 @@
                         "args": [
                                 "--web-renderer",
                                 "html",
+                                "--web-port",
+                                "5000",
+                                "--web-enable-expression-evaluation",
                                 "--no-sound-null-safety",
                         ]
                 },

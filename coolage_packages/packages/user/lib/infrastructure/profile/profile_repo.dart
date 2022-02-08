@@ -322,11 +322,11 @@ class ProfileRepo extends IProfileRepo {
       if (file != null) {
         final ref =
             _storageReference.child("User Images").child(uid).child('Profile');
-        final uploadTask =
-            await ImagePickerHelper.getUploadTaskToUploadImage(file, ref);
-        if (uploadTask != null) {
-          final TaskSnapshot storageSnap = await uploadTask.whenComplete(() {});
-          model.imageUrl = await storageSnap.ref.getDownloadURL();
+        final taskSnapshot =
+            await ImagePickerHelper.getTaskSnapshotToUploadImage(file, ref);
+        if (taskSnapshot != null) {
+          model.imageUrl = await taskSnapshot.ref.getDownloadURL();
+          // model.imageUrl = await storageSnap.ref.getDownloadURL();
           debugPrint(model.imageUrl);
         }
       }

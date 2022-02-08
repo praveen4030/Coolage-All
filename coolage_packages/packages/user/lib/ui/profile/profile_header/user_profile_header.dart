@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share/share.dart';
 import 'package:user/application/profile/user_details/user_details_bloc.dart';
@@ -134,33 +135,34 @@ class UserProfileHeaderWidget extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    GestureDetector(
-                      onTap: () async {
-                        ShareProfileFunction.shareMessage(coolUser);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 20,
-                              offset: const Offset(0, 0),
-                              color: Kolors.greyBlack.withOpacity(0.5),
-                            )
-                          ],
-                        ),
-                        child: const IconImagesWid(
-                          iconName: 'upload.png',
-                          color: Colors.white,
-                          height: 30,
-                          width: 30,
+                    if (!kIsWeb)
+                      GestureDetector(
+                        onTap: () async {
+                          ShareProfileFunction.shareMessage(coolUser);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 20,
+                                offset: const Offset(0, 0),
+                                color: Kolors.greyBlack.withOpacity(0.5),
+                              )
+                            ],
+                          ),
+                          child: const IconImagesWid(
+                            iconName: 'upload.png',
+                            color: Colors.white,
+                            height: 30,
+                            width: 30,
+                          ),
                         ),
                       ),
-                    ),
-                    if (isCurrentUser)
+                    if (isCurrentUser && !kIsWeb)
                       const SizedBox(
                         width: 28,
                       ),
-                    if (isCurrentUser)
+                    if (isCurrentUser && !kIsWeb)
                       GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(

@@ -87,6 +87,9 @@ mixin DynamicLinkFunctions {
 
   static Future<String?> createUserDynamicLink(String uid) async {
     try {
+      if (kIsWeb) {
+        return '';
+      }
       final DynamicLinkParameters parameters = DynamicLinkParameters(
         uriPrefix: 'https://coolage.co.in/userprofile',
         link: Uri.parse('https://coolage.co.in/userprofile/$uid'),

@@ -34,18 +34,41 @@ class ImagePickerHelper {
     return dartz.left(dartz.unit);
   }
 
+  static Future<TaskSnapshot?> getTaskSnapshotToUploadImage(
+      File file, Reference ref) async {
+    try {
+      TaskSnapshot? uploadTask;
+      if (kIsWeb) {
+        if (ImagePickerHelper.pickedFile != null) {
+          final bytes = await ImagePickerHelper.pickedFile!.readAsBytes();
+          uploadTask = await ref.putData(bytes);
+        }
+      } else {
+        uploadTask = await ref.putFile(file);
+      }
+      return uploadTask;
+    } catch (e) {
+      debugPrint(e.toString());
+      return null;
+    }
+  }
+
   static Future<UploadTask?> getUploadTaskToUploadImage(
       File file, Reference ref) async {
-    UploadTask? uploadTask;
-    if (kIsWeb) {
-      if (ImagePickerHelper.pickedFile != null) {
-        final bytes = await ImagePickerHelper.pickedFile!.readAsBytes();
-        debugPrint(bytes.toString());
-        uploadTask = ref.putData(bytes);
+    try {
+      UploadTask? uploadTask;
+      if (kIsWeb) {
+        if (ImagePickerHelper.pickedFile != null) {
+          final bytes = await ImagePickerHelper.pickedFile!.readAsBytes();
+          uploadTask = ref.putData(bytes);
+        }
+      } else {
+        uploadTask = ref.putFile(file);
       }
-    } else {
-      uploadTask = ref.putFile(file);
+      return uploadTask;
+    } catch (e) {
+      debugPrint(e.toString());
+      return null;
     }
-    return uploadTask;
   }
 }

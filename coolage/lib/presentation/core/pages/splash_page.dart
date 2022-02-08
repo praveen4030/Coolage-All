@@ -9,6 +9,8 @@ import 'package:coolage/presentation/core/pages/maintenance_page.dart';
 import 'package:coolage/presentation/core/pages/update_available_page.dart';
 import 'package:core/application/coolage_details/coolage_details_bloc.dart';
 import 'package:core/core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,12 +37,27 @@ class _SplashPageState extends State<SplashPage> {
     DynamicLinkFunctions.handleDynamicLinks();
   }
 
+  final Future<FirebaseApp> _initFirebaseSdk = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext mainContext) {
     return FutureBuilder(
-      future: Future.delayed(const Duration(seconds: 2)),
-      builder: (context, data) {
-        callEvents();
+      future: _initFirebaseSdk,
+      builder: (_, snapshot) {
+        if (snapshot.hasError) return Container();
+        if (snapshot.connectionState == ConnectionState.done) {
+          // Assign listener after the SDK is initialized successfully
+          FirebaseAuth.instance.authStateChanges().listen((User? user) {
+            if (user == null) {
+              Navigator.of(context).popUntil((route) => route.isFirst);
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const AuthenticationPage()));
+            } else {
+              debugPrint(user.toString());
+              callEvents();
+            }
+          });
+        }
         return splashPageLogic();
       },
     );
@@ -100,14 +117,18 @@ class _SplashPageState extends State<SplashPage> {
           },
         );
       },
-      child: Scaffold(
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Image.asset(
-            'assets/images/background_splash.png',
-            fit: BoxFit.fill,
-          ),
+      child: splashPageUi(),
+    );
+  }
+
+  Widget splashPageUi() {
+    return Scaffold(
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Image.asset(
+          'assets/images/background_splash.png',
+          fit: BoxFit.fill,
         ),
       ),
     );

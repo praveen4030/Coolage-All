@@ -6,6 +6,7 @@ import 'package:coolage/presentation/auth/widgets/get_from_linkedin.dart';
 import 'package:coolage/presentation/core/widgets/onboarding_progress_bar.dart';
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart' as dartz;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -94,7 +95,12 @@ class _ChooseProfilePicPageState extends State<ChooseProfilePicPage> {
                               if (file != null)
                                 CircleAvatar(
                                   radius: 93,
-                                  backgroundImage: FileImage(file!),
+                                  backgroundImage: kIsWeb
+                                      ? Image.network(
+                                          file!.path,
+                                          fit: BoxFit.fill,
+                                        ).image
+                                      : FileImage(file!),
                                   backgroundColor: Kolors.skyBlueColor,
                                 )
                               else
