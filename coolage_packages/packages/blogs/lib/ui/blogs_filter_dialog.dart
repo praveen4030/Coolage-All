@@ -36,7 +36,8 @@ class _BlogsFilterDialogState extends State<BlogsFilterDialog> {
         final blogCategoriesList =
             state.coolageDetailsModel!.blogCategoriesList!;
         return Container(
-          padding: MediaQuery.of(context).viewInsets,
+          // height: MediaQuery.of(context).size.height * 0.9,
+          // padding: MediaQuery.of(context).viewInsets,
           color: Kolors.greyWhite,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,49 +53,52 @@ class _BlogsFilterDialogState extends State<BlogsFilterDialog> {
                 ),
               ),
               const SizedBox(height: 15),
-              Container(
-                height: 300,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 20,
-                ),
-                child: ListView(
-                  // crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    collegeCityTags(),
-                    const SizedBox(height: 24),
-                    const Divider(
-                      height: 1,
-                      color: Kolors.greyBlue,
-                    ),
-                    const SizedBox(height: 24),
-                    Wrap(
-                      spacing: 20,
-                      runSpacing: 16,
-                      children: <Widget>[
-                        ...generateTags(
-                          blogCategoriesList,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ButtonWid(
-                    height: 75,
-                    color: Kolors.greyBlue,
-                    onTap: () {
-                      widget.onApply!(
-                          selectedTags, isMyCitySelected, isMyCollegeSelected);
-                      Navigator.of(context).pop();
-                    },
-                    text: "Apply",
+              Expanded(
+                child: Container(
+                  // height: 300,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    // vertical: 20,
                   ),
-                ],
+                  child: ListView(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      collegeCityTags(),
+                      const SizedBox(height: 24),
+                      const Divider(
+                        height: 1,
+                        color: Kolors.greyBlue,
+                      ),
+                      const SizedBox(height: 24),
+                      Wrap(
+                        spacing: 20,
+                        runSpacing: 16,
+                        children: <Widget>[
+                          ...generateTags(
+                            blogCategoriesList,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
+              ButtonWid(
+                height: 75,
+                color: Kolors.greyBlue,
+                onTap: () {
+                  widget.onApply!(
+                      selectedTags, isMyCitySelected, isMyCollegeSelected);
+                  Navigator.of(context).pop();
+                },
+                text: "Apply",
+              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+
+              //   ],
+              // ),
             ],
           ),
         );

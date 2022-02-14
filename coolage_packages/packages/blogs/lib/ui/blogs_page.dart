@@ -145,35 +145,39 @@ class _BlogsPageState extends State<BlogsPage> {
   Widget blogsFilterButton() {
     return GestureDetector(
       onTap: () async {
-        ShowDialogCross.showDialogCross(context, -0.15);
+        ShowDialogCross.showDialogCross(context, -0.35);
         showModalBottomSheet(
             barrierColor: Colors.transparent,
             context: context,
+            isScrollControlled: true,
             builder: (context) {
-              return BlogsFilterDialog(
-                selectedTags: selectedTags,
-                isMyCitySelected: isMyCitySelected,
-                isMyCollegeSelected: isMyCollegeSelected,
-                onApply: (list, isCity, isCollege) {
-                  // saveFeed();
-                  setState(() {
-                    selectedTags = list as List<String>;
-                    isMyCitySelected = isCity as bool;
-                    isMyCollegeSelected = isCollege as bool;
-                  });
-                  if (!isMyCitySelected &&
-                      !isMyCollegeSelected &&
-                      selectedTags.isEmpty) {
-                    selectedTags = [city ?? '', college ?? '', 'Public'];
-                  }
-                  context.read<BlogsBloc>().add(
-                        BlogsEvent.getBlogs(
-                          selectedTags: selectedTags,
-                          city: isMyCitySelected ? city : null,
-                          college: isMyCollegeSelected ? college : null,
-                        ),
-                      );
-                },
+              return FractionallySizedBox(
+                heightFactor: 0.6,
+                child: BlogsFilterDialog(
+                  selectedTags: selectedTags,
+                  isMyCitySelected: isMyCitySelected,
+                  isMyCollegeSelected: isMyCollegeSelected,
+                  onApply: (list, isCity, isCollege) {
+                    // saveFeed();
+                    setState(() {
+                      selectedTags = list as List<String>;
+                      isMyCitySelected = isCity as bool;
+                      isMyCollegeSelected = isCollege as bool;
+                    });
+                    if (!isMyCitySelected &&
+                        !isMyCollegeSelected &&
+                        selectedTags.isEmpty) {
+                      selectedTags = [city ?? '', college ?? '', 'Public'];
+                    }
+                    context.read<BlogsBloc>().add(
+                          BlogsEvent.getBlogs(
+                            selectedTags: selectedTags,
+                            city: isMyCitySelected ? city : null,
+                            college: isMyCollegeSelected ? college : null,
+                          ),
+                        );
+                  },
+                ),
               );
             }).whenComplete(() {
           Navigator.of(context).pop();

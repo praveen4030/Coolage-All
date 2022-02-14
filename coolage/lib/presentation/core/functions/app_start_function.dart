@@ -21,8 +21,8 @@ mixin AppStartFunction {
         ));
     context.read<CoolageDetailsBloc>().add(const CoolageDetailsEvent.started());
     CanteenCoreFunctionality.initializeBloc(context);
-    context.read<FeedBloc>().add(FeedEvent.getApprovedPosts(
-        userCollege: Getters.getCurrentUserCollege(context)));
+    // context.read<FeedBloc>().add(FeedEvent.getApprovedPosts(
+    //     userCollege: Getters.getCurrentUserCollege(context)));
   }
 
   static bool isUniLinkInitiallyCalled = false;

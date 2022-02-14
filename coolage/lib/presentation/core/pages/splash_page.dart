@@ -10,11 +10,14 @@ import 'package:coolage/presentation/core/pages/update_available_page.dart';
 import 'package:core/application/coolage_details/coolage_details_bloc.dart';
 import 'package:core/core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:package_info/package_info.dart';
+import 'package:placement/placement.dart';
+import 'package:placement/placement.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user/application/auth/authentication_bloc.dart';
 import 'package:user/user.dart';
@@ -27,8 +30,12 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  void callEvents() {
-    debugPrint('this is called events');
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
+
+  Future<void> callEvents() async {
     context
         .read<AuthenticationBloc>()
         .add(const AuthenticationEvent.authCheckRequested());
@@ -37,45 +44,40 @@ class _SplashPageState extends State<SplashPage> {
     DynamicLinkFunctions.handleDynamicLinks();
   }
 
-  final Future<FirebaseApp> _initFirebaseSdk = Firebase.initializeApp();
-
   @override
   Widget build(BuildContext mainContext) {
-    return FutureBuilder(
-      future: _initFirebaseSdk,
-      builder: (_, snapshot) {
-        if (snapshot.hasError) return Container();
-        if (snapshot.connectionState == ConnectionState.done) {
-          // Assign listener after the SDK is initialized successfully
-          FirebaseAuth.instance.authStateChanges().listen((User? user) {
-            if (user == null) {
-              Navigator.of(context).popUntil((route) => route.isFirst);
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const AuthenticationPage()));
-            } else {
-              debugPrint(user.toString());
-              callEvents();
-            }
-          });
+    if (!kIsWeb) {
+      callEvents();
+      return splashPageBuild();
+    }
+    int count = 1;
+    return StreamBuilder(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, AsyncSnapshot<User?> snapshot) {
+        count++;
+        if (count > 2) {
+          callEvents();
         }
-        return splashPageLogic();
+        // if (!snapshot.hasData) {
+        //   count++;
+        //   if(count >2){
+        //     callEvents();
+        //   }
+        //   return Container();
+        // } else {
+        //   callEvents();
+        // }
+        return splashPageBuild();
       },
     );
   }
 
-  // return StreamBuilder(
-  //     stream: FirebaseAuth.instance.authStateChanges(),
-  //     builder: (context, AsyncSnapshot<User?> snapshot) {
-  //       if (snapshot.data != null) {
-  //         AuthNavigation.redirectUserBasedOnDetails(context);
-  //       }
-  Widget splashPageLogic() {
+  Widget splashPageBuild() {
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) async {
         state.userDetailOptResult.fold(
           () {
             if (!Getters.isUserLoggedIn()) {
-              debugPrint('none');
               Navigator.of(context).popUntil((route) => route.isFirst);
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => const AuthenticationPage()));
@@ -84,7 +86,6 @@ class _SplashPageState extends State<SplashPage> {
           (either) {
             either.fold(
               (failure) {
-                debugPrint('failure');
                 if (!Getters.isUserLoggedIn()) {
                   Navigator.of(context).popUntil((route) => route.isFirst);
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -93,22 +94,21 @@ class _SplashPageState extends State<SplashPage> {
               },
               (isDetailsAvailable) async {
                 if (isDetailsAvailable) {
-                  debugPrint('details');
                   if (AuthNavigation.checkIfUsersNeededInformationIsAvailable(
                       state.coolUser!)) {
                     final int index = await getBottomIndexToSharedPref();
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (context) => BasePage(index: index)));
                     // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    //     builder: (context) => PlacementAdminPage()));
+                    // Navigator.of(context).pushReplacement(MaterialPageRoute(
                     //     builder: (context) => AuthenticationPage()));
                   } else {
                     //TODO change this one
-                    debugPrint('user details');
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (context) => const UserNamePage()));
                   }
                 } else {
-                  debugPrint('user name');
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => const UserNamePage()));
                 }
@@ -117,18 +117,14 @@ class _SplashPageState extends State<SplashPage> {
           },
         );
       },
-      child: splashPageUi(),
-    );
-  }
-
-  Widget splashPageUi() {
-    return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Image.asset(
-          'assets/images/background_splash.png',
-          fit: BoxFit.fill,
+      child: Scaffold(
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Image.asset(
+            'assets/images/background_splash.png',
+            fit: BoxFit.fill,
+          ),
         ),
       ),
     );

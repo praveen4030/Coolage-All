@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -15,42 +16,50 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Connecting Campus Enterprises to its Community">
+  <meta name="description" content="Digitising Campus for it’s Community">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Coolage">
-  <meta name="google-signin-client_id" content="15194581295-hirilar9brenp9du3fpp75t5197t20fg.apps.googleusercontent.com">
-
+  <meta name="google-signin-client_id"
+    content="15194581295-hirilar9brenp9du3fpp75t5197t20fg.apps.googleusercontent.com">
+  <meta property="og:image" content="coolage.png">
+  <meta property="og:title" content="Coolage : Digitising Campus for it’s Community">
   <link rel="apple-touch-icon" href="icons/coolage_logo.png">
 
+  <!-- Main Favicon -->
+  <!-- <link rel="icon" type="image/pg" href="favicon/png" /> -->
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <title>Coolage</title>
   <link rel="manifest" href="manifest.json">
+  <!-- <link href="assets/img/favicon.png" rel="icon" /> -->
 </head>
+
 <body>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
-    <script>
-          // Your web app's Firebase configuration
-          // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-    apiKey: "AIzaSyBasjB07VNTILrQTDI0UIYf7bMYNqqTQMs",
-    authDomain: "coolageapp.firebaseapp.com",
-    databaseURL: "https://coolageapp-default-rtdb.firebaseio.com",
-    projectId: "coolageapp",
-    storageBucket: "coolageapp.appspot.com",
-    messagingSenderId: "15194581295",
-    appId: "1:15194581295:web:b941c6eac65694b62b99da",
-    measurementId: "G-FNMB5KYJXJ"
-  };
-          // Initialize Firebase
-          firebase.initializeApp(firebaseConfig);
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBasjB07VNTILrQTDI0UIYf7bMYNqqTQMs",
+      authDomain: "coolageapp.firebaseapp.com",
+      databaseURL: "https://coolageapp-default-rtdb.firebaseio.com",
+      projectId: "coolageapp",
+      storageBucket: "coolageapp.appspot.com",
+      messagingSenderId: "15194581295",
+      appId: "1:15194581295:web:b941c6eac65694b62b99da",
+      measurementId: "G-FNMB5KYJXJ"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
                 // firebase.analytics();
-    </script>
+  </script>
 
   <script>
     var serviceWorkerVersion = null;
@@ -117,4 +126,5 @@
     }
   </script>
 </body>
+
 </html>

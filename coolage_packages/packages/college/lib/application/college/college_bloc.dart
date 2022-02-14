@@ -8,8 +8,11 @@ import 'package:college/domain/group_model.dart';
 import 'package:college/domain/i_college_repo.dart';
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
+import 'package:feed/application/feed/feed_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:user/user.dart';
 
 part 'college_event.dart';
 part 'college_state.dart';
@@ -69,6 +72,10 @@ class CollegeBloc extends Bloc<CollegeEvent, CollegeState> {
               actionResultOpt: none(),
             );
           }, (college) {
+            CoreGetters.getContext.read<FeedBloc>().add(
+                FeedEvent.getApprovedPosts(
+                    userCollege:
+                        Getters.getCurrentUserCollege(CoreGetters.getContext)));
             return state.copyWith(
               collegeFailureOrSuccessOption: none(),
               isCollegeLoading: false,
