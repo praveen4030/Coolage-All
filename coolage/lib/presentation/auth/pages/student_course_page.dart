@@ -154,6 +154,7 @@ class _StudentCourseDetailsPageState extends State<StudentCourseDetailsPage> {
                 ),
               ),
             ),
+            const SizedBox(height: 150),
           ],
         ),
         bottomSheet: BlocConsumer<OnboardingBloc, OnboardingState>(

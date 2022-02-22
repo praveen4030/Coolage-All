@@ -84,23 +84,37 @@ class FeedTile extends StatelessWidget {
                               const SizedBox(
                                 height: 11,
                               ),
-                              Row(
-                                children: [
-                                  const CustomText(
-                                    text: "Published by ",
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 12,
-                                    color: Kolors.primaryColor1,
-                                  ),
-                                  if (feedModel.postedBy!.isNotEmpty)
-                                    CustomText(
-                                      text: ' ${feedModel.postedBy!}',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 12,
-                                      color: Kolors.primaryColor1,
+                              if (feedModel.postedBy!.isNotEmpty)
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: RichText(
+                                        text: TextSpan(
+                                          text: "Published by ",
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 12,
+                                            color: Kolors.primaryColor1,
+                                            fontFamily: Fonts.CONTENT_FONT,
+                                          ),
+                                          children: [
+                                            if (feedModel.postedBy!.isNotEmpty)
+                                              TextSpan(
+                                                text: feedModel.postedBy!,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 12,
+                                                  color: Kolors.primaryColor1,
+                                                  fontFamily:
+                                                      Fonts.CONTENT_FONT,
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                ],
-                              ),
+                                  ],
+                                ),
                               const SizedBox(
                                 height: 7,
                               ),

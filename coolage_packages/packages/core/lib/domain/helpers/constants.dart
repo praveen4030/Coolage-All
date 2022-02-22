@@ -36,7 +36,7 @@ class Constants {
 
   static const String APPROVAL_STATUS = "approvalStatus";
 
-  static const String APP_VERSION = 'App Version (30.0.0)';
+  static const String APP_VERSION = 'App Version (31.0.0)';
   static const String website = "website";
   static const String phoneNo = "phoneNo";
   static const String email = "email";
