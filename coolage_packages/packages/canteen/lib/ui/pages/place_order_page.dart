@@ -1,16 +1,16 @@
 part of canteen;
 
 class PlaceOrderPage extends StatefulWidget {
-  final CartModel? cartModel;
-  final DeliverableZonesModel? zoneSelectedModel;
-  final bool? isDelivery;
-  final bool? isTakeAway;
+  final CartModel cartModel;
+  final DeliverableZonesModel zoneSelectedModel;
+  final bool isDelivery;
+  final bool isTakeAway;
   const PlaceOrderPage({
     Key? key,
-    @required this.cartModel,
-    @required this.zoneSelectedModel,
-    @required this.isDelivery,
-    @required this.isTakeAway,
+    required this.cartModel,
+    required this.zoneSelectedModel,
+    required this.isDelivery,
+    required this.isTakeAway,
   }) : super(key: key);
 
   @override
@@ -48,7 +48,7 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                   Row(
                     children: [
                       CustomText(
-                        text: widget.cartModel!.canteenBasicDetailsModel!.name,
+                        text: widget.cartModel.canteenBasicDetailsModel!.name,
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
                         fontFamily: Fonts.CONTENT_FONT,
@@ -56,8 +56,8 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                       ),
                       const Spacer(),
                       CustomText(
-                        text: widget
-                            .cartModel!.canteenBasicDetailsModel!.location,
+                        text:
+                            widget.cartModel.canteenBasicDetailsModel!.location,
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
                         fontFamily: Fonts.CONTENT_FONT,
@@ -102,7 +102,7 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
         ),
         bottomSheet: isKeyboardOpen
             ? null
-            : widget.isDelivery!
+            : widget.isDelivery
                 ? BottomButtonWidget(
                     onTap: () {
                       checkForPhoneNo(context);
@@ -173,7 +173,7 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
         // isScrollControlled: true,
         builder: (context) {
           return SelectAddressDialog(
-            zoneSelected: widget.zoneSelectedModel!.zone,
+            zoneSelected: widget.zoneSelectedModel.zone,
             onProceedToPay: () {},
             paymentButton: paymentButton(),
           );
@@ -185,7 +185,7 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
         .read<AuthenticationBloc>()
         .state
         .coolUser!
-        .deliveryAddressesMap![widget.zoneSelectedModel!.zone];
+        .deliveryAddressesMap![widget.zoneSelectedModel.zone];
     if (addresses?.isEmpty ?? true) {
       showModalBottomSheet(
           isScrollControlled: true,
@@ -199,7 +199,7 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
           context: context,
           builder: (context) {
             return AddAddressDialog(
-              selectedZone: widget.zoneSelectedModel!.zone,
+              selectedZone: widget.zoneSelectedModel.zone,
             );
           });
     }
@@ -211,7 +211,6 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
       specialComment: commentTEC.text,
       isTakeAway: widget.isTakeAway,
       isDelivery: widget.isDelivery,
-      // deliveryAddressIndex: deliveryAddressIndex,
       zoneSelectedModel: widget.zoneSelectedModel,
     );
   }

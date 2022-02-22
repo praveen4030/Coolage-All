@@ -2,6 +2,8 @@ part of core;
 
 enum ChatType { single, group }
 enum OrderStatus {
+  paymentPending,
+  paymentFailed,
   pending,
   preparing,
   prepared,
@@ -38,6 +40,10 @@ String getOrderStatusString(OrderStatus orderStatus) {
     s = 'delivered';
   } else if (orderStatus == OrderStatus.canceled) {
     s = 'canceled';
+  } else if (orderStatus == OrderStatus.paymentPending) {
+    s = "paymentPending";
+  } else if (orderStatus == OrderStatus.paymentFailed) {
+    s = "paymentFailed";
   }
   return s;
 }
@@ -55,6 +61,10 @@ OrderStatus getOrderStatus(String status) {
     return OrderStatus.delivered;
   } else if (status == 'canceled') {
     return OrderStatus.canceled;
+  } else if (status == 'paymentPending') {
+    return OrderStatus.paymentPending;
+  } else if (status == 'paymentFailed') {
+    return OrderStatus.paymentFailed;
   }
   return OrderStatus.unknown;
 }

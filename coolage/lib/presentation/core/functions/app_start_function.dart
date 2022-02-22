@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:canteen/canteen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:college/application/college/college_bloc.dart';
 import 'package:core/application/coolage_details/coolage_details_bloc.dart';
 import 'package:feed/application/feed/feed_bloc.dart';
@@ -13,6 +14,7 @@ import 'package:uni_links/uni_links.dart';
 import 'package:user/domain/auth/fetch_user_details.dart';
 import 'package:user/ui/profile/user_profile.dart';
 import 'package:user/user.dart';
+import 'package:core/core.dart';
 
 mixin AppStartFunction {
   static void startingBlocEvents(BuildContext context) {

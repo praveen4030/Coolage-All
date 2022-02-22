@@ -189,6 +189,7 @@ class CanteenRepo extends ICanteenRepo {
       if (paymentId?.isEmpty ?? true) {
         return left(FirebaseFailure.customError('Invalid transaction id!'));
       }
+
       final doc = _firestore.canteenBasicDetailsCollection
           .doc(cartModel!.uniqueId)
           .canteenOngoingOrdersCollection
@@ -213,7 +214,7 @@ class CanteenRepo extends ICanteenRepo {
         orderPlaceByName: coolUser.name,
         orderPlacedByContactNo: coolUser.phoneNo,
         orderPlacedByImage: coolUser.imageUrl,
-        orderStatus: OrderStatus.pending,
+        orderStatus: OrderStatus.paymentPending,
         paymentId: paymentId,
         userDeviceToken: coolUser.deviceToken,
         isTakeAway: isTakeAway,
@@ -237,7 +238,7 @@ class CanteenRepo extends ICanteenRepo {
           doc.id: userOrderModel.toMap(),
         }
       }, SetOptions(merge: true));
-      CanteenFunctions.deleteItems(canteenId: cartModel.uniqueId!);
+
       // final cartUserDoc = _firestore.usersCanteenCartCollection
       //     .doc(Getters.getCurrentUserUid());
       // await cartUserDoc.update({

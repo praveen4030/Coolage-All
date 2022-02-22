@@ -1,10 +1,10 @@
 part of canteen;
 
 class PickdeliveryOptionDialog extends StatefulWidget {
-  final CartModel? cartModel;
+  final CartModel cartModel;
   const PickdeliveryOptionDialog({
     Key? key,
-    @required this.cartModel,
+    required this.cartModel,
   }) : super(key: key);
 
   @override
@@ -36,7 +36,7 @@ class _PickdeliveryOptionDialogState extends State<PickdeliveryOptionDialog> {
                 const SizedBox(
                   height: 20,
                 ),
-                if (widget.cartModel!.canteenBasicDetailsModel!.isDelivery ??
+                if (widget.cartModel.canteenBasicDetailsModel!.isDelivery ??
                     false)
                   radioTile(
                     value: 1,
@@ -62,7 +62,7 @@ class _PickdeliveryOptionDialogState extends State<PickdeliveryOptionDialog> {
                         builder: (context) => PlaceOrderPage(
                               cartModel: widget.cartModel,
                               zoneSelectedModel: widget
-                                  .cartModel!
+                                  .cartModel
                                   .canteenBasicDetailsModel!
                                   .deliveryZonesList![zoneIndex],
                               isDelivery: false,
@@ -84,7 +84,7 @@ class _PickdeliveryOptionDialogState extends State<PickdeliveryOptionDialog> {
                         builder: (context) => PlaceOrderPage(
                               cartModel: widget.cartModel,
                               zoneSelectedModel: widget
-                                  .cartModel!
+                                  .cartModel
                                   .canteenBasicDetailsModel!
                                   .deliveryZonesList![zoneIndex],
                               isDelivery: false,
@@ -152,7 +152,7 @@ class _PickdeliveryOptionDialogState extends State<PickdeliveryOptionDialog> {
                       zoneIndex = index as int;
                     });
                   },
-                  zonesList: widget.cartModel!.canteenBasicDetailsModel!
+                  zonesList: widget.cartModel.canteenBasicDetailsModel!
                       .getDelioveryZonesName(),
                 ),
               ],
@@ -168,7 +168,7 @@ class _PickdeliveryOptionDialogState extends State<PickdeliveryOptionDialog> {
                   builder: (context) => PlaceOrderPage(
                         cartModel: widget.cartModel,
                         zoneSelectedModel: widget
-                            .cartModel!
+                            .cartModel
                             .canteenBasicDetailsModel!
                             .deliveryZonesList![zoneIndex],
                         isDelivery: selectedValue == 1,

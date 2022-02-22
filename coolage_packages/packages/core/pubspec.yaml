@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   fluttertoast: ^8.0.8
+  flushbar: ^1.10.4
   intl: null
   url_launcher: ^6.0.3
   cloud_firestore: ^2.1.0
@@ -42,6 +43,8 @@ dependencies:
     path: ../user
   college:
     path: ../college
+  canteen:
+    path: ../canteen
 dev_dependencies:
   flutter_lints: ^1.0.0
   injectable_generator: ^1.4.0
