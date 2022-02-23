@@ -291,6 +291,14 @@ class FeedRepository extends IFeedRepository {
           !feedModel.publishTags!.contains("All")) {
         feedModel.publishTags!.add(tagIndividual);
       }
+      if (feedModel.shareDynamicLink.isNotEmpty) {
+        String? sharedLink =
+            await FeedDynamicLinks.createFeedDynamicLink(userCollege, docId);
+        if (sharedLink?.isNotEmpty ?? false) {
+          feedModel.shareDynamicLink = sharedLink!;
+        }
+      }
+
       await _firestore.collegesCollection
           .doc(userCollege)
           .feedCollection
@@ -359,6 +367,31 @@ class FeedRepository extends IFeedRepository {
           .update({
         Constants.APPROVAL_STATUS: Constants.DECLINED,
         'declinedTimestamp': Timestamp.now(),
+      });
+
+      return right(unit);
+    } on FirebaseException catch (e) {
+      return left(FirebaseFailure.customError(e.toString()));
+    } catch (e) {
+      return left(FirebaseFailure.customError(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<FirebaseFailure, Unit>> likePost(
+    String userCollege,
+    FeedModel feedModel,
+    bool isLike,
+  ) async {
+    try {
+      final doc = _firestore.collegesCollection
+          .doc(userCollege)
+          .feedCollection
+          .doc(feedModel.docId);
+      final list = [Getters.getCurrentUserUid()];
+      await doc.update({
+        'likedBy':
+            isLike ? FieldValue.arrayUnion(list) : FieldValue.arrayRemove(list),
       });
 
       return right(unit);

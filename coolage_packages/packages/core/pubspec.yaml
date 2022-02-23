@@ -39,12 +39,15 @@ dependencies:
   dropdown_button2: ^1.0.7
   dio: ^4.0.4
   cashfree_pg: ^2.0.4+24
+  firebase_dynamic_links: ^4.0.3
   user:
     path: ../user
   college:
     path: ../college
   canteen:
     path: ../canteen
+  blogs:
+    path: ../blogs
 dev_dependencies:
   flutter_lints: ^1.0.0
   injectable_generator: ^1.4.0
@@ -55,4 +58,4 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-flutter: null
+flutter:

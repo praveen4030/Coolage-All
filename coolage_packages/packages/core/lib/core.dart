@@ -23,6 +23,7 @@ import 'package:dartz/dartz.dart' as dartz;
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -37,6 +38,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:lottie/lottie.dart';
+import 'package:user/domain/auth/fetch_user_details.dart';
 import 'package:user/ui/dialogs/phone_authentication_dialog.dart';
 import 'package:user/ui/dialogs/verify_otp_dialog.dart';
 import 'package:user/user.dart';
@@ -52,8 +54,12 @@ import 'package:user/application/auth/authentication_bloc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:dio/dio.dart';
+import 'package:feed/feed.dart';
+import 'package:blogs/blogs.dart';
 
 part 'domain/functions/functions.dart';
+part 'domain/functions/dynamic_links.dart';
+
 part 'domain/functions/auth_functions.dart';
 part 'domain/functions/firebase_functions.dart';
 part 'domain/functions/date_time_functions.dart';

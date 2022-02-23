@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:feed/domain/i_feed_repository.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:user/user.dart';
@@ -401,6 +402,92 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
           );
         }
       },
+      likeFeed: (e) async* {
+        bool isLiked = state.approvedPostsList[e.index].isLikedByUser();
+
+        final list = likePost(state.approvedPostsList, e.index);
+        yield state.copyWith(
+          approvedPostsList: list,
+        );
+
+        final opt = await iFeedRepository.likePost(
+            e.userCollege, list[e.index], !isLiked);
+        yield opt.fold(
+          (failure) {
+            final list = likePost(
+              state.approvedPostsList,
+              e.index,
+            );
+            Fluttertoast.showToast(msg: failure.error);
+
+            return state.copyWith(
+              approvedPostsList: list,
+            );
+          },
+          (_) {
+            return state.copyWith();
+          },
+        );
+      },
+      likeSingleFeedPost: (e) async* {
+        likeSinglePost(e.feedModel);
+        e.onChanged();
+        final opt = await iFeedRepository.likePost(
+            e.userCollege, e.feedModel, e.feedModel.isLikedByUser());
+        yield opt.fold(
+          (failure) {
+            likeSinglePost(e.feedModel);
+            e.onChanged();
+            Fluttertoast.showToast(msg: failure.error);
+
+            return state.copyWith();
+          },
+          (_) {
+            int index = checkIfExistsInCurrentFeedList(
+                state.approvedPostsList, e.feedModel.docId!);
+            if (index != -1) {
+              final List<FeedModel> newList =
+                  likePost(state.approvedPostsList, index);
+              return state.copyWith(approvedPostsList: newList);
+            }
+            return state.copyWith();
+          },
+        );
+      },
     );
+  }
+
+  int checkIfExistsInCurrentFeedList(List<FeedModel> list, String docId) {
+    int i = 0;
+    for (final model in list) {
+      if (model.docId! == docId) {
+        return i;
+      }
+      i++;
+    }
+    return -1;
+  }
+
+  void likeSinglePost(FeedModel feedModel) {
+    if (feedModel.likedBy.contains(Getters.getCurrentUserUid())) {
+      feedModel.likedBy.remove(Getters.getCurrentUserUid());
+    } else {
+      feedModel.likedBy.add(Getters.getCurrentUserUid());
+    }
+  }
+
+  List<FeedModel> likePost(List<FeedModel> list, int index) {
+    final List<FeedModel> newList = List.from(list);
+    final model = list[index];
+    FeedModel newModel = FeedModel.fromMap(model.toMap());
+    if (newModel.likedBy.contains(Getters.getCurrentUserUid())) {
+      newModel.likedBy.remove(Getters.getCurrentUserUid());
+    } else {
+      newModel.likedBy.add(Getters.getCurrentUserUid());
+    }
+    newList
+      ..removeAt(index)
+      ..insert(index, newModel);
+    return newList;
   }
 }

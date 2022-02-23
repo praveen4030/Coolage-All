@@ -23,6 +23,7 @@ mixin AppStartFunction {
         ));
     context.read<CoolageDetailsBloc>().add(const CoolageDetailsEvent.started());
     CanteenCoreFunctionality.initializeBloc(context);
+    DynamicLinkFunctions.handleDynamicLinks();
     // context.read<FeedBloc>().add(FeedEvent.getApprovedPosts(
     //     userCollege: Getters.getCurrentUserCollege(context)));
   }

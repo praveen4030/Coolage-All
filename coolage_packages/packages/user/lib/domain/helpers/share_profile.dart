@@ -5,7 +5,7 @@ import 'package:user/user.dart';
 
 mixin ShareProfileFunction {
   static Future<void> shareMessage(CoolUser coolUser) async {
-    final link = await DynamicLinkFunctions.getUserShareLink(coolUser);
+    final link = await UserDynamicLinkFunctions.getUserShareLink(coolUser);
     if (link?.isEmpty ?? true) {
       FlushbarHelper.createError(message: "Something went wrong!")
           .show(CoreGetters.getContext);

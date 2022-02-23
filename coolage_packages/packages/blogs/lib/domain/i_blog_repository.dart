@@ -51,4 +51,8 @@ abstract class IBlogRepository {
     String userCollege,
     BlogsModel blogsModel,
   );
+  Future<Either<FirebaseFailure, Unit>> likePost(
+    BlogsModel blogsModel,
+    bool isLike,
+  );
 }

@@ -46,6 +46,7 @@ dependencies:
     path: ../core
   college:
     path: ../college
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

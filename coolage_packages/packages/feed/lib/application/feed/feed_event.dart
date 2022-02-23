@@ -53,4 +53,13 @@ abstract class FeedEvent with _$FeedEvent {
     required FeedModel feedModel,
     required int index,
   }) = _ApproveFeed;
+  const factory FeedEvent.likeFeed({
+    required String userCollege,
+    required int index,
+  }) = _LikeFeed;
+  const factory FeedEvent.likeSingleFeedPost({
+    required String userCollege,
+    required FeedModel feedModel,
+    required Function onChanged,
+  }) = _LikeSingleFeedPost;
 }

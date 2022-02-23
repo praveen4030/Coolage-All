@@ -56,4 +56,13 @@ class BlogsEvent with _$BlogsEvent {
     required BlogsModel blogModel,
     required int index,
   }) = _ApproveBlog;
+
+  const factory BlogsEvent.likeBlog({
+    required String userCollege,
+    required int index,
+  }) = _LikeBlog;
+  const factory BlogsEvent.likeSingleBlogPost({
+    required BlogsModel blogModel,
+    required Function onChanged,
+  }) = _LikeSingleBlogPost;
 }

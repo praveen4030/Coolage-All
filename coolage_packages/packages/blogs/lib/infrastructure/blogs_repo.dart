@@ -288,4 +288,25 @@ class BlogsRepo extends IBlogRepository {
       return left(FirebaseFailure.customError(e.toString()));
     }
   }
+
+  @override
+  Future<Either<FirebaseFailure, Unit>> likePost(
+    BlogsModel blogsModel,
+    bool isLike,
+  ) async {
+    try {
+      final doc = _firestore.blogsCollection.doc(blogsModel.docId);
+      final list = [Getters.getCurrentUserUid()];
+      await doc.update({
+        'likedBy':
+            isLike ? FieldValue.arrayUnion(list) : FieldValue.arrayRemove(list),
+      });
+
+      return right(unit);
+    } on FirebaseException catch (e) {
+      return left(FirebaseFailure.customError(e.toString()));
+    } catch (e) {
+      return left(FirebaseFailure.customError(e.toString()));
+    }
+  }
 }

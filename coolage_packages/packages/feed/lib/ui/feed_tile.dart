@@ -5,12 +5,14 @@ class FeedTile extends StatelessWidget {
   final int index;
   final bool isOpenedFromApproved;
   final bool isNonEditablePublishingMode;
+  final bool isSingleFeedPost;
   const FeedTile({
     Key? key,
     required this.feedModel,
     required this.index,
     required this.isOpenedFromApproved,
     this.isNonEditablePublishingMode = false,
+    this.isSingleFeedPost = false,
   }) : super(key: key);
 
   @override
@@ -18,7 +20,8 @@ class FeedTile extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (FeedCoreFunctionality.isAdmin ||
-            feedModel.postedByUid == Getters.getCurrentUserUid()) {
+            feedModel.postedByUid == Getters.getCurrentUserUid() &&
+                index > -1) {
           Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
               builder: (context) => AddFeedItemPage(
                     feedModel: feedModel,
@@ -75,6 +78,7 @@ class FeedTile extends StatelessWidget {
                         ),
                         Expanded(
                           child: Column(
+                            mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomText(
@@ -148,63 +152,70 @@ class FeedTile extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Row(
-                    children: [
-                      // if (FeedCoreFunctionality.isAdmin &&
-                      //     feedModel.approvalStatus == Constants.FEED_APPROVED)
-                      //   forAdminEditFeedWidget()
-                      // else
-                      //   Expanded(child: Container()),
-
-                      const Spacer(),
-                      if (feedModel.image?.isNotEmpty ?? false)
-                        CircleIcon(
-                          icon: 'empty_image_icon',
-                          height: 25,
-                          color: Kolors.secondaryColor1,
-                          width: 25,
-                          onTap: () {
-                            Navigator.of(context, rootNavigator: true)
-                                .push(MaterialPageRoute(
-                                    builder: (context) => PhotoViewPage(
-                                          imageUrl: feedModel.image!,
-                                        )));
-                          },
+                  Container(
+                    height: 45,
+                    child: Row(
+                      children: [
+                        // if (FeedCoreFunctionality.isAdmin &&
+                        //     feedModel.approvalStatus == Constants.FEED_APPROVED)
+                        //   forAdminEditFeedWidget()
+                        // else
+                        //   Expanded(child: Container()),
+                        FeedLikeWidget(
+                          index: index,
+                          feedModel: feedModel,
+                          isSingleFeedPost: isSingleFeedPost,
                         ),
-                      if (feedModel.image?.isNotEmpty ?? false)
-                        const SizedBox(
-                          width: 30,
-                        ),
-                      if (feedModel.redirectUrl?.isNotEmpty ?? false)
-                        CircleIcon(
-                          icon: 'visit',
-                          height: 25,
-                          width: 25,
-                          onTap: () {
-                            Functions.launchURL(feedModel.redirectUrl);
-                          },
-                          color: Kolors.secondaryColor1,
-                        ),
-                      if (feedModel.redirectUrl?.isNotEmpty ?? false)
-                        const SizedBox(
-                          width: 30,
-                        ),
-                      if (feedModel.contactNo?.isNotEmpty ?? false)
-                        CircleIcon(
-                          icon: 'call',
-                          height: 25,
-                          width: 25,
-                          onTap: () {
-                            final url = "tel:${feedModel.contactNo}";
-                            Functions.launchURL(url);
-                          },
-                          color: Kolors.secondaryColor1,
-                        ),
-                      if (feedModel.contactNo?.isNotEmpty ?? false)
-                        const SizedBox(
-                          width: 24,
-                        ),
-                    ],
+                        const Spacer(),
+                        if (feedModel.image?.isNotEmpty ?? false)
+                          CircleIcon(
+                            icon: 'empty_image_icon',
+                            height: 25,
+                            color: Kolors.secondaryColor1,
+                            width: 25,
+                            onTap: () {
+                              Navigator.of(context, rootNavigator: true)
+                                  .push(MaterialPageRoute(
+                                      builder: (context) => PhotoViewPage(
+                                            imageUrl: feedModel.image!,
+                                          )));
+                            },
+                          ),
+                        if (feedModel.image?.isNotEmpty ?? false)
+                          const SizedBox(
+                            width: 30,
+                          ),
+                        if (feedModel.redirectUrl?.isNotEmpty ?? false)
+                          CircleIcon(
+                            icon: 'visit',
+                            height: 25,
+                            width: 25,
+                            onTap: () {
+                              Functions.launchURL(feedModel.redirectUrl);
+                            },
+                            color: Kolors.secondaryColor1,
+                          ),
+                        if (feedModel.redirectUrl?.isNotEmpty ?? false)
+                          const SizedBox(
+                            width: 30,
+                          ),
+                        if (feedModel.contactNo?.isNotEmpty ?? false)
+                          CircleIcon(
+                            icon: 'call',
+                            height: 25,
+                            width: 25,
+                            onTap: () {
+                              final url = "tel:${feedModel.contactNo}";
+                              Functions.launchURL(url);
+                            },
+                            color: Kolors.secondaryColor1,
+                          ),
+                        if (feedModel.contactNo?.isNotEmpty ?? false)
+                          const SizedBox(
+                            width: 24,
+                          ),
+                      ],
+                    ),
                   )
                 ],
               ),

@@ -1,9 +1,19 @@
 import 'package:college/college.dart';
 import 'package:core/core.dart';
+import 'package:feed/feed.dart';
 import 'package:flutter/material.dart';
 import 'package:user/user.dart';
 
 mixin FeedFunctions {
+  static String getFeedShareMessage(String link, FeedModel feedModel) {
+    String s = "";
+    s += "Hey There!\n\n";
+    s +=
+        "Check out this new feed event on Coolage App published by ${feedModel.postedBy} for ${feedModel.title}\n\n";
+    s += "Link : $link";
+    return s;
+  }
+
   static List<String> getUserRelatedTag() {
     final List<String> userRelatedTags = [];
     userRelatedTags.add("All");

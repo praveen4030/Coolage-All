@@ -28,7 +28,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
           isLoading: true,
           actionFailureOpt: none(),
         );
-        final link = await DynamicLinkFunctions.createUserDynamicLink(
+        final link = await UserDynamicLinkFunctions.createUserDynamicLink(
             Getters.getCurrentUserUid());
         final model = CoolUser(
           name: state.name,

@@ -7,6 +7,7 @@ import 'package:blogs/domain/i_blog_repository.dart';
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:user/user.dart';
@@ -379,6 +380,89 @@ class BlogsBloc extends Bloc<BlogsEvent, BlogsState> {
           });
         }
       },
+      likeBlog: (e) async* {
+        bool isLiked = state.blogsList[e.index].isLikedByUser();
+        final list = likePost(state.blogsList, e.index);
+        yield state.copyWith(
+          blogsList: list,
+        );
+
+        final opt = await iBlogRepository.likePost(list[e.index], !isLiked);
+        yield opt.fold(
+          (failure) {
+            final list = likePost(
+              state.blogsList,
+              e.index,
+            );
+            Fluttertoast.showToast(msg: failure.error);
+
+            return state.copyWith(
+              blogsList: list,
+            );
+          },
+          (_) {
+            return state.copyWith();
+          },
+        );
+      },
+      likeSingleBlogPost: (e) async* {
+        likeSinglePost(e.blogModel);
+        e.onChanged();
+        final opt = await iBlogRepository.likePost(
+            e.blogModel, e.blogModel.isLikedByUser());
+        yield opt.fold(
+          (failure) {
+            likeSinglePost(e.blogModel);
+            e.onChanged();
+            Fluttertoast.showToast(msg: failure.error);
+
+            return state.copyWith();
+          },
+          (_) {
+            int index = checkIfExistsInCurrentBlogsList(
+                state.blogsList, e.blogModel.docId!);
+            if (index != -1) {
+              final List<BlogsModel> newList = likePost(state.blogsList, index);
+              return state.copyWith(blogsList: newList);
+            }
+            return state.copyWith();
+          },
+        );
+      },
     );
+  }
+
+  int checkIfExistsInCurrentBlogsList(List<BlogsModel> list, String docId) {
+    int i = 0;
+    for (final model in list) {
+      if (model.docId! == docId) {
+        return i;
+      }
+      i++;
+    }
+    return -1;
+  }
+
+  void likeSinglePost(BlogsModel blogsModel) {
+    if (blogsModel.likedBy.contains(Getters.getCurrentUserUid())) {
+      blogsModel.likedBy.remove(Getters.getCurrentUserUid());
+    } else {
+      blogsModel.likedBy.add(Getters.getCurrentUserUid());
+    }
+  }
+
+  List<BlogsModel> likePost(List<BlogsModel> list, int index) {
+    final List<BlogsModel> newList = List.from(list);
+    final model = list[index];
+    BlogsModel newModel = BlogsModel.fromMap(model.toMap());
+    if (newModel.likedBy.contains(Getters.getCurrentUserUid())) {
+      newModel.likedBy.remove(Getters.getCurrentUserUid());
+    } else {
+      newModel.likedBy.add(Getters.getCurrentUserUid());
+    }
+    newList
+      ..removeAt(index)
+      ..insert(index, newModel);
+    return newList;
   }
 }

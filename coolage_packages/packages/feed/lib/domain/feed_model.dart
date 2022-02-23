@@ -32,6 +32,8 @@ class FeedModel {
 
   Timestamp? declinedTimestamp;
   Timestamp? publishedTimestamp;
+  List<String> likedBy;
+  String shareDynamicLink;
   FeedModel({
     this.title,
     this.caption,
@@ -51,6 +53,8 @@ class FeedModel {
     this.publishTags,
     this.declinedTimestamp,
     this.publishedTimestamp,
+    this.likedBy = const [],
+    this.shareDynamicLink = '',
   });
 
   Map<String, dynamic> toMap() {
@@ -73,11 +77,19 @@ class FeedModel {
       'expiryDateTime': expiryDateTime,
       'postedByPhoneNo': postedByPhoneNo,
       'publishTags': publishTags,
+      'likedBy': likedBy,
+      'shareDynamicLink': shareDynamicLink,
     };
   }
 
   factory FeedModel.fromMap(Map<String, dynamic> map) {
     return FeedModel(
+      likedBy: map['likedBy'] == null
+          ? []
+          : (map['likedBy'] as List).map((k) => k as String).toList(),
+      shareDynamicLink: map['shareDynamicLink'] == null
+          ? ''
+          : map['shareDynamicLink'] as String,
       publishedTimestamp: map['publishedTimestamp'] as Timestamp,
       declinedTimestamp: map['declinedTimestamp'] as Timestamp,
       title: map['title'] == null ? '' : map['title'] as String,
@@ -134,5 +146,9 @@ class FeedModel {
   bool isPending() {
     if (approvalStatus == Constants.PENDING) return true;
     return false;
+  }
+
+  bool isLikedByUser() {
+    return likedBy.contains(Getters.getCurrentUserUid());
   }
 }
