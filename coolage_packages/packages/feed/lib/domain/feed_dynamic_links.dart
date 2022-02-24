@@ -60,8 +60,8 @@ class FeedDynamicLinks {
         return '';
       }
       final DynamicLinkParameters parameters = DynamicLinkParameters(
-        uriPrefix: 'https://kraigs.page.link',
-        link: Uri.parse('https://kraigs.page.link/feed/$college/$feedId'),
+        uriPrefix: 'https://web.coolage.co.in/feed',
+        link: Uri.parse('https://web.coolage.co.in/feed/$college/$feedId'),
         androidParameters: const AndroidParameters(
           packageName: 'com.kraigs.coolage',
         ),

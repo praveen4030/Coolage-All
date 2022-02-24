@@ -3,14 +3,20 @@ import 'package:core/core.dart';
 import 'package:feed/feed.dart';
 import 'package:flutter/material.dart';
 import 'package:user/user.dart';
+import 'package:intl/intl.dart';
 
 mixin FeedFunctions {
   static String getFeedShareMessage(String link, FeedModel feedModel) {
     String s = "";
-    s += "Hey There!\n\n";
-    s +=
-        "Check out this new feed event on Coolage App published by ${feedModel.postedBy} for ${feedModel.title}\n\n";
-    s += "Link : $link";
+    s += "New feed event:\n";
+    s += "${feedModel.title}\n";
+    s += "Published by~\n";
+
+    s += " ${feedModel.postedBy}\n";
+    final date = DateFormat('dd-MM-yyyy').format(feedModel.timestamp!.toDate());
+    s += "on $date\n\n";
+    s += "Know more on Coolage App\n";
+    s += link;
     return s;
   }
 

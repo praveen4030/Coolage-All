@@ -52,8 +52,8 @@ class BlogDynamicLinks {
         return '';
       }
       final DynamicLinkParameters parameters = DynamicLinkParameters(
-        uriPrefix: 'https://kraigs.page.link',
-        link: Uri.parse('https://kraigs.page.link/blog/$blogId'),
+        uriPrefix: 'https://web.coolage.co.in/blogs',
+        link: Uri.parse('https://web.coolage.co.in/blogs/$blogId'),
         androidParameters: const AndroidParameters(
           packageName: 'com.kraigs.coolage',
         ),

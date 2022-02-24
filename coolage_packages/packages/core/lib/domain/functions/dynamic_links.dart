@@ -32,7 +32,7 @@ mixin DynamicLinkFunctions {
         final college = segments[1];
         final feedId = segments[2];
         return FeedDynamicLinks.redirectToFeedPage(college, feedId);
-      } else if (segments.length == 2 && segments.first == 'blog') {
+      } else if (segments.length == 2 && segments.first == 'blogs') {
         final blogId = segments[1];
         return BlogDynamicLinks.redirectToBlogsPage(blogId);
       }
