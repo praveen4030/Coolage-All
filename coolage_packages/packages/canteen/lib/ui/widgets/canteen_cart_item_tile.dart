@@ -1,10 +1,10 @@
 part of canteen;
 
 class CanteenCartItemTile extends StatelessWidget {
-  final CartModel? canteenCart;
+  final CartModel canteenCart;
   const CanteenCartItemTile({
     Key? key,
-    @required this.canteenCart,
+    required this.canteenCart,
   }) : super(key: key);
 
   @override
@@ -34,7 +34,7 @@ class CanteenCartItemTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomText(
-                        text: canteenCart!.canteenBasicDetailsModel!.name,
+                        text: canteenCart.canteenBasicDetailsModel!.name,
                       ),
                       Row(
                         children: [
@@ -53,7 +53,7 @@ class CanteenCartItemTile extends StatelessWidget {
                               color: Kolors.secondaryColor2,
                             ),
                             child: CustomText(
-                              text: '${canteenCart!.qty!.toInt()}',
+                              text: '${canteenCart.qty!.toInt()}',
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               fontFamily: Fonts.CONTENT_FONT,
@@ -92,7 +92,7 @@ class CanteenCartItemTile extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         CustomText(
-                          text: '${canteenCart!.totalPrice!.toInt()}',
+                          text: '${canteenCart.totalPrice!.toInt()}',
                           fontFamily: Fonts.CONTENT_FONT,
                           fontSize: 24,
                           color: Kolors.greyBlue,
@@ -119,7 +119,7 @@ class CanteenCartItemTile extends StatelessWidget {
                     child: ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: canteenCart!.cartItemsMap!.length,
+                      itemCount: canteenCart.cartItemsMap!.length,
                       itemBuilder: (context, index) {
                         final menuItem = getMenuItemsList()[index];
                         if ((menuItem.qty ?? 0) <= 0) {
@@ -127,8 +127,7 @@ class CanteenCartItemTile extends StatelessWidget {
                         }
                         return CartItem(
                           itemModel: menuItem,
-                          isLast:
-                              canteenCart!.cartItemsMap!.length - 1 == index,
+                          isLast: canteenCart.cartItemsMap!.length - 1 == index,
                           onAdd: (int qty, bool isIncreasing) {
                             onAdd(qty, isIncreasing, context, menuItem);
                           },
@@ -146,7 +145,7 @@ class CanteenCartItemTile extends StatelessWidget {
                 Fluttertoast.showToast(
                     msg: "Download the app now to place your order!");
               } else {
-                if (canteenCart!.canteenBasicDetailsModel!.isClosed()) {
+                if (canteenCart.canteenBasicDetailsModel!.isClosed()) {
                   Fluttertoast.showToast(msg: "Canteen is closed currently!");
                 } else {
                   placeOrder(context);
@@ -161,7 +160,7 @@ class CanteenCartItemTile extends StatelessWidget {
                 vertical: 10,
               ),
               decoration: BoxDecoration(
-                color: canteenCart!.canteenBasicDetailsModel!.isClosed()
+                color: canteenCart.canteenBasicDetailsModel!.isClosed()
                     ? Kolors.greyBlue
                     : Kolors.secondaryColor2,
                 borderRadius: BorderRadius.circular(50),
@@ -179,9 +178,9 @@ class CanteenCartItemTile extends StatelessWidget {
   }
 
   String getLocationAndTimeString(BuildContext context) {
-    String s = canteenCart!.canteenBasicDetailsModel!.location!;
-    if (canteenCart!.canteenBasicDetailsModel!.closeAtTimeOfDay != null) {
-      s = '$s | Open Till ${canteenCart!.canteenBasicDetailsModel!.closeAtTimeOfDay!.format(context)}';
+    String s = canteenCart.canteenBasicDetailsModel!.location!;
+    if (canteenCart.canteenBasicDetailsModel!.closeAtTimeOfDay != null) {
+      s = '$s | Open Till ${canteenCart.canteenBasicDetailsModel!.closeAtTimeOfDay!.format(context)}';
     }
 
     return s;
@@ -200,7 +199,7 @@ class CanteenCartItemTile extends StatelessWidget {
 
   String getPaymentDesc() {
     String menu = '';
-    final list = canteenCart!.cartItemsMap!.values.toList();
+    final list = canteenCart.cartItemsMap!.values.toList();
     for (int i = 0; i < list.length; i++) {
       final m = list[i];
 
@@ -213,7 +212,7 @@ class CanteenCartItemTile extends StatelessWidget {
   }
 
   List<ItemModel> getMenuItemsList() {
-    final menuItems = canteenCart!.cartItemsMap!.values.toList();
+    final menuItems = canteenCart.cartItemsMap!.values.toList();
     CanteenItemsHelper.sortCategoryItemsByPrice(menuItems);
     return menuItems;
   }
@@ -228,11 +227,11 @@ class CanteenCartItemTile extends StatelessWidget {
       itemModel.qty = qty;
       CanteenFunctions.addItemToCart(
           menuItemModel: itemModel,
-          canteenBasicDetailsModel: canteenCart!.canteenBasicDetailsModel);
+          canteenBasicDetailsModel: canteenCart.canteenBasicDetailsModel);
       // context.read<CanteenDetailsBloc>().add(CanteenDetailsEvent.addToCart(
       //       isIncreased: isIncreasing,
       //       menuItemModel: itemModel,
-      //       canteenBasicDetailsModel: canteenCart!.canteenBasicDetailsModel,
+      //       canteenBasicDetailsModel: canteenCart.canteenBasicDetailsModel,
       //     ));
     } else {
       await showDialog(
@@ -240,7 +239,7 @@ class CanteenCartItemTile extends StatelessWidget {
           builder: (context) {
             return AddMenuItemCategoryDialog(
               itemModel: itemModel,
-              canteenBasicDetailsModel: canteenCart!.canteenBasicDetailsModel,
+              canteenBasicDetailsModel: canteenCart.canteenBasicDetailsModel,
             );
           });
     }

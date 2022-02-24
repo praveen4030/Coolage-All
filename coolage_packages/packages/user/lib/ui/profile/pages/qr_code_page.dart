@@ -227,7 +227,7 @@ class QrCodePage extends StatelessWidget {
   Widget shareButton(BuildContext context, CoolUser coolUser) {
     return GestureDetector(
       onTap: () async {
-        final link = await DynamicLinkFunctions.getUserShareLink(coolUser);
+        final link = await UserDynamicLinkFunctions.getUserShareLink(coolUser);
         if (link?.isEmpty ?? true) {
           FlushbarHelper.createError(message: "Something went wrong!")
               .show(CoreGetters.getContext);

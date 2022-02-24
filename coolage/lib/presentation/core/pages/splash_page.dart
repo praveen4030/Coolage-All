@@ -41,7 +41,6 @@ class _SplashPageState extends State<SplashPage> {
         .add(const AuthenticationEvent.authCheckRequested());
     context.read<CoolageDetailsBloc>().add(const CoolageDetailsEvent.started());
     AppStartFunction.handleIncomingUniLinks(context);
-    DynamicLinkFunctions.handleDynamicLinks();
   }
 
   @override

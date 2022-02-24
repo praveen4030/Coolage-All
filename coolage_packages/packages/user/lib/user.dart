@@ -30,7 +30,7 @@ part 'domain/delivery_address_model.dart';
 part 'domain/getter.dart';
 part 'domain/user_profile/achievements_model.dart';
 part 'domain/user_profile/language_model.dart';
-part 'domain/auth/dynamic_links.dart';
+part 'domain/auth/user_dynamic_links.dart';
 
 part 'domain/user_profile/address_model.dart';
 part 'domain/user_profile/campus_pors_model.dart';

@@ -1,9 +1,25 @@
 import 'package:college/college.dart';
 import 'package:core/core.dart';
+import 'package:feed/feed.dart';
 import 'package:flutter/material.dart';
 import 'package:user/user.dart';
+import 'package:intl/intl.dart';
 
 mixin FeedFunctions {
+  static String getFeedShareMessage(String link, FeedModel feedModel) {
+    String s = "";
+    s += "New feed event:\n";
+    s += "${feedModel.title}\n";
+    s += "Published by~\n";
+
+    s += " ${feedModel.postedBy}\n";
+    final date = DateFormat('dd-MM-yyyy').format(feedModel.timestamp!.toDate());
+    s += "on $date\n\n";
+    s += "Know more on Coolage App\n";
+    s += link;
+    return s;
+  }
+
   static List<String> getUserRelatedTag() {
     final List<String> userRelatedTags = [];
     userRelatedTags.add("All");

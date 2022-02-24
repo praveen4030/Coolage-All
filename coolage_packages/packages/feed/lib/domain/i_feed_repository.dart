@@ -48,4 +48,9 @@ abstract class IFeedRepository {
     String userCollege,
     FeedModel feedModel,
   );
+  Future<Either<FirebaseFailure, Unit>> likePost(
+    String userCollege,
+    FeedModel feedModel,
+    bool isLike,
+  );
 }

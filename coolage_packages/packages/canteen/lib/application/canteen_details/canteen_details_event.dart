@@ -33,6 +33,8 @@ class CanteenDetailsEvent with _$CanteenDetailsEvent {
   const factory CanteenDetailsEvent.placeOrderLoading({
     required bool? isLoading,
   }) = _PlaceOrderLoading;
+  const factory CanteenDetailsEvent.placeOrderResultInital() =
+      _PlaceOrderResultInital;
   const factory CanteenDetailsEvent.showBackToTop(
       {required bool? isShowingbackToTop}) = _ShowBackToTop;
   const factory CanteenDetailsEvent.updateDeliveryAdressIndex(

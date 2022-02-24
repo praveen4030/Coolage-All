@@ -113,6 +113,24 @@ class _$FeedEventTearOff {
       index: index,
     );
   }
+
+  _LikeFeed likeFeed({required String userCollege, required int index}) {
+    return _LikeFeed(
+      userCollege: userCollege,
+      index: index,
+    );
+  }
+
+  _LikeSingleFeedPost likeSingleFeedPost(
+      {required String userCollege,
+      required FeedModel feedModel,
+      required Function onChanged}) {
+    return _LikeSingleFeedPost(
+      userCollege: userCollege,
+      feedModel: feedModel,
+      onChanged: onChanged,
+    );
+  }
 }
 
 /// @nodoc
@@ -148,6 +166,10 @@ mixin _$FeedEvent {
     required TResult Function(
             String userCollege, FeedModel feedModel, int index)
         approveFeed,
+    required TResult Function(String userCollege, int index) likeFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)
+        likeSingleFeedPost,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -174,6 +196,10 @@ mixin _$FeedEvent {
         declineFeed,
     TResult Function(String userCollege, FeedModel feedModel, int index)?
         approveFeed,
+    TResult Function(String userCollege, int index)? likeFeed,
+    TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)?
+        likeSingleFeedPost,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -190,6 +216,8 @@ mixin _$FeedEvent {
     required TResult Function(_DeleteFeed value) deleteFeed,
     required TResult Function(_DeclineFeed value) declineFeed,
     required TResult Function(_ApproveFeed value) approveFeed,
+    required TResult Function(_LikeFeed value) likeFeed,
+    required TResult Function(_LikeSingleFeedPost value) likeSingleFeedPost,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -204,6 +232,8 @@ mixin _$FeedEvent {
     TResult Function(_DeleteFeed value)? deleteFeed,
     TResult Function(_DeclineFeed value)? declineFeed,
     TResult Function(_ApproveFeed value)? approveFeed,
+    TResult Function(_LikeFeed value)? likeFeed,
+    TResult Function(_LikeSingleFeedPost value)? likeSingleFeedPost,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -316,6 +346,10 @@ class _$_GetApprovedPosts implements _GetApprovedPosts {
     required TResult Function(
             String userCollege, FeedModel feedModel, int index)
         approveFeed,
+    required TResult Function(String userCollege, int index) likeFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)
+        likeSingleFeedPost,
   }) {
     return getApprovedPosts(userCollege);
   }
@@ -345,6 +379,10 @@ class _$_GetApprovedPosts implements _GetApprovedPosts {
         declineFeed,
     TResult Function(String userCollege, FeedModel feedModel, int index)?
         approveFeed,
+    TResult Function(String userCollege, int index)? likeFeed,
+    TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)?
+        likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (getApprovedPosts != null) {
@@ -367,6 +405,8 @@ class _$_GetApprovedPosts implements _GetApprovedPosts {
     required TResult Function(_DeleteFeed value) deleteFeed,
     required TResult Function(_DeclineFeed value) declineFeed,
     required TResult Function(_ApproveFeed value) approveFeed,
+    required TResult Function(_LikeFeed value) likeFeed,
+    required TResult Function(_LikeSingleFeedPost value) likeSingleFeedPost,
   }) {
     return getApprovedPosts(this);
   }
@@ -384,6 +424,8 @@ class _$_GetApprovedPosts implements _GetApprovedPosts {
     TResult Function(_DeleteFeed value)? deleteFeed,
     TResult Function(_DeclineFeed value)? declineFeed,
     TResult Function(_ApproveFeed value)? approveFeed,
+    TResult Function(_LikeFeed value)? likeFeed,
+    TResult Function(_LikeSingleFeedPost value)? likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (getApprovedPosts != null) {
@@ -496,6 +538,10 @@ class _$_GetMoreApprovedPosts implements _GetMoreApprovedPosts {
     required TResult Function(
             String userCollege, FeedModel feedModel, int index)
         approveFeed,
+    required TResult Function(String userCollege, int index) likeFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)
+        likeSingleFeedPost,
   }) {
     return getMoreApprovedPosts(userCollege);
   }
@@ -525,6 +571,10 @@ class _$_GetMoreApprovedPosts implements _GetMoreApprovedPosts {
         declineFeed,
     TResult Function(String userCollege, FeedModel feedModel, int index)?
         approveFeed,
+    TResult Function(String userCollege, int index)? likeFeed,
+    TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)?
+        likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (getMoreApprovedPosts != null) {
@@ -547,6 +597,8 @@ class _$_GetMoreApprovedPosts implements _GetMoreApprovedPosts {
     required TResult Function(_DeleteFeed value) deleteFeed,
     required TResult Function(_DeclineFeed value) declineFeed,
     required TResult Function(_ApproveFeed value) approveFeed,
+    required TResult Function(_LikeFeed value) likeFeed,
+    required TResult Function(_LikeSingleFeedPost value) likeSingleFeedPost,
   }) {
     return getMoreApprovedPosts(this);
   }
@@ -564,6 +616,8 @@ class _$_GetMoreApprovedPosts implements _GetMoreApprovedPosts {
     TResult Function(_DeleteFeed value)? deleteFeed,
     TResult Function(_DeclineFeed value)? declineFeed,
     TResult Function(_ApproveFeed value)? approveFeed,
+    TResult Function(_LikeFeed value)? likeFeed,
+    TResult Function(_LikeSingleFeedPost value)? likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (getMoreApprovedPosts != null) {
@@ -698,6 +752,10 @@ class _$_GetPublishingPosts implements _GetPublishingPosts {
     required TResult Function(
             String userCollege, FeedModel feedModel, int index)
         approveFeed,
+    required TResult Function(String userCollege, int index) likeFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)
+        likeSingleFeedPost,
   }) {
     return getPublishingPosts(userCollege, status, selectedDate);
   }
@@ -727,6 +785,10 @@ class _$_GetPublishingPosts implements _GetPublishingPosts {
         declineFeed,
     TResult Function(String userCollege, FeedModel feedModel, int index)?
         approveFeed,
+    TResult Function(String userCollege, int index)? likeFeed,
+    TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)?
+        likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (getPublishingPosts != null) {
@@ -749,6 +811,8 @@ class _$_GetPublishingPosts implements _GetPublishingPosts {
     required TResult Function(_DeleteFeed value) deleteFeed,
     required TResult Function(_DeclineFeed value) declineFeed,
     required TResult Function(_ApproveFeed value) approveFeed,
+    required TResult Function(_LikeFeed value) likeFeed,
+    required TResult Function(_LikeSingleFeedPost value) likeSingleFeedPost,
   }) {
     return getPublishingPosts(this);
   }
@@ -766,6 +830,8 @@ class _$_GetPublishingPosts implements _GetPublishingPosts {
     TResult Function(_DeleteFeed value)? deleteFeed,
     TResult Function(_DeclineFeed value)? declineFeed,
     TResult Function(_ApproveFeed value)? approveFeed,
+    TResult Function(_LikeFeed value)? likeFeed,
+    TResult Function(_LikeSingleFeedPost value)? likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (getPublishingPosts != null) {
@@ -905,6 +971,10 @@ class _$_GetMorePublishingPosts implements _GetMorePublishingPosts {
     required TResult Function(
             String userCollege, FeedModel feedModel, int index)
         approveFeed,
+    required TResult Function(String userCollege, int index) likeFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)
+        likeSingleFeedPost,
   }) {
     return getMorePublishingPosts(userCollege, status, selectedDate);
   }
@@ -934,6 +1004,10 @@ class _$_GetMorePublishingPosts implements _GetMorePublishingPosts {
         declineFeed,
     TResult Function(String userCollege, FeedModel feedModel, int index)?
         approveFeed,
+    TResult Function(String userCollege, int index)? likeFeed,
+    TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)?
+        likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (getMorePublishingPosts != null) {
@@ -956,6 +1030,8 @@ class _$_GetMorePublishingPosts implements _GetMorePublishingPosts {
     required TResult Function(_DeleteFeed value) deleteFeed,
     required TResult Function(_DeclineFeed value) declineFeed,
     required TResult Function(_ApproveFeed value) approveFeed,
+    required TResult Function(_LikeFeed value) likeFeed,
+    required TResult Function(_LikeSingleFeedPost value) likeSingleFeedPost,
   }) {
     return getMorePublishingPosts(this);
   }
@@ -973,6 +1049,8 @@ class _$_GetMorePublishingPosts implements _GetMorePublishingPosts {
     TResult Function(_DeleteFeed value)? deleteFeed,
     TResult Function(_DeclineFeed value)? declineFeed,
     TResult Function(_ApproveFeed value)? approveFeed,
+    TResult Function(_LikeFeed value)? likeFeed,
+    TResult Function(_LikeSingleFeedPost value)? likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (getMorePublishingPosts != null) {
@@ -1110,6 +1188,10 @@ class _$_GetUserPosts implements _GetUserPosts {
     required TResult Function(
             String userCollege, FeedModel feedModel, int index)
         approveFeed,
+    required TResult Function(String userCollege, int index) likeFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)
+        likeSingleFeedPost,
   }) {
     return getUserPosts(coolUser, status, selectedDate);
   }
@@ -1139,6 +1221,10 @@ class _$_GetUserPosts implements _GetUserPosts {
         declineFeed,
     TResult Function(String userCollege, FeedModel feedModel, int index)?
         approveFeed,
+    TResult Function(String userCollege, int index)? likeFeed,
+    TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)?
+        likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (getUserPosts != null) {
@@ -1161,6 +1247,8 @@ class _$_GetUserPosts implements _GetUserPosts {
     required TResult Function(_DeleteFeed value) deleteFeed,
     required TResult Function(_DeclineFeed value) declineFeed,
     required TResult Function(_ApproveFeed value) approveFeed,
+    required TResult Function(_LikeFeed value) likeFeed,
+    required TResult Function(_LikeSingleFeedPost value) likeSingleFeedPost,
   }) {
     return getUserPosts(this);
   }
@@ -1178,6 +1266,8 @@ class _$_GetUserPosts implements _GetUserPosts {
     TResult Function(_DeleteFeed value)? deleteFeed,
     TResult Function(_DeclineFeed value)? declineFeed,
     TResult Function(_ApproveFeed value)? approveFeed,
+    TResult Function(_LikeFeed value)? likeFeed,
+    TResult Function(_LikeSingleFeedPost value)? likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (getUserPosts != null) {
@@ -1316,6 +1406,10 @@ class _$_GetMoreUserPosts implements _GetMoreUserPosts {
     required TResult Function(
             String userCollege, FeedModel feedModel, int index)
         approveFeed,
+    required TResult Function(String userCollege, int index) likeFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)
+        likeSingleFeedPost,
   }) {
     return getMoreUserPosts(coolUser, status, selectedDate);
   }
@@ -1345,6 +1439,10 @@ class _$_GetMoreUserPosts implements _GetMoreUserPosts {
         declineFeed,
     TResult Function(String userCollege, FeedModel feedModel, int index)?
         approveFeed,
+    TResult Function(String userCollege, int index)? likeFeed,
+    TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)?
+        likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (getMoreUserPosts != null) {
@@ -1367,6 +1465,8 @@ class _$_GetMoreUserPosts implements _GetMoreUserPosts {
     required TResult Function(_DeleteFeed value) deleteFeed,
     required TResult Function(_DeclineFeed value) declineFeed,
     required TResult Function(_ApproveFeed value) approveFeed,
+    required TResult Function(_LikeFeed value) likeFeed,
+    required TResult Function(_LikeSingleFeedPost value) likeSingleFeedPost,
   }) {
     return getMoreUserPosts(this);
   }
@@ -1384,6 +1484,8 @@ class _$_GetMoreUserPosts implements _GetMoreUserPosts {
     TResult Function(_DeleteFeed value)? deleteFeed,
     TResult Function(_DeclineFeed value)? declineFeed,
     TResult Function(_ApproveFeed value)? approveFeed,
+    TResult Function(_LikeFeed value)? likeFeed,
+    TResult Function(_LikeSingleFeedPost value)? likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (getMoreUserPosts != null) {
@@ -1550,6 +1652,10 @@ class _$_AddFeed implements _AddFeed {
     required TResult Function(
             String userCollege, FeedModel feedModel, int index)
         approveFeed,
+    required TResult Function(String userCollege, int index) likeFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)
+        likeSingleFeedPost,
   }) {
     return addFeed(userCollege, feedModel, feedImageFile, feedLogoFile, index);
   }
@@ -1579,6 +1685,10 @@ class _$_AddFeed implements _AddFeed {
         declineFeed,
     TResult Function(String userCollege, FeedModel feedModel, int index)?
         approveFeed,
+    TResult Function(String userCollege, int index)? likeFeed,
+    TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)?
+        likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (addFeed != null) {
@@ -1602,6 +1712,8 @@ class _$_AddFeed implements _AddFeed {
     required TResult Function(_DeleteFeed value) deleteFeed,
     required TResult Function(_DeclineFeed value) declineFeed,
     required TResult Function(_ApproveFeed value) approveFeed,
+    required TResult Function(_LikeFeed value) likeFeed,
+    required TResult Function(_LikeSingleFeedPost value) likeSingleFeedPost,
   }) {
     return addFeed(this);
   }
@@ -1619,6 +1731,8 @@ class _$_AddFeed implements _AddFeed {
     TResult Function(_DeleteFeed value)? deleteFeed,
     TResult Function(_DeclineFeed value)? declineFeed,
     TResult Function(_ApproveFeed value)? approveFeed,
+    TResult Function(_LikeFeed value)? likeFeed,
+    TResult Function(_LikeSingleFeedPost value)? likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (addFeed != null) {
@@ -1778,6 +1892,10 @@ class _$_DeleteFeed implements _DeleteFeed {
     required TResult Function(
             String userCollege, FeedModel feedModel, int index)
         approveFeed,
+    required TResult Function(String userCollege, int index) likeFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)
+        likeSingleFeedPost,
   }) {
     return deleteFeed(userCollege, feedModel, index, isDeletedFromApproved);
   }
@@ -1807,6 +1925,10 @@ class _$_DeleteFeed implements _DeleteFeed {
         declineFeed,
     TResult Function(String userCollege, FeedModel feedModel, int index)?
         approveFeed,
+    TResult Function(String userCollege, int index)? likeFeed,
+    TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)?
+        likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (deleteFeed != null) {
@@ -1829,6 +1951,8 @@ class _$_DeleteFeed implements _DeleteFeed {
     required TResult Function(_DeleteFeed value) deleteFeed,
     required TResult Function(_DeclineFeed value) declineFeed,
     required TResult Function(_ApproveFeed value) approveFeed,
+    required TResult Function(_LikeFeed value) likeFeed,
+    required TResult Function(_LikeSingleFeedPost value) likeSingleFeedPost,
   }) {
     return deleteFeed(this);
   }
@@ -1846,6 +1970,8 @@ class _$_DeleteFeed implements _DeleteFeed {
     TResult Function(_DeleteFeed value)? deleteFeed,
     TResult Function(_DeclineFeed value)? declineFeed,
     TResult Function(_ApproveFeed value)? approveFeed,
+    TResult Function(_LikeFeed value)? likeFeed,
+    TResult Function(_LikeSingleFeedPost value)? likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (deleteFeed != null) {
@@ -1987,6 +2113,10 @@ class _$_DeclineFeed implements _DeclineFeed {
     required TResult Function(
             String userCollege, FeedModel feedModel, int index)
         approveFeed,
+    required TResult Function(String userCollege, int index) likeFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)
+        likeSingleFeedPost,
   }) {
     return declineFeed(userCollege, feedModel, index);
   }
@@ -2016,6 +2146,10 @@ class _$_DeclineFeed implements _DeclineFeed {
         declineFeed,
     TResult Function(String userCollege, FeedModel feedModel, int index)?
         approveFeed,
+    TResult Function(String userCollege, int index)? likeFeed,
+    TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)?
+        likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (declineFeed != null) {
@@ -2038,6 +2172,8 @@ class _$_DeclineFeed implements _DeclineFeed {
     required TResult Function(_DeleteFeed value) deleteFeed,
     required TResult Function(_DeclineFeed value) declineFeed,
     required TResult Function(_ApproveFeed value) approveFeed,
+    required TResult Function(_LikeFeed value) likeFeed,
+    required TResult Function(_LikeSingleFeedPost value) likeSingleFeedPost,
   }) {
     return declineFeed(this);
   }
@@ -2055,6 +2191,8 @@ class _$_DeclineFeed implements _DeclineFeed {
     TResult Function(_DeleteFeed value)? deleteFeed,
     TResult Function(_DeclineFeed value)? declineFeed,
     TResult Function(_ApproveFeed value)? approveFeed,
+    TResult Function(_LikeFeed value)? likeFeed,
+    TResult Function(_LikeSingleFeedPost value)? likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (declineFeed != null) {
@@ -2194,6 +2332,10 @@ class _$_ApproveFeed implements _ApproveFeed {
     required TResult Function(
             String userCollege, FeedModel feedModel, int index)
         approveFeed,
+    required TResult Function(String userCollege, int index) likeFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)
+        likeSingleFeedPost,
   }) {
     return approveFeed(userCollege, feedModel, index);
   }
@@ -2223,6 +2365,10 @@ class _$_ApproveFeed implements _ApproveFeed {
         declineFeed,
     TResult Function(String userCollege, FeedModel feedModel, int index)?
         approveFeed,
+    TResult Function(String userCollege, int index)? likeFeed,
+    TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)?
+        likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (approveFeed != null) {
@@ -2245,6 +2391,8 @@ class _$_ApproveFeed implements _ApproveFeed {
     required TResult Function(_DeleteFeed value) deleteFeed,
     required TResult Function(_DeclineFeed value) declineFeed,
     required TResult Function(_ApproveFeed value) approveFeed,
+    required TResult Function(_LikeFeed value) likeFeed,
+    required TResult Function(_LikeSingleFeedPost value) likeSingleFeedPost,
   }) {
     return approveFeed(this);
   }
@@ -2262,6 +2410,8 @@ class _$_ApproveFeed implements _ApproveFeed {
     TResult Function(_DeleteFeed value)? deleteFeed,
     TResult Function(_DeclineFeed value)? declineFeed,
     TResult Function(_ApproveFeed value)? approveFeed,
+    TResult Function(_LikeFeed value)? likeFeed,
+    TResult Function(_LikeSingleFeedPost value)? likeSingleFeedPost,
     required TResult orElse(),
   }) {
     if (approveFeed != null) {
@@ -2282,6 +2432,427 @@ abstract class _ApproveFeed implements FeedEvent {
   int get index => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$ApproveFeedCopyWith<_ApproveFeed> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$LikeFeedCopyWith<$Res> {
+  factory _$LikeFeedCopyWith(_LikeFeed value, $Res Function(_LikeFeed) then) =
+      __$LikeFeedCopyWithImpl<$Res>;
+  $Res call({String userCollege, int index});
+}
+
+/// @nodoc
+class __$LikeFeedCopyWithImpl<$Res> extends _$FeedEventCopyWithImpl<$Res>
+    implements _$LikeFeedCopyWith<$Res> {
+  __$LikeFeedCopyWithImpl(_LikeFeed _value, $Res Function(_LikeFeed) _then)
+      : super(_value, (v) => _then(v as _LikeFeed));
+
+  @override
+  _LikeFeed get _value => super._value as _LikeFeed;
+
+  @override
+  $Res call({
+    Object? userCollege = freezed,
+    Object? index = freezed,
+  }) {
+    return _then(_LikeFeed(
+      userCollege: userCollege == freezed
+          ? _value.userCollege
+          : userCollege // ignore: cast_nullable_to_non_nullable
+              as String,
+      index: index == freezed
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_LikeFeed implements _LikeFeed {
+  const _$_LikeFeed({required this.userCollege, required this.index});
+
+  @override
+  final String userCollege;
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'FeedEvent.likeFeed(userCollege: $userCollege, index: $index)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _LikeFeed &&
+            (identical(other.userCollege, userCollege) ||
+                const DeepCollectionEquality()
+                    .equals(other.userCollege, userCollege)) &&
+            (identical(other.index, index) ||
+                const DeepCollectionEquality().equals(other.index, index)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(userCollege) ^
+      const DeepCollectionEquality().hash(index);
+
+  @JsonKey(ignore: true)
+  @override
+  _$LikeFeedCopyWith<_LikeFeed> get copyWith =>
+      __$LikeFeedCopyWithImpl<_LikeFeed>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userCollege) getApprovedPosts,
+    required TResult Function(String userCollege) getMoreApprovedPosts,
+    required TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)
+        getPublishingPosts,
+    required TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)
+        getMorePublishingPosts,
+    required TResult Function(
+            CoolUser coolUser, String? status, DateTime? selectedDate)
+        getUserPosts,
+    required TResult Function(
+            CoolUser coolUser, String? status, DateTime? selectedDate)
+        getMoreUserPosts,
+    required TResult Function(String? userCollege, FeedModel? feedModel,
+            File? feedImageFile, File? feedLogoFile, int? index)
+        addFeed,
+    required TResult Function(String userCollege, FeedModel feedModel,
+            int index, bool isDeletedFromApproved)
+        deleteFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, int index)
+        declineFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, int index)
+        approveFeed,
+    required TResult Function(String userCollege, int index) likeFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)
+        likeSingleFeedPost,
+  }) {
+    return likeFeed(userCollege, index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userCollege)? getApprovedPosts,
+    TResult Function(String userCollege)? getMoreApprovedPosts,
+    TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)?
+        getPublishingPosts,
+    TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)?
+        getMorePublishingPosts,
+    TResult Function(CoolUser coolUser, String? status, DateTime? selectedDate)?
+        getUserPosts,
+    TResult Function(CoolUser coolUser, String? status, DateTime? selectedDate)?
+        getMoreUserPosts,
+    TResult Function(String? userCollege, FeedModel? feedModel,
+            File? feedImageFile, File? feedLogoFile, int? index)?
+        addFeed,
+    TResult Function(String userCollege, FeedModel feedModel, int index,
+            bool isDeletedFromApproved)?
+        deleteFeed,
+    TResult Function(String userCollege, FeedModel feedModel, int index)?
+        declineFeed,
+    TResult Function(String userCollege, FeedModel feedModel, int index)?
+        approveFeed,
+    TResult Function(String userCollege, int index)? likeFeed,
+    TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)?
+        likeSingleFeedPost,
+    required TResult orElse(),
+  }) {
+    if (likeFeed != null) {
+      return likeFeed(userCollege, index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetApprovedPosts value) getApprovedPosts,
+    required TResult Function(_GetMoreApprovedPosts value) getMoreApprovedPosts,
+    required TResult Function(_GetPublishingPosts value) getPublishingPosts,
+    required TResult Function(_GetMorePublishingPosts value)
+        getMorePublishingPosts,
+    required TResult Function(_GetUserPosts value) getUserPosts,
+    required TResult Function(_GetMoreUserPosts value) getMoreUserPosts,
+    required TResult Function(_AddFeed value) addFeed,
+    required TResult Function(_DeleteFeed value) deleteFeed,
+    required TResult Function(_DeclineFeed value) declineFeed,
+    required TResult Function(_ApproveFeed value) approveFeed,
+    required TResult Function(_LikeFeed value) likeFeed,
+    required TResult Function(_LikeSingleFeedPost value) likeSingleFeedPost,
+  }) {
+    return likeFeed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetApprovedPosts value)? getApprovedPosts,
+    TResult Function(_GetMoreApprovedPosts value)? getMoreApprovedPosts,
+    TResult Function(_GetPublishingPosts value)? getPublishingPosts,
+    TResult Function(_GetMorePublishingPosts value)? getMorePublishingPosts,
+    TResult Function(_GetUserPosts value)? getUserPosts,
+    TResult Function(_GetMoreUserPosts value)? getMoreUserPosts,
+    TResult Function(_AddFeed value)? addFeed,
+    TResult Function(_DeleteFeed value)? deleteFeed,
+    TResult Function(_DeclineFeed value)? declineFeed,
+    TResult Function(_ApproveFeed value)? approveFeed,
+    TResult Function(_LikeFeed value)? likeFeed,
+    TResult Function(_LikeSingleFeedPost value)? likeSingleFeedPost,
+    required TResult orElse(),
+  }) {
+    if (likeFeed != null) {
+      return likeFeed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LikeFeed implements FeedEvent {
+  const factory _LikeFeed({required String userCollege, required int index}) =
+      _$_LikeFeed;
+
+  String get userCollege => throw _privateConstructorUsedError;
+  int get index => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$LikeFeedCopyWith<_LikeFeed> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$LikeSingleFeedPostCopyWith<$Res> {
+  factory _$LikeSingleFeedPostCopyWith(
+          _LikeSingleFeedPost value, $Res Function(_LikeSingleFeedPost) then) =
+      __$LikeSingleFeedPostCopyWithImpl<$Res>;
+  $Res call({String userCollege, FeedModel feedModel, Function onChanged});
+}
+
+/// @nodoc
+class __$LikeSingleFeedPostCopyWithImpl<$Res>
+    extends _$FeedEventCopyWithImpl<$Res>
+    implements _$LikeSingleFeedPostCopyWith<$Res> {
+  __$LikeSingleFeedPostCopyWithImpl(
+      _LikeSingleFeedPost _value, $Res Function(_LikeSingleFeedPost) _then)
+      : super(_value, (v) => _then(v as _LikeSingleFeedPost));
+
+  @override
+  _LikeSingleFeedPost get _value => super._value as _LikeSingleFeedPost;
+
+  @override
+  $Res call({
+    Object? userCollege = freezed,
+    Object? feedModel = freezed,
+    Object? onChanged = freezed,
+  }) {
+    return _then(_LikeSingleFeedPost(
+      userCollege: userCollege == freezed
+          ? _value.userCollege
+          : userCollege // ignore: cast_nullable_to_non_nullable
+              as String,
+      feedModel: feedModel == freezed
+          ? _value.feedModel
+          : feedModel // ignore: cast_nullable_to_non_nullable
+              as FeedModel,
+      onChanged: onChanged == freezed
+          ? _value.onChanged
+          : onChanged // ignore: cast_nullable_to_non_nullable
+              as Function,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_LikeSingleFeedPost implements _LikeSingleFeedPost {
+  const _$_LikeSingleFeedPost(
+      {required this.userCollege,
+      required this.feedModel,
+      required this.onChanged});
+
+  @override
+  final String userCollege;
+  @override
+  final FeedModel feedModel;
+  @override
+  final Function onChanged;
+
+  @override
+  String toString() {
+    return 'FeedEvent.likeSingleFeedPost(userCollege: $userCollege, feedModel: $feedModel, onChanged: $onChanged)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _LikeSingleFeedPost &&
+            (identical(other.userCollege, userCollege) ||
+                const DeepCollectionEquality()
+                    .equals(other.userCollege, userCollege)) &&
+            (identical(other.feedModel, feedModel) ||
+                const DeepCollectionEquality()
+                    .equals(other.feedModel, feedModel)) &&
+            (identical(other.onChanged, onChanged) ||
+                const DeepCollectionEquality()
+                    .equals(other.onChanged, onChanged)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(userCollege) ^
+      const DeepCollectionEquality().hash(feedModel) ^
+      const DeepCollectionEquality().hash(onChanged);
+
+  @JsonKey(ignore: true)
+  @override
+  _$LikeSingleFeedPostCopyWith<_LikeSingleFeedPost> get copyWith =>
+      __$LikeSingleFeedPostCopyWithImpl<_LikeSingleFeedPost>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userCollege) getApprovedPosts,
+    required TResult Function(String userCollege) getMoreApprovedPosts,
+    required TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)
+        getPublishingPosts,
+    required TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)
+        getMorePublishingPosts,
+    required TResult Function(
+            CoolUser coolUser, String? status, DateTime? selectedDate)
+        getUserPosts,
+    required TResult Function(
+            CoolUser coolUser, String? status, DateTime? selectedDate)
+        getMoreUserPosts,
+    required TResult Function(String? userCollege, FeedModel? feedModel,
+            File? feedImageFile, File? feedLogoFile, int? index)
+        addFeed,
+    required TResult Function(String userCollege, FeedModel feedModel,
+            int index, bool isDeletedFromApproved)
+        deleteFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, int index)
+        declineFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, int index)
+        approveFeed,
+    required TResult Function(String userCollege, int index) likeFeed,
+    required TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)
+        likeSingleFeedPost,
+  }) {
+    return likeSingleFeedPost(userCollege, feedModel, onChanged);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userCollege)? getApprovedPosts,
+    TResult Function(String userCollege)? getMoreApprovedPosts,
+    TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)?
+        getPublishingPosts,
+    TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)?
+        getMorePublishingPosts,
+    TResult Function(CoolUser coolUser, String? status, DateTime? selectedDate)?
+        getUserPosts,
+    TResult Function(CoolUser coolUser, String? status, DateTime? selectedDate)?
+        getMoreUserPosts,
+    TResult Function(String? userCollege, FeedModel? feedModel,
+            File? feedImageFile, File? feedLogoFile, int? index)?
+        addFeed,
+    TResult Function(String userCollege, FeedModel feedModel, int index,
+            bool isDeletedFromApproved)?
+        deleteFeed,
+    TResult Function(String userCollege, FeedModel feedModel, int index)?
+        declineFeed,
+    TResult Function(String userCollege, FeedModel feedModel, int index)?
+        approveFeed,
+    TResult Function(String userCollege, int index)? likeFeed,
+    TResult Function(
+            String userCollege, FeedModel feedModel, Function onChanged)?
+        likeSingleFeedPost,
+    required TResult orElse(),
+  }) {
+    if (likeSingleFeedPost != null) {
+      return likeSingleFeedPost(userCollege, feedModel, onChanged);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetApprovedPosts value) getApprovedPosts,
+    required TResult Function(_GetMoreApprovedPosts value) getMoreApprovedPosts,
+    required TResult Function(_GetPublishingPosts value) getPublishingPosts,
+    required TResult Function(_GetMorePublishingPosts value)
+        getMorePublishingPosts,
+    required TResult Function(_GetUserPosts value) getUserPosts,
+    required TResult Function(_GetMoreUserPosts value) getMoreUserPosts,
+    required TResult Function(_AddFeed value) addFeed,
+    required TResult Function(_DeleteFeed value) deleteFeed,
+    required TResult Function(_DeclineFeed value) declineFeed,
+    required TResult Function(_ApproveFeed value) approveFeed,
+    required TResult Function(_LikeFeed value) likeFeed,
+    required TResult Function(_LikeSingleFeedPost value) likeSingleFeedPost,
+  }) {
+    return likeSingleFeedPost(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetApprovedPosts value)? getApprovedPosts,
+    TResult Function(_GetMoreApprovedPosts value)? getMoreApprovedPosts,
+    TResult Function(_GetPublishingPosts value)? getPublishingPosts,
+    TResult Function(_GetMorePublishingPosts value)? getMorePublishingPosts,
+    TResult Function(_GetUserPosts value)? getUserPosts,
+    TResult Function(_GetMoreUserPosts value)? getMoreUserPosts,
+    TResult Function(_AddFeed value)? addFeed,
+    TResult Function(_DeleteFeed value)? deleteFeed,
+    TResult Function(_DeclineFeed value)? declineFeed,
+    TResult Function(_ApproveFeed value)? approveFeed,
+    TResult Function(_LikeFeed value)? likeFeed,
+    TResult Function(_LikeSingleFeedPost value)? likeSingleFeedPost,
+    required TResult orElse(),
+  }) {
+    if (likeSingleFeedPost != null) {
+      return likeSingleFeedPost(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LikeSingleFeedPost implements FeedEvent {
+  const factory _LikeSingleFeedPost(
+      {required String userCollege,
+      required FeedModel feedModel,
+      required Function onChanged}) = _$_LikeSingleFeedPost;
+
+  String get userCollege => throw _privateConstructorUsedError;
+  FeedModel get feedModel => throw _privateConstructorUsedError;
+  Function get onChanged => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$LikeSingleFeedPostCopyWith<_LikeSingleFeedPost> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

@@ -19,6 +19,9 @@ class BlogsModel {
   String? approvalStatus;
   Timestamp? declinedTimestamp;
   Timestamp? publishedTimestamp;
+  List<String> likedBy;
+  String shareDynamicLink;
+
   BlogsModel({
     this.title,
     this.text,
@@ -38,6 +41,8 @@ class BlogsModel {
     this.publishedTimestamp,
     this.postedByUserCollege,
     this.postedByUid,
+    this.likedBy = const [],
+    this.shareDynamicLink = '',
   });
 
   Map<String, dynamic> toMap() {
@@ -60,11 +65,19 @@ class BlogsModel {
       'approvalStatus': approvalStatus,
       'publishedTimestamp': publishedTimestamp,
       'declinedTimestamp': declinedTimestamp,
+      'likedBy': likedBy,
+      'shareDynamicLink': shareDynamicLink,
     };
   }
 
   factory BlogsModel.fromMap(Map<String, dynamic> map) {
     return BlogsModel(
+      shareDynamicLink: map['shareDynamicLink'] == null
+          ? ''
+          : map['shareDynamicLink'] as String,
+      likedBy: map['likedBy'] == null
+          ? []
+          : (map['likedBy'] as List).map((k) => k as String).toList(),
       postedByUserCollege: map['postedByUserCollege'] as String,
       title: map['title'] as String,
       postedByUid: map['postedByUid'] as String,
@@ -100,5 +113,9 @@ class BlogsModel {
   bool isPending() {
     if (approvalStatus == Constants.PENDING) return true;
     return false;
+  }
+
+  bool isLikedByUser() {
+    return likedBy.contains(Getters.getCurrentUserUid());
   }
 }

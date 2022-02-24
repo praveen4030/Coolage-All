@@ -13,7 +13,7 @@ class OrderTrackingPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Kolors.greyWhite,
         appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(70),
+          preferredSize: Size.fromHeight(80),
           child: CoolageAppBar(
             actions: [],
             text: "Food Tracking",

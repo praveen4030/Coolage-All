@@ -21,7 +21,7 @@ class PreviousOrderTile extends StatelessWidget {
             },
           );
         } else {
-          Navigator.of(context).push(MaterialPageRoute(
+          Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
               builder: (context) => OrderTrackingPage(orderModel: model)));
         }
       },
@@ -132,6 +132,10 @@ class PreviousOrderTile extends StatelessWidget {
       return ongoingOrderTile("Food ready");
     } else if (model!.orderStatus == OrderStatus.delivering) {
       return ongoingOrderTile("On the way");
+    } else if (model!.orderStatus == OrderStatus.paymentPending) {
+      return ongoingOrderTile("Payment Pending");
+    } else if (model!.orderStatus == OrderStatus.paymentFailed) {
+      return ongoingOrderTile("Payment Failed");
     }
     return completedOrderTile();
   }

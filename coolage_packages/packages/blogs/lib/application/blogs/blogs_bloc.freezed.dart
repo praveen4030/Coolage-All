@@ -114,6 +114,21 @@ class _$BlogsEventTearOff {
       index: index,
     );
   }
+
+  _LikeBlog likeBlog({required String userCollege, required int index}) {
+    return _LikeBlog(
+      userCollege: userCollege,
+      index: index,
+    );
+  }
+
+  _LikeSingleBlogPost likeSingleBlogPost(
+      {required BlogsModel blogModel, required Function onChanged}) {
+    return _LikeSingleBlogPost(
+      blogModel: blogModel,
+      onChanged: onChanged,
+    );
+  }
 }
 
 /// @nodoc
@@ -153,6 +168,9 @@ mixin _$BlogsEvent {
     required TResult Function(
             String userCollege, BlogsModel blogModel, int index)
         approveBlog,
+    required TResult Function(String userCollege, int index) likeBlog,
+    required TResult Function(BlogsModel blogModel, Function onChanged)
+        likeSingleBlogPost,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -181,6 +199,9 @@ mixin _$BlogsEvent {
         declineBlog,
     TResult Function(String userCollege, BlogsModel blogModel, int index)?
         approveBlog,
+    TResult Function(String userCollege, int index)? likeBlog,
+    TResult Function(BlogsModel blogModel, Function onChanged)?
+        likeSingleBlogPost,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -197,6 +218,8 @@ mixin _$BlogsEvent {
     required TResult Function(_DeleteBlog value) deleteBlog,
     required TResult Function(_DeclineBlog value) declineBlog,
     required TResult Function(_ApproveBlog value) approveBlog,
+    required TResult Function(_LikeBlog value) likeBlog,
+    required TResult Function(_LikeSingleBlogPost value) likeSingleBlogPost,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -211,6 +234,8 @@ mixin _$BlogsEvent {
     TResult Function(_DeleteBlog value)? deleteBlog,
     TResult Function(_DeclineBlog value)? declineBlog,
     TResult Function(_ApproveBlog value)? approveBlog,
+    TResult Function(_LikeBlog value)? likeBlog,
+    TResult Function(_LikeSingleBlogPost value)? likeSingleBlogPost,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -346,6 +371,9 @@ class _$_GetBlogs implements _GetBlogs {
     required TResult Function(
             String userCollege, BlogsModel blogModel, int index)
         approveBlog,
+    required TResult Function(String userCollege, int index) likeBlog,
+    required TResult Function(BlogsModel blogModel, Function onChanged)
+        likeSingleBlogPost,
   }) {
     return getBlogs(selectedTags, city, college);
   }
@@ -377,6 +405,9 @@ class _$_GetBlogs implements _GetBlogs {
         declineBlog,
     TResult Function(String userCollege, BlogsModel blogModel, int index)?
         approveBlog,
+    TResult Function(String userCollege, int index)? likeBlog,
+    TResult Function(BlogsModel blogModel, Function onChanged)?
+        likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (getBlogs != null) {
@@ -399,6 +430,8 @@ class _$_GetBlogs implements _GetBlogs {
     required TResult Function(_DeleteBlog value) deleteBlog,
     required TResult Function(_DeclineBlog value) declineBlog,
     required TResult Function(_ApproveBlog value) approveBlog,
+    required TResult Function(_LikeBlog value) likeBlog,
+    required TResult Function(_LikeSingleBlogPost value) likeSingleBlogPost,
   }) {
     return getBlogs(this);
   }
@@ -416,6 +449,8 @@ class _$_GetBlogs implements _GetBlogs {
     TResult Function(_DeleteBlog value)? deleteBlog,
     TResult Function(_DeclineBlog value)? declineBlog,
     TResult Function(_ApproveBlog value)? approveBlog,
+    TResult Function(_LikeBlog value)? likeBlog,
+    TResult Function(_LikeSingleBlogPost value)? likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (getBlogs != null) {
@@ -555,6 +590,9 @@ class _$_GetMoreBlogs implements _GetMoreBlogs {
     required TResult Function(
             String userCollege, BlogsModel blogModel, int index)
         approveBlog,
+    required TResult Function(String userCollege, int index) likeBlog,
+    required TResult Function(BlogsModel blogModel, Function onChanged)
+        likeSingleBlogPost,
   }) {
     return getMoreBlogs(selectedTags, city, college);
   }
@@ -586,6 +624,9 @@ class _$_GetMoreBlogs implements _GetMoreBlogs {
         declineBlog,
     TResult Function(String userCollege, BlogsModel blogModel, int index)?
         approveBlog,
+    TResult Function(String userCollege, int index)? likeBlog,
+    TResult Function(BlogsModel blogModel, Function onChanged)?
+        likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (getMoreBlogs != null) {
@@ -608,6 +649,8 @@ class _$_GetMoreBlogs implements _GetMoreBlogs {
     required TResult Function(_DeleteBlog value) deleteBlog,
     required TResult Function(_DeclineBlog value) declineBlog,
     required TResult Function(_ApproveBlog value) approveBlog,
+    required TResult Function(_LikeBlog value) likeBlog,
+    required TResult Function(_LikeSingleBlogPost value) likeSingleBlogPost,
   }) {
     return getMoreBlogs(this);
   }
@@ -625,6 +668,8 @@ class _$_GetMoreBlogs implements _GetMoreBlogs {
     TResult Function(_DeleteBlog value)? deleteBlog,
     TResult Function(_DeclineBlog value)? declineBlog,
     TResult Function(_ApproveBlog value)? approveBlog,
+    TResult Function(_LikeBlog value)? likeBlog,
+    TResult Function(_LikeSingleBlogPost value)? likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (getMoreBlogs != null) {
@@ -767,6 +812,9 @@ class _$_GetPublishingBlogs implements _GetPublishingBlogs {
     required TResult Function(
             String userCollege, BlogsModel blogModel, int index)
         approveBlog,
+    required TResult Function(String userCollege, int index) likeBlog,
+    required TResult Function(BlogsModel blogModel, Function onChanged)
+        likeSingleBlogPost,
   }) {
     return getPublishingBlogs(userCollege, status, selectedDate);
   }
@@ -798,6 +846,9 @@ class _$_GetPublishingBlogs implements _GetPublishingBlogs {
         declineBlog,
     TResult Function(String userCollege, BlogsModel blogModel, int index)?
         approveBlog,
+    TResult Function(String userCollege, int index)? likeBlog,
+    TResult Function(BlogsModel blogModel, Function onChanged)?
+        likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (getPublishingBlogs != null) {
@@ -820,6 +871,8 @@ class _$_GetPublishingBlogs implements _GetPublishingBlogs {
     required TResult Function(_DeleteBlog value) deleteBlog,
     required TResult Function(_DeclineBlog value) declineBlog,
     required TResult Function(_ApproveBlog value) approveBlog,
+    required TResult Function(_LikeBlog value) likeBlog,
+    required TResult Function(_LikeSingleBlogPost value) likeSingleBlogPost,
   }) {
     return getPublishingBlogs(this);
   }
@@ -837,6 +890,8 @@ class _$_GetPublishingBlogs implements _GetPublishingBlogs {
     TResult Function(_DeleteBlog value)? deleteBlog,
     TResult Function(_DeclineBlog value)? declineBlog,
     TResult Function(_ApproveBlog value)? approveBlog,
+    TResult Function(_LikeBlog value)? likeBlog,
+    TResult Function(_LikeSingleBlogPost value)? likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (getPublishingBlogs != null) {
@@ -980,6 +1035,9 @@ class _$_GetMorePublishingPosts implements _GetMorePublishingPosts {
     required TResult Function(
             String userCollege, BlogsModel blogModel, int index)
         approveBlog,
+    required TResult Function(String userCollege, int index) likeBlog,
+    required TResult Function(BlogsModel blogModel, Function onChanged)
+        likeSingleBlogPost,
   }) {
     return getMorePublishingBlogs(userCollege, status, selectedDate);
   }
@@ -1011,6 +1069,9 @@ class _$_GetMorePublishingPosts implements _GetMorePublishingPosts {
         declineBlog,
     TResult Function(String userCollege, BlogsModel blogModel, int index)?
         approveBlog,
+    TResult Function(String userCollege, int index)? likeBlog,
+    TResult Function(BlogsModel blogModel, Function onChanged)?
+        likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (getMorePublishingBlogs != null) {
@@ -1033,6 +1094,8 @@ class _$_GetMorePublishingPosts implements _GetMorePublishingPosts {
     required TResult Function(_DeleteBlog value) deleteBlog,
     required TResult Function(_DeclineBlog value) declineBlog,
     required TResult Function(_ApproveBlog value) approveBlog,
+    required TResult Function(_LikeBlog value) likeBlog,
+    required TResult Function(_LikeSingleBlogPost value) likeSingleBlogPost,
   }) {
     return getMorePublishingBlogs(this);
   }
@@ -1050,6 +1113,8 @@ class _$_GetMorePublishingPosts implements _GetMorePublishingPosts {
     TResult Function(_DeleteBlog value)? deleteBlog,
     TResult Function(_DeclineBlog value)? declineBlog,
     TResult Function(_ApproveBlog value)? approveBlog,
+    TResult Function(_LikeBlog value)? likeBlog,
+    TResult Function(_LikeSingleBlogPost value)? likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (getMorePublishingBlogs != null) {
@@ -1191,6 +1256,9 @@ class _$_GetUserBlogs implements _GetUserBlogs {
     required TResult Function(
             String userCollege, BlogsModel blogModel, int index)
         approveBlog,
+    required TResult Function(String userCollege, int index) likeBlog,
+    required TResult Function(BlogsModel blogModel, Function onChanged)
+        likeSingleBlogPost,
   }) {
     return getUserBlogs(coolUser, status, selectedDate);
   }
@@ -1222,6 +1290,9 @@ class _$_GetUserBlogs implements _GetUserBlogs {
         declineBlog,
     TResult Function(String userCollege, BlogsModel blogModel, int index)?
         approveBlog,
+    TResult Function(String userCollege, int index)? likeBlog,
+    TResult Function(BlogsModel blogModel, Function onChanged)?
+        likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (getUserBlogs != null) {
@@ -1244,6 +1315,8 @@ class _$_GetUserBlogs implements _GetUserBlogs {
     required TResult Function(_DeleteBlog value) deleteBlog,
     required TResult Function(_DeclineBlog value) declineBlog,
     required TResult Function(_ApproveBlog value) approveBlog,
+    required TResult Function(_LikeBlog value) likeBlog,
+    required TResult Function(_LikeSingleBlogPost value) likeSingleBlogPost,
   }) {
     return getUserBlogs(this);
   }
@@ -1261,6 +1334,8 @@ class _$_GetUserBlogs implements _GetUserBlogs {
     TResult Function(_DeleteBlog value)? deleteBlog,
     TResult Function(_DeclineBlog value)? declineBlog,
     TResult Function(_ApproveBlog value)? approveBlog,
+    TResult Function(_LikeBlog value)? likeBlog,
+    TResult Function(_LikeSingleBlogPost value)? likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (getUserBlogs != null) {
@@ -1403,6 +1478,9 @@ class _$_GetMoreUserBlogs implements _GetMoreUserBlogs {
     required TResult Function(
             String userCollege, BlogsModel blogModel, int index)
         approveBlog,
+    required TResult Function(String userCollege, int index) likeBlog,
+    required TResult Function(BlogsModel blogModel, Function onChanged)
+        likeSingleBlogPost,
   }) {
     return getMoreUserBlogs(coolUser, status, selectedDate);
   }
@@ -1434,6 +1512,9 @@ class _$_GetMoreUserBlogs implements _GetMoreUserBlogs {
         declineBlog,
     TResult Function(String userCollege, BlogsModel blogModel, int index)?
         approveBlog,
+    TResult Function(String userCollege, int index)? likeBlog,
+    TResult Function(BlogsModel blogModel, Function onChanged)?
+        likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (getMoreUserBlogs != null) {
@@ -1456,6 +1537,8 @@ class _$_GetMoreUserBlogs implements _GetMoreUserBlogs {
     required TResult Function(_DeleteBlog value) deleteBlog,
     required TResult Function(_DeclineBlog value) declineBlog,
     required TResult Function(_ApproveBlog value) approveBlog,
+    required TResult Function(_LikeBlog value) likeBlog,
+    required TResult Function(_LikeSingleBlogPost value) likeSingleBlogPost,
   }) {
     return getMoreUserBlogs(this);
   }
@@ -1473,6 +1556,8 @@ class _$_GetMoreUserBlogs implements _GetMoreUserBlogs {
     TResult Function(_DeleteBlog value)? deleteBlog,
     TResult Function(_DeclineBlog value)? declineBlog,
     TResult Function(_ApproveBlog value)? approveBlog,
+    TResult Function(_LikeBlog value)? likeBlog,
+    TResult Function(_LikeSingleBlogPost value)? likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (getMoreUserBlogs != null) {
@@ -1622,6 +1707,9 @@ class _$_AddBlog implements _AddBlog {
     required TResult Function(
             String userCollege, BlogsModel blogModel, int index)
         approveBlog,
+    required TResult Function(String userCollege, int index) likeBlog,
+    required TResult Function(BlogsModel blogModel, Function onChanged)
+        likeSingleBlogPost,
   }) {
     return addBlog(userCollege, blogModel, file, index);
   }
@@ -1653,6 +1741,9 @@ class _$_AddBlog implements _AddBlog {
         declineBlog,
     TResult Function(String userCollege, BlogsModel blogModel, int index)?
         approveBlog,
+    TResult Function(String userCollege, int index)? likeBlog,
+    TResult Function(BlogsModel blogModel, Function onChanged)?
+        likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (addBlog != null) {
@@ -1675,6 +1766,8 @@ class _$_AddBlog implements _AddBlog {
     required TResult Function(_DeleteBlog value) deleteBlog,
     required TResult Function(_DeclineBlog value) declineBlog,
     required TResult Function(_ApproveBlog value) approveBlog,
+    required TResult Function(_LikeBlog value) likeBlog,
+    required TResult Function(_LikeSingleBlogPost value) likeSingleBlogPost,
   }) {
     return addBlog(this);
   }
@@ -1692,6 +1785,8 @@ class _$_AddBlog implements _AddBlog {
     TResult Function(_DeleteBlog value)? deleteBlog,
     TResult Function(_DeclineBlog value)? declineBlog,
     TResult Function(_ApproveBlog value)? approveBlog,
+    TResult Function(_LikeBlog value)? likeBlog,
+    TResult Function(_LikeSingleBlogPost value)? likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (addBlog != null) {
@@ -1853,6 +1948,9 @@ class _$_DeleteBlog implements _DeleteBlog {
     required TResult Function(
             String userCollege, BlogsModel blogModel, int index)
         approveBlog,
+    required TResult Function(String userCollege, int index) likeBlog,
+    required TResult Function(BlogsModel blogModel, Function onChanged)
+        likeSingleBlogPost,
   }) {
     return deleteBlog(userCollege, blogModel, index, isDeletedFromApproved);
   }
@@ -1884,6 +1982,9 @@ class _$_DeleteBlog implements _DeleteBlog {
         declineBlog,
     TResult Function(String userCollege, BlogsModel blogModel, int index)?
         approveBlog,
+    TResult Function(String userCollege, int index)? likeBlog,
+    TResult Function(BlogsModel blogModel, Function onChanged)?
+        likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (deleteBlog != null) {
@@ -1906,6 +2007,8 @@ class _$_DeleteBlog implements _DeleteBlog {
     required TResult Function(_DeleteBlog value) deleteBlog,
     required TResult Function(_DeclineBlog value) declineBlog,
     required TResult Function(_ApproveBlog value) approveBlog,
+    required TResult Function(_LikeBlog value) likeBlog,
+    required TResult Function(_LikeSingleBlogPost value) likeSingleBlogPost,
   }) {
     return deleteBlog(this);
   }
@@ -1923,6 +2026,8 @@ class _$_DeleteBlog implements _DeleteBlog {
     TResult Function(_DeleteBlog value)? deleteBlog,
     TResult Function(_DeclineBlog value)? declineBlog,
     TResult Function(_ApproveBlog value)? approveBlog,
+    TResult Function(_LikeBlog value)? likeBlog,
+    TResult Function(_LikeSingleBlogPost value)? likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (deleteBlog != null) {
@@ -2068,6 +2173,9 @@ class _$_DeclineBlog implements _DeclineBlog {
     required TResult Function(
             String userCollege, BlogsModel blogModel, int index)
         approveBlog,
+    required TResult Function(String userCollege, int index) likeBlog,
+    required TResult Function(BlogsModel blogModel, Function onChanged)
+        likeSingleBlogPost,
   }) {
     return declineBlog(userCollege, blogModel, index);
   }
@@ -2099,6 +2207,9 @@ class _$_DeclineBlog implements _DeclineBlog {
         declineBlog,
     TResult Function(String userCollege, BlogsModel blogModel, int index)?
         approveBlog,
+    TResult Function(String userCollege, int index)? likeBlog,
+    TResult Function(BlogsModel blogModel, Function onChanged)?
+        likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (declineBlog != null) {
@@ -2121,6 +2232,8 @@ class _$_DeclineBlog implements _DeclineBlog {
     required TResult Function(_DeleteBlog value) deleteBlog,
     required TResult Function(_DeclineBlog value) declineBlog,
     required TResult Function(_ApproveBlog value) approveBlog,
+    required TResult Function(_LikeBlog value) likeBlog,
+    required TResult Function(_LikeSingleBlogPost value) likeSingleBlogPost,
   }) {
     return declineBlog(this);
   }
@@ -2138,6 +2251,8 @@ class _$_DeclineBlog implements _DeclineBlog {
     TResult Function(_DeleteBlog value)? deleteBlog,
     TResult Function(_DeclineBlog value)? declineBlog,
     TResult Function(_ApproveBlog value)? approveBlog,
+    TResult Function(_LikeBlog value)? likeBlog,
+    TResult Function(_LikeSingleBlogPost value)? likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (declineBlog != null) {
@@ -2281,6 +2396,9 @@ class _$_ApproveBlog implements _ApproveBlog {
     required TResult Function(
             String userCollege, BlogsModel blogModel, int index)
         approveBlog,
+    required TResult Function(String userCollege, int index) likeBlog,
+    required TResult Function(BlogsModel blogModel, Function onChanged)
+        likeSingleBlogPost,
   }) {
     return approveBlog(userCollege, blogModel, index);
   }
@@ -2312,6 +2430,9 @@ class _$_ApproveBlog implements _ApproveBlog {
         declineBlog,
     TResult Function(String userCollege, BlogsModel blogModel, int index)?
         approveBlog,
+    TResult Function(String userCollege, int index)? likeBlog,
+    TResult Function(BlogsModel blogModel, Function onChanged)?
+        likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (approveBlog != null) {
@@ -2334,6 +2455,8 @@ class _$_ApproveBlog implements _ApproveBlog {
     required TResult Function(_DeleteBlog value) deleteBlog,
     required TResult Function(_DeclineBlog value) declineBlog,
     required TResult Function(_ApproveBlog value) approveBlog,
+    required TResult Function(_LikeBlog value) likeBlog,
+    required TResult Function(_LikeSingleBlogPost value) likeSingleBlogPost,
   }) {
     return approveBlog(this);
   }
@@ -2351,6 +2474,8 @@ class _$_ApproveBlog implements _ApproveBlog {
     TResult Function(_DeleteBlog value)? deleteBlog,
     TResult Function(_DeclineBlog value)? declineBlog,
     TResult Function(_ApproveBlog value)? approveBlog,
+    TResult Function(_LikeBlog value)? likeBlog,
+    TResult Function(_LikeSingleBlogPost value)? likeSingleBlogPost,
     required TResult orElse(),
   }) {
     if (approveBlog != null) {
@@ -2371,6 +2496,420 @@ abstract class _ApproveBlog implements BlogsEvent {
   int get index => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$ApproveBlogCopyWith<_ApproveBlog> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$LikeBlogCopyWith<$Res> {
+  factory _$LikeBlogCopyWith(_LikeBlog value, $Res Function(_LikeBlog) then) =
+      __$LikeBlogCopyWithImpl<$Res>;
+  $Res call({String userCollege, int index});
+}
+
+/// @nodoc
+class __$LikeBlogCopyWithImpl<$Res> extends _$BlogsEventCopyWithImpl<$Res>
+    implements _$LikeBlogCopyWith<$Res> {
+  __$LikeBlogCopyWithImpl(_LikeBlog _value, $Res Function(_LikeBlog) _then)
+      : super(_value, (v) => _then(v as _LikeBlog));
+
+  @override
+  _LikeBlog get _value => super._value as _LikeBlog;
+
+  @override
+  $Res call({
+    Object? userCollege = freezed,
+    Object? index = freezed,
+  }) {
+    return _then(_LikeBlog(
+      userCollege: userCollege == freezed
+          ? _value.userCollege
+          : userCollege // ignore: cast_nullable_to_non_nullable
+              as String,
+      index: index == freezed
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_LikeBlog implements _LikeBlog {
+  const _$_LikeBlog({required this.userCollege, required this.index});
+
+  @override
+  final String userCollege;
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'BlogsEvent.likeBlog(userCollege: $userCollege, index: $index)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _LikeBlog &&
+            (identical(other.userCollege, userCollege) ||
+                const DeepCollectionEquality()
+                    .equals(other.userCollege, userCollege)) &&
+            (identical(other.index, index) ||
+                const DeepCollectionEquality().equals(other.index, index)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(userCollege) ^
+      const DeepCollectionEquality().hash(index);
+
+  @JsonKey(ignore: true)
+  @override
+  _$LikeBlogCopyWith<_LikeBlog> get copyWith =>
+      __$LikeBlogCopyWithImpl<_LikeBlog>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            List<String>? selectedTags, String? city, String? college)
+        getBlogs,
+    required TResult Function(
+            List<String>? selectedTags, String? city, String? college)
+        getMoreBlogs,
+    required TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)
+        getPublishingBlogs,
+    required TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)
+        getMorePublishingBlogs,
+    required TResult Function(
+            CoolUser coolUser, String? status, DateTime? selectedDate)
+        getUserBlogs,
+    required TResult Function(
+            CoolUser coolUser, String? status, DateTime? selectedDate)
+        getMoreUserBlogs,
+    required TResult Function(
+            String? userCollege, BlogsModel? blogModel, File? file, int? index)
+        addBlog,
+    required TResult Function(String userCollege, BlogsModel blogModel,
+            int index, bool isDeletedFromApproved)
+        deleteBlog,
+    required TResult Function(
+            String userCollege, BlogsModel blogModel, int index)
+        declineBlog,
+    required TResult Function(
+            String userCollege, BlogsModel blogModel, int index)
+        approveBlog,
+    required TResult Function(String userCollege, int index) likeBlog,
+    required TResult Function(BlogsModel blogModel, Function onChanged)
+        likeSingleBlogPost,
+  }) {
+    return likeBlog(userCollege, index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<String>? selectedTags, String? city, String? college)?
+        getBlogs,
+    TResult Function(List<String>? selectedTags, String? city, String? college)?
+        getMoreBlogs,
+    TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)?
+        getPublishingBlogs,
+    TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)?
+        getMorePublishingBlogs,
+    TResult Function(CoolUser coolUser, String? status, DateTime? selectedDate)?
+        getUserBlogs,
+    TResult Function(CoolUser coolUser, String? status, DateTime? selectedDate)?
+        getMoreUserBlogs,
+    TResult Function(
+            String? userCollege, BlogsModel? blogModel, File? file, int? index)?
+        addBlog,
+    TResult Function(String userCollege, BlogsModel blogModel, int index,
+            bool isDeletedFromApproved)?
+        deleteBlog,
+    TResult Function(String userCollege, BlogsModel blogModel, int index)?
+        declineBlog,
+    TResult Function(String userCollege, BlogsModel blogModel, int index)?
+        approveBlog,
+    TResult Function(String userCollege, int index)? likeBlog,
+    TResult Function(BlogsModel blogModel, Function onChanged)?
+        likeSingleBlogPost,
+    required TResult orElse(),
+  }) {
+    if (likeBlog != null) {
+      return likeBlog(userCollege, index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetBlogs value) getBlogs,
+    required TResult Function(_GetMoreBlogs value) getMoreBlogs,
+    required TResult Function(_GetPublishingBlogs value) getPublishingBlogs,
+    required TResult Function(_GetMorePublishingPosts value)
+        getMorePublishingBlogs,
+    required TResult Function(_GetUserBlogs value) getUserBlogs,
+    required TResult Function(_GetMoreUserBlogs value) getMoreUserBlogs,
+    required TResult Function(_AddBlog value) addBlog,
+    required TResult Function(_DeleteBlog value) deleteBlog,
+    required TResult Function(_DeclineBlog value) declineBlog,
+    required TResult Function(_ApproveBlog value) approveBlog,
+    required TResult Function(_LikeBlog value) likeBlog,
+    required TResult Function(_LikeSingleBlogPost value) likeSingleBlogPost,
+  }) {
+    return likeBlog(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetBlogs value)? getBlogs,
+    TResult Function(_GetMoreBlogs value)? getMoreBlogs,
+    TResult Function(_GetPublishingBlogs value)? getPublishingBlogs,
+    TResult Function(_GetMorePublishingPosts value)? getMorePublishingBlogs,
+    TResult Function(_GetUserBlogs value)? getUserBlogs,
+    TResult Function(_GetMoreUserBlogs value)? getMoreUserBlogs,
+    TResult Function(_AddBlog value)? addBlog,
+    TResult Function(_DeleteBlog value)? deleteBlog,
+    TResult Function(_DeclineBlog value)? declineBlog,
+    TResult Function(_ApproveBlog value)? approveBlog,
+    TResult Function(_LikeBlog value)? likeBlog,
+    TResult Function(_LikeSingleBlogPost value)? likeSingleBlogPost,
+    required TResult orElse(),
+  }) {
+    if (likeBlog != null) {
+      return likeBlog(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LikeBlog implements BlogsEvent {
+  const factory _LikeBlog({required String userCollege, required int index}) =
+      _$_LikeBlog;
+
+  String get userCollege => throw _privateConstructorUsedError;
+  int get index => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$LikeBlogCopyWith<_LikeBlog> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$LikeSingleBlogPostCopyWith<$Res> {
+  factory _$LikeSingleBlogPostCopyWith(
+          _LikeSingleBlogPost value, $Res Function(_LikeSingleBlogPost) then) =
+      __$LikeSingleBlogPostCopyWithImpl<$Res>;
+  $Res call({BlogsModel blogModel, Function onChanged});
+}
+
+/// @nodoc
+class __$LikeSingleBlogPostCopyWithImpl<$Res>
+    extends _$BlogsEventCopyWithImpl<$Res>
+    implements _$LikeSingleBlogPostCopyWith<$Res> {
+  __$LikeSingleBlogPostCopyWithImpl(
+      _LikeSingleBlogPost _value, $Res Function(_LikeSingleBlogPost) _then)
+      : super(_value, (v) => _then(v as _LikeSingleBlogPost));
+
+  @override
+  _LikeSingleBlogPost get _value => super._value as _LikeSingleBlogPost;
+
+  @override
+  $Res call({
+    Object? blogModel = freezed,
+    Object? onChanged = freezed,
+  }) {
+    return _then(_LikeSingleBlogPost(
+      blogModel: blogModel == freezed
+          ? _value.blogModel
+          : blogModel // ignore: cast_nullable_to_non_nullable
+              as BlogsModel,
+      onChanged: onChanged == freezed
+          ? _value.onChanged
+          : onChanged // ignore: cast_nullable_to_non_nullable
+              as Function,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_LikeSingleBlogPost implements _LikeSingleBlogPost {
+  const _$_LikeSingleBlogPost(
+      {required this.blogModel, required this.onChanged});
+
+  @override
+  final BlogsModel blogModel;
+  @override
+  final Function onChanged;
+
+  @override
+  String toString() {
+    return 'BlogsEvent.likeSingleBlogPost(blogModel: $blogModel, onChanged: $onChanged)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _LikeSingleBlogPost &&
+            (identical(other.blogModel, blogModel) ||
+                const DeepCollectionEquality()
+                    .equals(other.blogModel, blogModel)) &&
+            (identical(other.onChanged, onChanged) ||
+                const DeepCollectionEquality()
+                    .equals(other.onChanged, onChanged)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(blogModel) ^
+      const DeepCollectionEquality().hash(onChanged);
+
+  @JsonKey(ignore: true)
+  @override
+  _$LikeSingleBlogPostCopyWith<_LikeSingleBlogPost> get copyWith =>
+      __$LikeSingleBlogPostCopyWithImpl<_LikeSingleBlogPost>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            List<String>? selectedTags, String? city, String? college)
+        getBlogs,
+    required TResult Function(
+            List<String>? selectedTags, String? city, String? college)
+        getMoreBlogs,
+    required TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)
+        getPublishingBlogs,
+    required TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)
+        getMorePublishingBlogs,
+    required TResult Function(
+            CoolUser coolUser, String? status, DateTime? selectedDate)
+        getUserBlogs,
+    required TResult Function(
+            CoolUser coolUser, String? status, DateTime? selectedDate)
+        getMoreUserBlogs,
+    required TResult Function(
+            String? userCollege, BlogsModel? blogModel, File? file, int? index)
+        addBlog,
+    required TResult Function(String userCollege, BlogsModel blogModel,
+            int index, bool isDeletedFromApproved)
+        deleteBlog,
+    required TResult Function(
+            String userCollege, BlogsModel blogModel, int index)
+        declineBlog,
+    required TResult Function(
+            String userCollege, BlogsModel blogModel, int index)
+        approveBlog,
+    required TResult Function(String userCollege, int index) likeBlog,
+    required TResult Function(BlogsModel blogModel, Function onChanged)
+        likeSingleBlogPost,
+  }) {
+    return likeSingleBlogPost(blogModel, onChanged);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<String>? selectedTags, String? city, String? college)?
+        getBlogs,
+    TResult Function(List<String>? selectedTags, String? city, String? college)?
+        getMoreBlogs,
+    TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)?
+        getPublishingBlogs,
+    TResult Function(
+            String userCollege, String? status, DateTime? selectedDate)?
+        getMorePublishingBlogs,
+    TResult Function(CoolUser coolUser, String? status, DateTime? selectedDate)?
+        getUserBlogs,
+    TResult Function(CoolUser coolUser, String? status, DateTime? selectedDate)?
+        getMoreUserBlogs,
+    TResult Function(
+            String? userCollege, BlogsModel? blogModel, File? file, int? index)?
+        addBlog,
+    TResult Function(String userCollege, BlogsModel blogModel, int index,
+            bool isDeletedFromApproved)?
+        deleteBlog,
+    TResult Function(String userCollege, BlogsModel blogModel, int index)?
+        declineBlog,
+    TResult Function(String userCollege, BlogsModel blogModel, int index)?
+        approveBlog,
+    TResult Function(String userCollege, int index)? likeBlog,
+    TResult Function(BlogsModel blogModel, Function onChanged)?
+        likeSingleBlogPost,
+    required TResult orElse(),
+  }) {
+    if (likeSingleBlogPost != null) {
+      return likeSingleBlogPost(blogModel, onChanged);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetBlogs value) getBlogs,
+    required TResult Function(_GetMoreBlogs value) getMoreBlogs,
+    required TResult Function(_GetPublishingBlogs value) getPublishingBlogs,
+    required TResult Function(_GetMorePublishingPosts value)
+        getMorePublishingBlogs,
+    required TResult Function(_GetUserBlogs value) getUserBlogs,
+    required TResult Function(_GetMoreUserBlogs value) getMoreUserBlogs,
+    required TResult Function(_AddBlog value) addBlog,
+    required TResult Function(_DeleteBlog value) deleteBlog,
+    required TResult Function(_DeclineBlog value) declineBlog,
+    required TResult Function(_ApproveBlog value) approveBlog,
+    required TResult Function(_LikeBlog value) likeBlog,
+    required TResult Function(_LikeSingleBlogPost value) likeSingleBlogPost,
+  }) {
+    return likeSingleBlogPost(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetBlogs value)? getBlogs,
+    TResult Function(_GetMoreBlogs value)? getMoreBlogs,
+    TResult Function(_GetPublishingBlogs value)? getPublishingBlogs,
+    TResult Function(_GetMorePublishingPosts value)? getMorePublishingBlogs,
+    TResult Function(_GetUserBlogs value)? getUserBlogs,
+    TResult Function(_GetMoreUserBlogs value)? getMoreUserBlogs,
+    TResult Function(_AddBlog value)? addBlog,
+    TResult Function(_DeleteBlog value)? deleteBlog,
+    TResult Function(_DeclineBlog value)? declineBlog,
+    TResult Function(_ApproveBlog value)? approveBlog,
+    TResult Function(_LikeBlog value)? likeBlog,
+    TResult Function(_LikeSingleBlogPost value)? likeSingleBlogPost,
+    required TResult orElse(),
+  }) {
+    if (likeSingleBlogPost != null) {
+      return likeSingleBlogPost(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LikeSingleBlogPost implements BlogsEvent {
+  const factory _LikeSingleBlogPost(
+      {required BlogsModel blogModel,
+      required Function onChanged}) = _$_LikeSingleBlogPost;
+
+  BlogsModel get blogModel => throw _privateConstructorUsedError;
+  Function get onChanged => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$LikeSingleBlogPostCopyWith<_LikeSingleBlogPost> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

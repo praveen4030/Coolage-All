@@ -103,7 +103,7 @@ class CartItem extends StatelessWidget {
 
   String getCartItemPrice() {
     if (itemModel!.categoryPrices!.isEmpty) {
-      return '${itemModel!.price!.toInt()}';
+      return '${itemModel!.price!.toInt() * itemModel!.getQty()}';
     } else {
       double price = 0;
       for (final model in itemModel!.categoryPrices!) {

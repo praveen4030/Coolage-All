@@ -94,8 +94,8 @@ class MenuItemTile extends StatelessWidget {
                           ),
                         ),
                         MenuCartAddButton(
-                          canteenBasicDetailsModel: canteenBasicDetailsModel,
-                          menuItemModel: menuItem,
+                          canteenBasicDetailsModel: canteenBasicDetailsModel!,
+                          menuItemModel: menuItem!,
                         ),
                       ],
                     ),
@@ -106,8 +106,8 @@ class MenuItemTile extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 20),
                       child: MenuCartAddButton(
-                        canteenBasicDetailsModel: canteenBasicDetailsModel,
-                        menuItemModel: menuItem,
+                        canteenBasicDetailsModel: canteenBasicDetailsModel!,
+                        menuItemModel: menuItem!,
                       ),
                     ),
                   ),

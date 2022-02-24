@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   fluttertoast: ^8.0.8
+  flushbar: ^1.10.4
   intl: null
   url_launcher: ^6.0.3
   cloud_firestore: ^2.1.0
@@ -38,10 +39,15 @@ dependencies:
   dropdown_button2: ^1.0.7
   dio: ^4.0.4
   cashfree_pg: ^2.0.4+24
+  firebase_dynamic_links: ^4.0.3
   user:
     path: ../user
   college:
     path: ../college
+  canteen:
+    path: ../canteen
+  blogs:
+    path: ../blogs
 dev_dependencies:
   flutter_lints: ^1.0.0
   injectable_generator: ^1.4.0
@@ -52,4 +58,4 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-flutter: null
+flutter:

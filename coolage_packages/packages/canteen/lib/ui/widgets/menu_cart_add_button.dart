@@ -1,12 +1,12 @@
 part of canteen;
 
 class MenuCartAddButton extends StatefulWidget {
-  final CanteenBasicDetailsModel? canteenBasicDetailsModel;
-  final ItemModel? menuItemModel;
+  final CanteenBasicDetailsModel canteenBasicDetailsModel;
+  final ItemModel menuItemModel;
   const MenuCartAddButton({
     Key? key,
-    @required this.canteenBasicDetailsModel,
-    @required this.menuItemModel,
+    required this.canteenBasicDetailsModel,
+    required this.menuItemModel,
   }) : super(key: key);
 
   @override
@@ -16,11 +16,11 @@ class MenuCartAddButton extends StatefulWidget {
 class _MenuCartAddButtonState extends State<MenuCartAddButton> {
   CanteenDetailsBloc? canteenDetailsBloc;
   CanteenBasicDetailsModel? canteenBasicDetailsModel;
-  ItemModel? itemModel;
+  // ItemModel? itemModel;
   @override
   void initState() {
     super.initState();
-    itemModel = widget.menuItemModel!;
+    // itemModel = widget.menuItemModel!;
     canteenBasicDetailsModel = widget.canteenBasicDetailsModel;
     canteenDetailsBloc = context.read<CanteenDetailsBloc>();
   }
@@ -32,13 +32,14 @@ class _MenuCartAddButtonState extends State<MenuCartAddButton> {
     final cartBox = Hive.box<CartModel>(HiveConstants.cartBoxName);
     return ValueListenableBuilder(
         valueListenable: cartBox.listenable(),
-        builder: (context, box, widget) {
+        builder: (context, box, widget2) {
           final canteenId = canteenBasicDetailsModel!.canteenId!;
           final canteenCartItem = cartBox.get(canteenId);
           int qty = 0;
 
           if (canteenCartItem != null && canteenCartItem.cartItemsMap != null) {
-            final menuItem = canteenCartItem.cartItemsMap![itemModel!.itemId];
+            final menuItem =
+                canteenCartItem.cartItemsMap![widget.menuItemModel.itemId];
             if (menuItem != null) {
               qty = menuItem.qty!.toInt();
             }
@@ -48,10 +49,10 @@ class _MenuCartAddButtonState extends State<MenuCartAddButton> {
             children: [
               AddButton(
                 onAdd: (int quantity, bool isIncreased) async {
-                  if (itemModel!.categoryPrices!.isEmpty) {
-                    itemModel!.qty = quantity;
+                  if (widget.menuItemModel.categoryPrices!.isEmpty) {
+                    widget.menuItemModel.qty = quantity;
                     CanteenFunctions.addItemToCart(
-                        menuItemModel: itemModel,
+                        menuItemModel: widget.menuItemModel,
                         canteenBasicDetailsModel: canteenBasicDetailsModel);
                     // canteenDetailsBloc!.add(CanteenDetailsEvent.addToCart(
                     //   isIncreased: isIncreased,
@@ -63,7 +64,7 @@ class _MenuCartAddButtonState extends State<MenuCartAddButton> {
                         context: context,
                         builder: (context) {
                           return AddMenuItemCategoryDialog(
-                            itemModel: itemModel,
+                            itemModel: widget.menuItemModel,
                             canteenBasicDetailsModel: canteenBasicDetailsModel,
                           );
                         });
@@ -72,7 +73,7 @@ class _MenuCartAddButtonState extends State<MenuCartAddButton> {
                 },
                 quantity: qty,
               ),
-              if (itemModel!.categoryPrices!.isNotEmpty)
+              if (widget.menuItemModel.categoryPrices!.isNotEmpty)
                 Column(
                   children: const [
                     SizedBox(
