@@ -27,7 +27,7 @@ mixin ShareProfileFunction {
             ? Functions.getWithSuffix(int.parse(coolUser.year!))
             : '';
         msg +=
-            '$year ${coolUser.degree ?? ''} student of ${coolUser.branch ?? ''} @ ${coolUser.college ?? ''}';
+            ', $year year ${coolUser.degree ?? ''} student of ${coolUser.branch ?? ''} @ ${coolUser.college ?? ''}';
       } else {
         final type =
             coolUser.userType == Constants.USER_TYPE_GUEST ? 'guest' : 'staff';

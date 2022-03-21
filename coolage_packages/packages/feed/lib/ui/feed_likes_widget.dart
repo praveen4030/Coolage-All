@@ -3,8 +3,11 @@ import 'package:feed/application/feed/feed_bloc.dart';
 import 'package:feed/domain/feed_functions.dart';
 import 'package:feed/feed.dart';
 import 'package:flushbar/flushbar_helper.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share/share.dart';
 import 'package:user/user.dart';
 
@@ -73,32 +76,45 @@ class _FeedLikeWidgetState extends State<FeedLikeWidget> {
                     ),
             ),
           ),
-          Container(
-            width: 1,
-            color: Kolors.greyBlue.withOpacity(0.5),
-          ),
-          Expanded(
-            child: InkWell(
-              onTap: () async {
-                final link = await FeedDynamicLinks.getFeedShareLink(
-                    Getters.getCurrentUserCollege(context), widget.feedModel);
-                if (link?.isEmpty ?? true) {
-                  FlushbarHelper.createError(message: "Something went wrong!")
-                      .show(CoreGetters.getContext);
-                  return;
-                }
-                final msg =
-                    FeedFunctions.getFeedShareMessage(link!, widget.feedModel);
-                Share.share(msg);
-              },
-              child: const IconImagesWid(
-                iconName: 'forward.png',
-                height: 24,
-                width: 24,
-                color: Kolors.greyBlue,
+          if (!kIsWeb || widget.feedModel.shareDynamicLink.isNotEmpty)
+            Container(
+              width: 1,
+              color: Kolors.greyBlue.withOpacity(0.5),
+            ),
+          if (!kIsWeb || widget.feedModel.shareDynamicLink.isNotEmpty)
+            Expanded(
+              child: InkWell(
+                onTap: () async {
+                  final link = await FeedDynamicLinks.getFeedShareLink(
+                      Getters.getCurrentUserCollege(context), widget.feedModel);
+                  if (link?.isEmpty ?? true) {
+                    FlushbarHelper.createError(message: "Something went wrong!")
+                        .show(CoreGetters.getContext);
+                    return;
+                  }
+                  final msg = FeedFunctions.getFeedShareMessage(
+                      link!, widget.feedModel);
+                  if (kIsWeb) {
+                    Clipboard.setData(ClipboardData(text: msg));
+                    Fluttertoast.showToast(msg: "Link copied to clipboard");
+                  } else {
+                    Share.share(msg);
+                  }
+                },
+                child: kIsWeb
+                    ? const Icon(
+                        Icons.copy_outlined,
+                        size: 24,
+                        color: Kolors.greyBlue,
+                      )
+                    : const IconImagesWid(
+                        iconName: 'forward.png',
+                        height: 24,
+                        width: 24,
+                        color: Kolors.greyBlue,
+                      ),
               ),
             ),
-          ),
         ],
       ),
     );
